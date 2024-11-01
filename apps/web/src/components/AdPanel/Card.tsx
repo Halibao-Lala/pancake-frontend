@@ -55,12 +55,12 @@ const StyledIconButton = styled(IconButton).attrs({ variant: 'text' })`
   height: 12px;
   width: 12px !important;
   padding: 12px;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.textSubtle};
   transition: all 0.4s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
     color: white;
+    background-color: ${({ theme }) => theme.colors.textSubtle};
   }
 `
 
@@ -82,7 +82,7 @@ export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
             <CloseIcon color="inherit" />
           </StyledIconButton>
         </CloseButtonContainer>
-        <Image src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} style={{ position: 'absolute' }} />
+        <Image src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />
       </GraphicsContainer>
     </BaseCard>
   )
