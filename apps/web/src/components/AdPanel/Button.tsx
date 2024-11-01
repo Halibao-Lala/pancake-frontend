@@ -1,11 +1,20 @@
-import { Button, ButtonProps } from '@pancakeswap/uikit'
+import { Button, ButtonProps, OpenNewIcon } from '@pancakeswap/uikit'
 import { PropsWithChildren } from 'react'
 
-interface AdButtonProps extends ButtonProps, PropsWithChildren {}
+interface AdButtonProps extends ButtonProps, PropsWithChildren {
+  isExternal?: boolean
+}
 
-export const AdButton = ({ children }: AdButtonProps) => {
+export const AdButton = ({ children, isExternal, endIcon, ...props }: AdButtonProps) => {
   return (
-    <Button scale="sm" variant="subtle" padding="3px 4px 5px 4px" height="unset">
+    <Button
+      scale="sm"
+      variant="subtle"
+      width="fit-content"
+      padding="7px 8px 9px 8px"
+      endIcon={isExternal ? <OpenNewIcon color="invertedContrast" /> : endIcon}
+      {...props}
+    >
       {children}
     </Button>
   )

@@ -23,9 +23,19 @@ const Content = styled(Flex)`
 
 const PositionedImage = styled(Image)`
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: -2px;
+  right: -1px;
   z-index: 1;
+`
+
+const SliderContainer = styled(Box)`
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+
+  width: 148px;
+  height: 8px;
+  border: 1px solid gray;
 `
 
 interface AdCardProps {
@@ -39,6 +49,7 @@ export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
   return (
     <BaseCard>
       <Content>{children}</Content>
+      <SliderContainer />
       <PositionedImage src={imageUrl} alt={alt || 'Ad'} width={207} height={188} />
     </BaseCard>
   )

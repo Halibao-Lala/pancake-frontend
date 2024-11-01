@@ -2,10 +2,9 @@ import { Text, TextProps } from '@pancakeswap/uikit'
 import { PropsWithChildren } from 'react'
 
 interface TitleProps extends TextProps, PropsWithChildren {}
-
-export const Title = ({ children, ...props }: TitleProps) => {
+export const Title = ({ children }: TitleProps) => {
   return (
-    <Text fontSize="14px" mb="16px" bold {...props}>
+    <Text color="secondary" small bold>
       {children}
     </Text>
   )

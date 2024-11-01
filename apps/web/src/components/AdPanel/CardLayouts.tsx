@@ -1,6 +1,6 @@
 import { getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { createPortal } from 'react-dom'
-import { TitleAd } from './Variations/TitleAd'
+import { TitleContentAd } from './Variations/TitleContentAd'
 
 /**
  * Renders floating Ad banners on desktop
@@ -9,7 +9,7 @@ export const DesktopCard = () => {
   const portalRoot = getPortalRoot()
   const { isDesktop } = useMatchBreakpoints()
 
-  return portalRoot && isDesktop ? createPortal(<TitleAd />, portalRoot) : null
+  return portalRoot && isDesktop ? createPortal(<TitleContentAd />, portalRoot) : null
 }
 
 /**
@@ -17,5 +17,5 @@ export const DesktopCard = () => {
  */
 export const MobileCard = () => {
   const { isDesktop } = useMatchBreakpoints()
-  return !isDesktop ? <TitleAd /> : null
+  return !isDesktop ? <TitleContentAd /> : null
 }
