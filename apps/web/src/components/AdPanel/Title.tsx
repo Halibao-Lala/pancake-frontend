@@ -1,11 +1,12 @@
 import { Text, TextProps } from '@pancakeswap/uikit'
+import { PropsWithChildren } from 'react'
 
-interface TitleProps extends TextProps {}
+interface TitleProps extends TextProps, PropsWithChildren {}
 
-export const Title = (props: TitleProps) => {
+export const Title = ({ children, ...props }: TitleProps) => {
   return (
-    <Text color="textSubtle" {...props}>
-      AdPanel
+    <Text fontSize="14px" mb="16px" bold {...props}>
+      {children}
     </Text>
   )
 }

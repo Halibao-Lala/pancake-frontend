@@ -5,21 +5,27 @@ const BaseCard = styled(Box)`
   position: fixed;
   bottom: 30px;
   right: 30px;
-  border: 2px solid red;
-  width: 326px;
-  height: 188px;
+  padding: 16px;
+  width: 328px;
+  height: 164px;
   background-color: ${({ theme }) => theme.colors.card};
   border-radius: ${({ theme }) => theme.radii.default};
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
 const Content = styled(Flex)`
-  max-width: 119px;
+  position: relative;
+  width: 148px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
 `
 
 const PositionedImage = styled(Image)`
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
+  z-index: 1;
 `
 
 interface AdCardProps {
@@ -29,7 +35,7 @@ interface AdCardProps {
 }
 
 export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
-  // Drag handle and other slots will come here as well
+  // Drag handle, Slider and other slots will come here
   return (
     <BaseCard>
       <Content>{children}</Content>
