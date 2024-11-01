@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@pancakeswap/uikit'
+import { Box, CloseIcon, Flex, IconButton, Image } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 const BaseCard = styled(Box)`
@@ -16,15 +16,20 @@ const BaseCard = styled(Box)`
 const Content = styled(Flex)`
   position: relative;
   width: 148px;
-  z-index: 2;
   display: flex;
   flex-direction: column;
+
+  z-index: 2;
 `
 
-const PositionedImage = styled(Image)`
+const GraphicsContainer = styled(Box)`
   position: absolute;
   bottom: -2px;
   right: -1px;
+
+  width: 207px;
+  height: 188px;
+
   z-index: 1;
 `
 
@@ -36,6 +41,27 @@ const SliderContainer = styled(Box)`
   width: 148px;
   height: 8px;
   border: 1px solid gray;
+`
+
+const CloseButtonContainer = styled(Box)`
+  position: absolute;
+  top: -4px;
+  right: 0;
+
+  z-index: 3;
+`
+
+const StyledIconButton = styled(IconButton).attrs({ variant: 'text' })`
+  height: 12px;
+  width: 12px !important;
+  padding: 12px;
+  color: ${({ theme }) => theme.colors.secondary};
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: white;
+  }
 `
 
 interface AdCardProps {
@@ -50,7 +76,14 @@ export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
     <BaseCard>
       <Content>{children}</Content>
       <SliderContainer />
-      <PositionedImage src={imageUrl} alt={alt || 'Ad'} width={207} height={188} />
+      <GraphicsContainer>
+        <CloseButtonContainer>
+          <StyledIconButton aria-label="Close the Ad banner">
+            <CloseIcon color="inherit" />
+          </StyledIconButton>
+        </CloseButtonContainer>
+        <Image src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} style={{ position: 'absolute' }} />
+      </GraphicsContainer>
     </BaseCard>
   )
 }
