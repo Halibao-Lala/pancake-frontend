@@ -8,8 +8,17 @@ import { AdList } from './config'
 
 const FloatingContainer = styled(Box)`
   position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
+`
+
+const Wrapper = styled.div`
+  position: absolute;
   bottom: 30px;
   right: 30px;
+  width: 100%;
 `
 
 const MobileContainer = styled(Box)`
@@ -51,7 +60,9 @@ export const DesktopCard = () => {
   return portalRoot && isDesktop
     ? createPortal(
         <FloatingContainer>
-          <AdSlides />
+          <Wrapper>
+            <AdSlides />
+          </Wrapper>
         </FloatingContainer>,
         portalRoot,
       )
