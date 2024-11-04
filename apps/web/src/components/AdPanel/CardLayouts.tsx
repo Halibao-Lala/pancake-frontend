@@ -5,6 +5,7 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
 import { TitleContentAd } from './Variations/TitleContentAd'
+import { AdList } from './config'
 
 const FloatingContainer = styled(Box)`
   position: fixed;
@@ -42,9 +43,9 @@ export const DesktopCard = () => {
             loop
             pagination={{ clickable: true }}
           >
-            <SwiperSlide>
-              <TitleContentAd />
-            </SwiperSlide>
+            {AdList.map((ad) => (
+              <SwiperSlide key={ad.id}>{ad.component}</SwiperSlide>
+            ))}
           </StyledSwiper>
         </FloatingContainer>,
         portalRoot,

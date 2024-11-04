@@ -12,7 +12,7 @@ export const AdButton = ({ children, isExternal, endIcon, ...props }: AdButtonPr
       variant="subtle"
       width="fit-content"
       padding="7px 8px 9px 8px"
-      endIcon={isExternal ? <OpenNewIcon color="invertedContrast" /> : endIcon}
+      endIcon={endIcon || isExternal ? <OpenNewIcon color="invertedContrast" /> : null}
       {...props}
     >
       {children}
