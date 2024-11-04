@@ -14,13 +14,6 @@ const FloatingContainer = styled(Box)`
   height: 100vh;
 `
 
-const Wrapper = styled.div`
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  width: 100%;
-`
-
 const MobileContainer = styled(Box)`
   border: 1px solid red;
   width: 100%;
@@ -60,9 +53,7 @@ export const DesktopCard = () => {
   return portalRoot && isDesktop
     ? createPortal(
         <FloatingContainer>
-          <Wrapper>
-            <AdSlides />
-          </Wrapper>
+          <AdSlides />
         </FloatingContainer>,
         portalRoot,
       )

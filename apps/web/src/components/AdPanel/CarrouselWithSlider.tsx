@@ -6,10 +6,14 @@ import 'swiper/css/pagination'
 import { Swiper } from 'swiper/react'
 
 export const StyledSwiper = styled(Swiper)`
-  position: relative;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
   overflow: visible;
   opacity: 0;
   animation: ${appearAnimation} 0.3s ease-in-out 0.7s forwards;
+  width: 328px;
+  margin: 0;
   .swiper-pagination {
     position: absolute;
     left: 50%;
