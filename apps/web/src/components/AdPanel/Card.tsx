@@ -2,9 +2,7 @@ import { Box, CloseIcon, Flex, IconButton, Image } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 const BaseCard = styled(Box)`
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
+  position: relative;
   padding: 16px;
   width: 328px;
   height: 164px;
@@ -39,7 +37,7 @@ const SliderContainer = styled(Box)`
   left: 16px;
 
   width: 148px;
-  height: 8px;
+  height: 8px; /* temporary */
   border: 1px solid gray;
 `
 
