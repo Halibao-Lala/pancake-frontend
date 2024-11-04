@@ -12,6 +12,7 @@ const FloatingContainer = styled(Box)`
   top: 0;
   left: 0;
   height: 100vh;
+  z-index: -1;
 `
 
 const MobileContainer = styled(Box)`

@@ -4,10 +4,10 @@ import { Content } from '../Content'
 
 export const ContentAd = () => {
   return (
-    <AdCard imageUrl="/images/adpanel-test/bannerImg1.png">
-      <Content>PancakeSwap Prediction Telegram Bot is now live!</Content>
+    <AdCard imageUrl="/images/adpanel-test/bannerImg2.png">
+      <Content>Web3 Notifications Now Live!!</Content>
 
-      <AdButton isExternal>Play Now!</AdButton>
+      <AdButton isExternal>Learn More</AdButton>
     </AdCard>
   )
 }
