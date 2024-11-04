@@ -16,16 +16,15 @@ export const StyledSwiper = styled(Swiper)`
   margin: 0;
   .swiper-pagination {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 16px;
     display: flex;
     justify-content: center;
-    width: 108px;
+    width: 148px;
     bottom: 16px;
   }
   .swiper-pagination-bullet {
-    background-color: white;
-    flex-basis: 108px;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    flex-basis: 148px;
     margin: 0 !important;
     border-radius: 0px;
     gap: 4px;
