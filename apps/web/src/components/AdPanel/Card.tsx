@@ -14,8 +14,10 @@ const BaseCard = styled(Box)`
 const Content = styled(Flex)`
   position: relative;
   width: 148px;
+  height: 110px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   z-index: 2;
 `
@@ -31,15 +33,15 @@ const GraphicsContainer = styled(Box)`
   z-index: 1;
 `
 
-const SliderContainer = styled(Box)`
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
+// const SliderContainer = styled(Box)`
+//   position: absolute;
+//   bottom: 16px;
+//   left: 16px;
 
-  width: 148px;
-  height: 4px; /* temporary */
-  /* border: 1px solid gray; */
-`
+//   width: 148px;
+//   height: 4px; /* temporary */
+//   /* border: 1px solid gray; */
+// `
 
 const CloseButtonContainer = styled(Box)`
   position: absolute;
@@ -73,7 +75,6 @@ export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
   return (
     <BaseCard>
       <Content>{children}</Content>
-      <SliderContainer />
       <GraphicsContainer>
         <CloseButtonContainer>
           <StyledIconButton aria-label="Close the Ad banner">

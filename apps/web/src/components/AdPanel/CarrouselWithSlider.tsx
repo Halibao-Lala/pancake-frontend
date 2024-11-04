@@ -14,20 +14,24 @@ export const StyledSwiper = styled(Swiper)`
   position: absolute;
   right: 30px;
   bottom: 30px;
+  width: 328px;
   overflow: visible;
   opacity: 0;
-  animation: ${appearAnimation} 0.3s ease-in-out 0.7s forwards;
-  width: 328px;
   margin: 0;
+  animation: ${appearAnimation} 0.3s ease-in-out 0.7s forwards;
+
   .swiper-pagination {
     position: absolute;
-    left: 16px;
+    left: 18px;
+    bottom: 16px;
+    width: 148px;
+
     display: flex;
     justify-content: center;
-    width: 148px;
-    bottom: 16px;
+
     gap: 4px;
   }
+
   .swiper-pagination-bullet {
     position: relative;
     background-color: ${({ theme }) => theme.colors.inputSecondary};
@@ -37,6 +41,7 @@ export const StyledSwiper = styled(Swiper)`
     height: 4px;
     overflow: hidden;
     opacity: 1;
+
     &.swiper-pagination-bullet-active {
       &::before {
         content: '';
@@ -44,8 +49,10 @@ export const StyledSwiper = styled(Swiper)`
         position: absolute;
         top: 0;
         left: 0;
+
         width: 100%;
         height: 100%;
+
         background-color: ${({ theme }) => theme.colors.secondary};
         animation: ${progress} 5s linear forwards;
         transform-origin: left center;

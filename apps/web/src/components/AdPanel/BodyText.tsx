@@ -1,9 +1,9 @@
 import { Text, TextProps } from '@pancakeswap/uikit'
 import { PropsWithChildren } from 'react'
 
-interface ContentProps extends TextProps, PropsWithChildren {}
+interface BodyTextProps extends TextProps, PropsWithChildren {}
 
-export const Content = ({ children, ...props }: ContentProps) => {
+export const BodyText = ({ children, ...props }: BodyTextProps) => {
   return (
     <Text fontSize="14px" mb="16px" bold {...props}>
       {children}

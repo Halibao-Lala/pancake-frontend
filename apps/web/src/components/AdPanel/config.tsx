@@ -10,4 +10,20 @@ export const AdList = [
     id: 'content-ad',
     component: <ContentAd />,
   },
+  {
+    id: 'title-content-ad',
+    component: <TitleContentAd />,
+  },
+  {
+    id: 'content-ad',
+    component: <ContentAd />,
+  },
+  {
+    id: 'title-content-ad',
+    component: <TitleContentAd />,
+  },
+  {
+    id: 'content-ad',
+    component: <ContentAd />,
+  },
 ]
