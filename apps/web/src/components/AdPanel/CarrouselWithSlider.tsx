@@ -57,6 +57,9 @@ export const StyledSwiper = styled(Swiper)`
         animation: ${progress} 5s linear forwards;
         transform-origin: left center;
       }
+      &.pause::before {
+        animation-play-state: paused;
+      }
     }
   }
 `

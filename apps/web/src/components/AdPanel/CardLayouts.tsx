@@ -1,8 +1,9 @@
 import { Box, getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { memo, RefObject, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
-import { SwiperSlide } from 'swiper/react'
+import { SwiperRef, SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
 import { AdList } from './config'
 
@@ -23,7 +24,24 @@ const MobileContainer = styled(Box)`
   align-items: center;
 `
 
-const AdSlides = () => {
+function getTargetAndToggleAnimation(swiperRef: RefObject<SwiperRef>, pause: boolean = true): void {
+  const parent = swiperRef.current as HTMLDivElement | null
+  if (!parent) {
+    console.warn('swiperRef.current is null or undefined')
+    return
+  }
+  const target = parent.querySelector('.swiper-pagination-bullet-active') as HTMLDivElement | null
+  if (!target) {
+    console.warn('No active pagination bullet found')
+    return
+  }
+  target.classList.toggle('pause', pause)
+}
+
+const AdSlides: React.FC = memo(() => {
+  const swiperRef = useRef<SwiperRef>(null)
+  const pauseAni = useCallback(() => getTargetAndToggleAnimation(swiperRef), [swiperRef])
+  const resumeAni = useCallback(() => getTargetAndToggleAnimation(swiperRef, false), [swiperRef])
   return (
     <StyledSwiper
       modules={[Autoplay, Pagination, EffectFade]}
@@ -36,13 +54,22 @@ const AdSlides = () => {
       autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
       loop
       pagination={{ clickable: true }}
+      ref={swiperRef}
     >
       {AdList.map((ad) => (
-        <SwiperSlide key={ad.id}>{ad.component}</SwiperSlide>
+        <SwiperSlide
+          onMouseOver={pauseAni}
+          onMouseOut={resumeAni}
+          onTouchStart={pauseAni}
+          onTouchEnd={resumeAni}
+          key={ad.id}
+        >
+          {ad.component}
+        </SwiperSlide>
       ))}
     </StyledSwiper>
   )
-}
+})
 
 /**
  * Renders floating Ad banners on desktop
