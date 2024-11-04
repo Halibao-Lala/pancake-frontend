@@ -1,6 +1,9 @@
 import { Box, getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
+import { SwiperSlide } from 'swiper/react'
+import { StyledSwiper } from './CarrouselWithSlider'
 import { TitleContentAd } from './Variations/TitleContentAd'
 
 const FloatingContainer = styled(Box)`
@@ -27,7 +30,22 @@ export const DesktopCard = () => {
   return portalRoot && isDesktop
     ? createPortal(
         <FloatingContainer>
-          <TitleContentAd />
+          <StyledSwiper
+            modules={[Autoplay, Pagination, EffectFade]}
+            spaceBetween={50}
+            observer
+            slidesPerView={1}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            speed={500}
+            autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
+            loop
+            pagination={{ clickable: true }}
+          >
+            <SwiperSlide>
+              <TitleContentAd />
+            </SwiperSlide>
+          </StyledSwiper>
         </FloatingContainer>,
         portalRoot,
       )
