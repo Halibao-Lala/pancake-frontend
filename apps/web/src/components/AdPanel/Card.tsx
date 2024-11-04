@@ -37,8 +37,8 @@ const SliderContainer = styled(Box)`
   left: 16px;
 
   width: 148px;
-  height: 8px; /* temporary */
-  border: 1px solid gray;
+  height: 4px; /* temporary */
+  /* border: 1px solid gray; */
 `
 
 const CloseButtonContainer = styled(Box)`

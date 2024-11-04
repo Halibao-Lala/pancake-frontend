@@ -21,13 +21,13 @@ export const StyledSwiper = styled(Swiper)`
     justify-content: center;
     width: 148px;
     bottom: 16px;
+    gap: 4px;
   }
   .swiper-pagination-bullet {
     background-color: ${({ theme }) => theme.colors.secondary};
-    flex-basis: 148px;
     margin: 0 !important;
-    border-radius: 0px;
-    gap: 4px;
+    flex-grow: 1;
     border-radius: 4px;
+    height: 4px;
   }
 `
