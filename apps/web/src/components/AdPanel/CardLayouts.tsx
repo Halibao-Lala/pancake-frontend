@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
-import { TitleContentAd } from './Variations/TitleContentAd'
 import { AdList } from './config'
 
 const FloatingContainer = styled(Box)`
@@ -21,6 +20,27 @@ const MobileContainer = styled(Box)`
   align-items: center;
 `
 
+const AdSlides = () => {
+  return (
+    <StyledSwiper
+      modules={[Autoplay, Pagination, EffectFade]}
+      spaceBetween={50}
+      observer
+      slidesPerView={1}
+      effect="fade"
+      fadeEffect={{ crossFade: true }}
+      speed={500}
+      autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
+      loop
+      pagination={{ clickable: true }}
+    >
+      {AdList.map((ad) => (
+        <SwiperSlide key={ad.id}>{ad.component}</SwiperSlide>
+      ))}
+    </StyledSwiper>
+  )
+}
+
 /**
  * Renders floating Ad banners on desktop
  */
@@ -31,22 +51,7 @@ export const DesktopCard = () => {
   return portalRoot && isDesktop
     ? createPortal(
         <FloatingContainer>
-          <StyledSwiper
-            modules={[Autoplay, Pagination, EffectFade]}
-            spaceBetween={50}
-            observer
-            slidesPerView={1}
-            effect="fade"
-            fadeEffect={{ crossFade: true }}
-            speed={500}
-            autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
-            loop
-            pagination={{ clickable: true }}
-          >
-            {AdList.map((ad) => (
-              <SwiperSlide key={ad.id}>{ad.component}</SwiperSlide>
-            ))}
-          </StyledSwiper>
+          <AdSlides />
         </FloatingContainer>,
         portalRoot,
       )
@@ -60,7 +65,7 @@ export const MobileCard = () => {
   const { isDesktop } = useMatchBreakpoints()
   return !isDesktop ? (
     <MobileContainer>
-      <TitleContentAd />
+      <AdSlides />
     </MobileContainer>
   ) : null
 }
