@@ -1,4 +1,5 @@
 import { ContentAd } from './Variations/ContentAd'
+import { ContentCountdown } from './Variations/ContentCountdown'
 import { TitleContentAd } from './Variations/TitleContentAd'
 
 /**
@@ -20,27 +21,16 @@ export const useAdConfig = () => {
     {
       id: 'title-content-ad',
       component: <TitleContentAd />,
+      shouldRender: shouldRenderByTime(0, 1730974493),
     },
     {
       id: 'content-ad',
       component: <ContentAd />,
     },
     {
-      id: 'title-content-ad',
-      component: <TitleContentAd />,
-    },
-    {
-      id: 'content-ad',
-      component: <ContentAd />,
-    },
-    {
-      id: 'title-content-ad',
-      component: <TitleContentAd />,
-      shouldRender: shouldRenderByTime(0, 1731652649),
-    },
-    {
-      id: 'content-ad',
-      component: <ContentAd />,
+      id: 'content-countdown-ad',
+      component: <ContentCountdown />,
+      shouldRender: shouldRenderByTime(0, 1730974493),
     },
   ]
 
