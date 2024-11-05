@@ -1,4 +1,4 @@
-import { Box, CloseIcon, Flex, IconButton, Image } from '@pancakeswap/uikit'
+import { Box, CloseIcon, Flex, IconButton, Image, useMatchBreakpoints } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 const BaseCard = styled(Box)`
@@ -33,20 +33,23 @@ const GraphicsContainer = styled(Box)`
   z-index: 1;
 `
 
-const CloseButtonContainer = styled(Box)`
+const CloseButtonContainer = styled(Box)<{ $isMobile?: boolean }>`
   position: absolute;
-  top: -4px;
-  right: 0;
-
+  border-radius: 100%;
   z-index: 3;
+
+  right: ${({ $isMobile }) => ($isMobile ? '8px' : '0')};
+  top: ${({ $isMobile }) => ($isMobile ? '30px' : '-4px')};
+
+  ${({ theme, $isMobile }) => $isMobile && `background-color: ${theme.colors.card};`}
 `
 
 const StyledIconButton = styled(IconButton).attrs({ variant: 'text' })`
   height: 12px;
   width: 12px !important;
   padding: 12px;
-  color: ${({ theme }) => theme.colors.textSubtle};
   transition: all 0.4s;
+  color: ${({ theme }) => theme.colors.textSubtle};
 
   &:hover {
     color: white;
@@ -62,11 +65,13 @@ interface AdCardProps {
 
 export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
   // Drag handle, Slider and other slots will come here
+  const { isDesktop } = useMatchBreakpoints()
+
   return (
     <BaseCard>
       <Content>{children}</Content>
       <GraphicsContainer>
-        <CloseButtonContainer>
+        <CloseButtonContainer $isMobile={!isDesktop}>
           <StyledIconButton aria-label="Close the Ad banner">
             <CloseIcon color="inherit" />
           </StyledIconButton>

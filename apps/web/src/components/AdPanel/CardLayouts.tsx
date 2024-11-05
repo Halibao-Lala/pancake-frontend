@@ -14,7 +14,6 @@ const FloatingContainer = styled(Box)`
 `
 
 const MobileContainer = styled(Box)`
-  border: 1px solid red;
   width: 100%;
   display: flex;
   justify-content: center;
