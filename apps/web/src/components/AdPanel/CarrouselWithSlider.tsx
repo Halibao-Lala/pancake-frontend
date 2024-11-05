@@ -11,9 +11,6 @@ const progress = keyframes`
 `
 
 export const StyledSwiper = styled(Swiper)`
-  position: absolute;
-  right: 30px;
-  bottom: 30px;
   width: 328px;
   overflow: visible;
   opacity: 0;

@@ -9,11 +9,8 @@ import { AdList } from './config'
 
 const FloatingContainer = styled(Box)`
   position: fixed;
-  right: 0;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  z-index: -1;
+  right: 30px;
+  bottom: 30px;
 `
 
 const MobileContainer = styled(Box)`
