@@ -12,7 +12,27 @@ const shouldRenderByTime = (start: number, end: number) => {
 }
 
 export const useAdConfig = () => {
-  const adList = [
+  const adList: Array<{
+    id: string
+    component: JSX.Element
+    shouldRender?: boolean
+  }> = [
+    {
+      id: 'title-content-ad',
+      component: <TitleContentAd />,
+    },
+    {
+      id: 'content-ad',
+      component: <ContentAd />,
+    },
+    {
+      id: 'title-content-ad',
+      component: <TitleContentAd />,
+    },
+    {
+      id: 'content-ad',
+      component: <ContentAd />,
+    },
     {
       id: 'title-content-ad',
       component: <TitleContentAd />,
@@ -21,29 +41,10 @@ export const useAdConfig = () => {
     {
       id: 'content-ad',
       component: <ContentAd />,
-      shouldRender: true,
-    },
-    {
-      id: 'title-content-ad',
-      component: <TitleContentAd />,
-      shouldRender: shouldRenderByTime(0, 1731652649),
-    },
-    {
-      id: 'content-ad',
-      component: <ContentAd />,
-      shouldRender: true,
-    },
-    {
-      id: 'title-content-ad',
-      component: <TitleContentAd />,
-      shouldRender: shouldRenderByTime(0, 1731652649),
-    },
-    {
-      id: 'content-ad',
-      component: <ContentAd />,
-      shouldRender: true,
     },
   ]
 
-  return adList.filter((ad) => ad.shouldRender)
+  return adList
+    .map((ad) => ({ ...ad, shouldRender: ad.shouldRender === undefined ? true : ad.shouldRender }))
+    .filter((ad) => ad.shouldRender)
 }

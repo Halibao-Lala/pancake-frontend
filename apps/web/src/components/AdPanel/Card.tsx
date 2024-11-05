@@ -33,16 +33,6 @@ const GraphicsContainer = styled(Box)`
   z-index: 1;
 `
 
-// const SliderContainer = styled(Box)`
-//   position: absolute;
-//   bottom: 16px;
-//   left: 16px;
-
-//   width: 148px;
-//   height: 4px; /* temporary */
-//   /* border: 1px solid gray; */
-// `
-
 const CloseButtonContainer = styled(Box)`
   position: absolute;
   top: -4px;
