@@ -4,21 +4,27 @@ import { Box, BoxProps } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 const CountDownWrapper = styled(Box)`
-  display: flex;
-  font-family: Kanit;
-  font-size: 14px;
+  font-size: 16px;
+
   font-style: normal;
+  font-family: Kanit;
   font-weight: 600;
+
   line-height: 90%;
-  border-radius: 8px;
-  gap: 0px;
+
+  border-radius: 12px;
+
   flex-direction: column;
   width: max-content;
-  padding: 8px;
+
+  padding: 5px 8px 5px 8px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
-    gap: 8px;
     line-height: 110%; /* 22px */
   }
 `
@@ -26,10 +32,10 @@ const CountDownWrapper = styled(Box)`
 interface CountdownProps extends BoxProps {
   targetTime: number
 
-  primaryColor?: string
+  subtleColor?: string
 }
 
-export const Countdown: React.FC<CountdownProps> = ({ targetTime, primaryColor, ...props }) => {
+export const Countdown: React.FC<CountdownProps> = ({ targetTime, subtleColor, ...props }) => {
   const { t } = useTranslation()
 
   const countdown = useCountdown(targetTime)
@@ -41,19 +47,17 @@ export const Countdown: React.FC<CountdownProps> = ({ targetTime, primaryColor, 
   const days = countdown?.days < 10 ? `0${countdown?.days}` : countdown?.days
 
   const SubtleText = styled.span`
-    color: ${primaryColor};
+    color: ${subtleColor};
   `
 
   return (
     <CountDownWrapper {...props}>
-      <Box>
-        {days}
-        <SubtleText> {t('d')} : </SubtleText>
-        {hours}
-        <SubtleText>{t('h')} :</SubtleText>
-        {minutes}
-        <SubtleText>{t('m')}</SubtleText>
-      </Box>
+      {days}
+      <SubtleText> {t('d')} : </SubtleText>
+      {hours}
+      <SubtleText>{t('h')} :</SubtleText>
+      {minutes}
+      <SubtleText>{t('m')}</SubtleText>
     </CountDownWrapper>
   )
 }

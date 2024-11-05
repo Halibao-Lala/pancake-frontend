@@ -10,10 +10,10 @@ export const ContentCountdown = () => {
 
       <Countdown
         targetTime={1730974493}
-        primaryColor="#F4D2D4"
-        background="linear-gradient(to bottom, #71151A, #C23D46)"
+        subtleColor="#F4D2D4"
+        background="linear-gradient(180deg, #EC474D 0%, #B42014 100%);"
         color="white"
-        mb="6px"
+        mb="8px"
       />
 
       <AdButton variant="text" isExternal>
