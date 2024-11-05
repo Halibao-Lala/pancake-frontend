@@ -1,5 +1,17 @@
 import { Box, CloseIcon, Flex, IconButton, Image, useMatchBreakpoints } from '@pancakeswap/uikit'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const flyingAnim = keyframes`
+  0% {
+    transform: translate(0,  0);
+  }
+  50% {
+    transform: translate(-5px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+`
 
 const BaseCard = styled(Box)`
   position: relative;
@@ -33,6 +45,14 @@ const GraphicsContainer = styled(Box)`
   z-index: 1;
 `
 
+const FloatingGraphic = styled(Image)`
+  position: absolute;
+  top: 0;
+  right: 160px;
+
+  animation: ${flyingAnim} 2.5s ease-in-out infinite;
+`
+
 const CloseButtonContainer = styled(Box)<{ $isMobile?: boolean }>`
   position: absolute;
   border-radius: 100%;
@@ -61,9 +81,15 @@ interface AdCardProps {
   children?: React.ReactNode
   imageUrl?: string
   alt?: string
+
+  floatingImage?: {
+    url: string
+    width?: number
+    height?: number
+  }
 }
 
-export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
+export const AdCard = ({ children, imageUrl, floatingImage, alt }: AdCardProps) => {
   // Drag handle, Slider and other slots will come here
   const { isDesktop } = useMatchBreakpoints()
 
@@ -76,7 +102,15 @@ export const AdCard = ({ children, imageUrl, alt }: AdCardProps) => {
             <CloseIcon color="inherit" />
           </StyledIconButton>
         </CloseButtonContainer>
-        <Image src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />
+
+        {imageUrl && <Image src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />}
+        {floatingImage && (
+          <FloatingGraphic
+            src={floatingImage.url}
+            width={floatingImage.width || 40}
+            height={floatingImage.height || 40}
+          />
+        )}
       </GraphicsContainer>
     </BaseCard>
   )

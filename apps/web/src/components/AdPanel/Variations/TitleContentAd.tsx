@@ -5,7 +5,10 @@ import { Title } from '../Title'
 
 export const TitleContentAd = () => {
   return (
-    <AdCard imageUrl="/images/adpanel-test/bannerImg1.png">
+    <AdCard
+      imageUrl="/images/adpanel-test/bannerImg1.png"
+      floatingImage={{ url: '/images/adpanel-test/floatingImg1.png' }}
+    >
       <Title>Need Help?</Title>
       <BodyText>Quick start now on How to Swap!</BodyText>
 
