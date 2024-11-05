@@ -1,5 +1,6 @@
 import { Box, CloseIcon, Flex, IconButton, Image, useMatchBreakpoints } from '@pancakeswap/uikit'
 import styled, { keyframes } from 'styled-components'
+import { useShowAdPanel } from './useShowAdPanel'
 
 const flyingAnim = keyframes`
   0% {
@@ -92,12 +93,18 @@ interface AdCardProps {
 export const AdCard = ({ children, imageUrl, floatingImage, alt }: AdCardProps) => {
   // Drag handle, Slider and other slots will come here
   const { isDesktop } = useMatchBreakpoints()
+  const [, setShowAdPanel] = useShowAdPanel()
 
   return (
     <BaseCard>
       <Content>{children}</Content>
       <GraphicsContainer>
-        <CloseButtonContainer $isMobile={!isDesktop}>
+        <CloseButtonContainer
+          $isMobile={!isDesktop}
+          onClick={() => setShowAdPanel(false)}
+          role="button"
+          aria-label="Close Ad Panel"
+        >
           <StyledIconButton aria-label="Close the Ad banner">
             <CloseIcon color="inherit" />
           </StyledIconButton>

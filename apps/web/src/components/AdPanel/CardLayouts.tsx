@@ -6,6 +6,7 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { SwiperRef, SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
 import { useAdConfig } from './config'
+import { useShowAdPanel } from './useShowAdPanel'
 
 const FloatingContainer = styled(Box)`
   position: fixed;
@@ -76,8 +77,9 @@ const AdSlides: React.FC = memo(() => {
 export const DesktopCard = () => {
   const portalRoot = getPortalRoot()
   const { isDesktop } = useMatchBreakpoints()
+  const [show] = useShowAdPanel()
 
-  return portalRoot && isDesktop
+  return portalRoot && isDesktop && show
     ? createPortal(
         <FloatingContainer>
           <AdSlides />
@@ -92,7 +94,9 @@ export const DesktopCard = () => {
  */
 export const MobileCard = () => {
   const { isDesktop } = useMatchBreakpoints()
-  return !isDesktop ? (
+  const [show] = useShowAdPanel()
+
+  return !isDesktop && show ? (
     <MobileContainer>
       <AdSlides />
     </MobileContainer>

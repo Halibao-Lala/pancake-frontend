@@ -11,7 +11,7 @@ export const ContentCountdown = () => {
       <Countdown
         targetTime={1730974493}
         subtleColor="#F4D2D4"
-        background="linear-gradient(180deg, #EC474D 0%, #B42014 100%);"
+        background="linear-gradient(180deg, #EC474D 0%, #B42014 100%)"
         color="white"
         mb="8px"
       />
