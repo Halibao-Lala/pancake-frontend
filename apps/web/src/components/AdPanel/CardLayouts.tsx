@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { SwiperRef, SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
-import { AdList } from './config'
+import { useAdConfig } from './config'
 
 const FloatingContainer = styled(Box)`
   position: fixed;
@@ -39,6 +39,9 @@ const AdSlides: React.FC = memo(() => {
   const swiperRef = useRef<SwiperRef>(null)
   const pauseAni = useCallback(() => getTargetAndToggleAnimation(swiperRef), [swiperRef])
   const resumeAni = useCallback(() => getTargetAndToggleAnimation(swiperRef, false), [swiperRef])
+
+  const adList = useAdConfig()
+
   return (
     <StyledSwiper
       modules={[Autoplay, Pagination, EffectFade]}
@@ -53,7 +56,7 @@ const AdSlides: React.FC = memo(() => {
       pagination={{ clickable: true }}
       ref={swiperRef}
     >
-      {AdList.map((ad) => (
+      {adList.map((ad) => (
         <SwiperSlide
           onMouseOver={pauseAni}
           onMouseOut={resumeAni}
