@@ -16,7 +16,9 @@ export const shouldRenderOnPages = (pages: string[]) => {
   return typeof window !== 'undefined' && pages.includes(window.location.pathname)
 }
 
-// On these pages, the mobile ad will be placed directly instead of in the app layout
-// This is for custom ad placement in the specific pages
+/**
+ *  On these pages, the mobile ad will be placed directly instead of in the app layout.
+ *  This is for custom ad placement in the specific pages
+ */
 export const shouldRenderGlobalMobileAd = () =>
   typeof window !== 'undefined' && !['/', '/home'].includes(window.location.pathname)

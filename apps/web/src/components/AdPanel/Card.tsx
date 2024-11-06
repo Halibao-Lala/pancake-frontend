@@ -1,19 +1,7 @@
-import { Box, CloseIcon, Flex, IconButton, Image, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Box, BoxProps, CloseIcon, IconButton, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useEffect, useRef } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { useShowAdPanel } from './useShowAdPanel'
-
-const flyingAnim = keyframes`
-  0% {
-    transform: translate(0,  0);
-  }
-  50% {
-    transform: translate(-5px, 5px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-`
 
 const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   position: relative;
@@ -24,22 +12,32 @@ const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
 
+  transition: height 0.2s ease-in-out;
+
   ${({ $isExpanded }) =>
     $isExpanded &&
-    `
+    `  
     height: 453px;
   `}
 `
 
-const Content = styled(Flex)`
+const Content = styled(Box)<{ $isExpanded?: boolean }>`
   position: relative;
   width: 148px;
-  height: 110px;
+
+  height: 98%;
 
   flex-direction: column;
   justify-content: space-between;
 
   z-index: 2;
+
+  ${({ $isExpanded }) =>
+    $isExpanded &&
+    `  
+    width: 100%;
+    height: 100%;
+  `}
 `
 
 const GraphicsContainer = styled(Box)`
@@ -51,14 +49,6 @@ const GraphicsContainer = styled(Box)`
   height: 188px;
 
   z-index: 1;
-`
-
-const FloatingGraphic = styled(Image)`
-  position: absolute;
-  top: 0;
-  right: 160px;
-
-  animation: ${flyingAnim} 2.5s ease-in-out infinite;
 `
 
 const CloseButtonContainer = styled(Box)<{ $isMobile?: boolean }>`
@@ -85,7 +75,7 @@ const StyledIconButton = styled(IconButton).attrs({ variant: 'text' })`
   }
 `
 
-interface AdCardProps {
+interface AdCardProps extends BoxProps {
   children?: React.ReactNode
   imageUrl?: string
   alt?: string
@@ -93,7 +83,7 @@ interface AdCardProps {
   isExpanded?: boolean
 }
 
-export const AdCard = ({ children, imageUrl, alt, isExpanded }: AdCardProps) => {
+export const AdCard = ({ children, imageUrl, alt, isExpanded, ...props }: AdCardProps) => {
   const imageRef = useRef<HTMLImageElement>(null)
 
   // Drag handle, Slider and other slots will come here
@@ -102,22 +92,25 @@ export const AdCard = ({ children, imageUrl, alt, isExpanded }: AdCardProps) => 
 
   useEffect(() => {
     if (imageRef.current) {
-      if (isExpanded)
-        imageRef.current.animate([{ opacity: 0 }], {
-          duration: 250,
+      if (isExpanded) {
+        imageRef.current.animate([{ opacity: 0, zIndex: -1, transform: 'scale(0.96)' }], {
+          duration: 200,
           fill: 'forwards',
+          easing: 'ease-in-out',
         })
-      else
-        imageRef.current.animate([{ opacity: 1 }], {
-          duration: 250,
+      } else {
+        imageRef.current.animate([{ opacity: 1, zIndex: 1, transform: 'scale(1)' }], {
+          duration: 200,
           fill: 'forwards',
+          easing: 'ease-in-out',
         })
+      }
     }
   }, [imageRef, isExpanded])
 
   return (
-    <BaseCard $isExpanded={isExpanded}>
-      <Content>{children}</Content>
+    <BaseCard $isExpanded={isExpanded} {...props}>
+      <Content $isExpanded={isExpanded}>{children}</Content>
       <CloseButtonContainer
         $isMobile={!isDesktop}
         onClick={() => setShowAdPanel(false)}

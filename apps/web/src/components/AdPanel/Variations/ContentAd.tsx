@@ -7,7 +7,7 @@ export const ContentAd = () => {
     <AdCard imageUrl="/images/adpanel-test/bannerImg2.png">
       <BodyText fontSize="15px">Web3 Notifications Now Live!!</BodyText>
 
-      <AdButton variant="text" isExternal>
+      <AdButton mt="20px" variant="text" isExternal>
         Learn More
       </AdButton>
     </AdCard>

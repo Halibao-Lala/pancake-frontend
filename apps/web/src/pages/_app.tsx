@@ -181,7 +181,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       <ShowMenu>
         <Layout>
           <Component {...pageProps} />
-          <AdPanel.MobileCard shouldRender={shouldRenderGlobalMobileAd()} mb="12px" />
+          <AdPanel.MobileCard shouldRender={shouldRenderGlobalMobileAd()} mt="4px" mb="12px" />
           <AdPanel.DesktopCard />
         </Layout>
       </ShowMenu>

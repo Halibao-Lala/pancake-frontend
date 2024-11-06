@@ -1,11 +1,12 @@
 import { Box, BoxProps, getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { memo, RefObject, useCallback, useRef } from 'react'
+import { memo, RefObject, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { SwiperRef, SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
 import { useAdConfig } from './config'
+import { useIsSlideExpanded } from './useIsSlideExpanded'
 import { useShowAdPanel } from './useShowAdPanel'
 
 const FloatingContainer = styled(Box)`
@@ -42,29 +43,62 @@ const AdSlides: React.FC = memo(() => {
 
   const adList = useAdConfig()
 
+  const { isAnySlideExpanded } = useIsSlideExpanded()
+
+  const handlePause = () => {
+    pauseAni()
+  }
+
+  const handleResume = () => {
+    if (!isAnySlideExpanded) resumeAni()
+  }
+
+  useEffect(() => {
+    if (swiperRef.current) {
+      if (isAnySlideExpanded) {
+        swiperRef.current.swiper.autoplay.stop()
+
+        // Disable swiping between slides when expanded
+        swiperRef.current.swiper.allowTouchMove = false
+
+        pauseAni()
+
+        console.log('Paused slides')
+      } else {
+        swiperRef.current.swiper.autoplay.start()
+
+        // Enable swiping between slides if not expanded
+        swiperRef.current.swiper.allowTouchMove = true
+
+        resumeAni()
+
+        console.log('Resumed slides')
+      }
+    }
+  }, [isAnySlideExpanded, pauseAni, resumeAni])
+
   return (
     <StyledSwiper
-      modules={[Autoplay, Pagination, EffectFade]}
+      ref={swiperRef}
       effect="fade"
       spaceBetween={50}
       slidesPerView={1}
       speed={500}
       fadeEffect={{ crossFade: true }}
       autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
-      pagination={{ clickable: true }}
-      ref={swiperRef}
-      // style={{ border: '1px solid red' }}
+      pagination={{ clickable: true, enabled: !isAnySlideExpanded }}
+      modules={[Autoplay, Pagination, EffectFade]}
+      $isExpanded={isAnySlideExpanded}
       loop
       observer
-      autoHeight
     >
       {adList.map((ad) => (
         <SwiperSlide
-          onMouseOver={pauseAni}
-          onMouseOut={resumeAni}
-          onTouchStart={pauseAni}
-          onTouchEnd={resumeAni}
           key={ad.id}
+          onMouseOver={handlePause}
+          onMouseOut={handleResume}
+          onTouchStart={handlePause}
+          onTouchEnd={handleResume}
         >
           {ad.component}
         </SwiperSlide>

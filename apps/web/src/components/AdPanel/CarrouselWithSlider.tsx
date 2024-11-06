@@ -10,7 +10,7 @@ const progress = keyframes`
   to { transform: scaleX(1);}
 `
 
-export const StyledSwiper = styled(Swiper)`
+export const StyledSwiper = styled(Swiper)<{ $isExpanded?: boolean }>`
   width: 328px;
   overflow: visible;
   opacity: 0;
@@ -30,6 +30,7 @@ export const StyledSwiper = styled(Swiper)`
   }
 
   .swiper-pagination-bullet {
+    display: ${({ $isExpanded }) => ($isExpanded ? 'none' : 'block')};
     position: relative;
     background-color: ${({ theme }) => theme.colors.inputSecondary};
     margin: 0 !important;

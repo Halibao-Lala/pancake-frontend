@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 const StyledButton = styled(Button)<{ $variant?: string }>`
-  transition: all 0.25s ease-in-out;
+  transition: all 0.2s ease-in-out;
   ${({ theme, $variant }) =>
     $variant === 'text' &&
     `
@@ -47,7 +47,7 @@ export const ExpandButton = ({ isExpanded, ...props }: ExpandButtonProps) => {
         isExpanded ? (
           <ChevronsCollapseIcon color="primary60" />
         ) : isExpanded === false ? (
-          <ChevronsExpandIcon color="white" />
+          <ChevronsExpandIcon color="invertedContrast" />
         ) : null
       }
       {...props}

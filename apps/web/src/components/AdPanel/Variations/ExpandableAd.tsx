@@ -1,22 +1,66 @@
-import { useState } from 'react'
+import { Box, Flex, Modal, ModalV2, Text, useMatchBreakpoints, useModalV2 } from '@pancakeswap/uikit'
 import { BodyText } from '../BodyText'
 import { ExpandButton } from '../Button'
 import { AdCard } from '../Card'
 import { Title } from '../Title'
+import { useIsSlideExpanded } from '../useIsSlideExpanded'
 
 const accordianItems = []
 
+// Unique id for this slide
+const adId = 'expandable-ad'
+const title = 'Quick Start on How to Swap'
+
+const ExpandedContent = () => {
+  return <>Expanded Content</>
+}
+
 export const ExpandableAd = () => {
-  const [isExpanded, setIsExpanded] = useState(true)
+  const { isOpen, onDismiss, setIsOpen } = useModalV2()
+  const { isDesktop } = useMatchBreakpoints()
+  const { slideExpanded, toggleSlideExpanded } = useIsSlideExpanded()
+
+  const isExpanded = isDesktop ? slideExpanded[adId] || false : false
+
+  const handleExpand = () => {
+    toggleSlideExpanded(adId, true)
+    if (!isDesktop) setIsOpen(true)
+  }
+
+  const handleDismiss = () => {
+    toggleSlideExpanded(adId, false)
+    onDismiss()
+  }
 
   return (
     <AdCard imageUrl="/images/adpanel-test/bannerImg1.png" isExpanded={isExpanded}>
-      <Title>Need Help?</Title>
-      <BodyText>Quick start now on How to Swap!</BodyText>
+      <Flex flexDirection="column" justifyContent="space-between" height="100%">
+        {isExpanded ? (
+          <Box>
+            <Text as="h1">{title}</Text>
 
-      <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded}>
-        Details
-      </ExpandButton>
+            <ExpandedContent />
+          </Box>
+        ) : (
+          <>
+            <Title>Need Help?</Title>
+            <BodyText>Quick start now on How to Swap!</BodyText>
+          </>
+        )}
+
+        <ExpandButton
+          mb={isExpanded ? '0' : '16px'}
+          onClick={isExpanded ? handleDismiss : handleExpand}
+          isExpanded={isExpanded}
+        />
+      </Flex>
+
+      {/* On Non-Desktop devices, show expanded content in modal */}
+      <ModalV2 isOpen={isOpen} onDismiss={handleDismiss} closeOnOverlayClick>
+        <Modal title={title} onDismiss={handleDismiss}>
+          <ExpandedContent />
+        </Modal>
+      </ModalV2>
     </AdCard>
   )
 }
