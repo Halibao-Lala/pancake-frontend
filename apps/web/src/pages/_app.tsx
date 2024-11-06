@@ -180,7 +180,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       <ShowMenu>
         <Layout>
           <Component {...pageProps} />
-          {/* <AdPanel.MobileCard /> */}
+          <AdPanel.MobileCard />
           <AdPanel.DesktopCard />
         </Layout>
       </ShowMenu>

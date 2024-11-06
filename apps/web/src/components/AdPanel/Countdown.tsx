@@ -53,9 +53,9 @@ export const Countdown: React.FC<CountdownProps> = ({ targetTime, subtleColor, .
   return (
     <CountDownWrapper {...props}>
       {days}
-      <SubtleText> {t('d')} : </SubtleText>
+      <SubtleText>{t('d')} : </SubtleText>
       {hours}
-      <SubtleText>{t('h')} :</SubtleText>
+      <SubtleText>{t('h')} : </SubtleText>
       {minutes}
       <SubtleText>{t('m')}</SubtleText>
     </CountDownWrapper>

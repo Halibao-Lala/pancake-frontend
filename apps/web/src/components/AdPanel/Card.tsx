@@ -1,4 +1,5 @@
 import { Box, CloseIcon, Flex, IconButton, Image, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { useEffect, useRef } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { useShowAdPanel } from './useShowAdPanel'
 
@@ -14,7 +15,7 @@ const flyingAnim = keyframes`
   }
 `
 
-const BaseCard = styled(Box)`
+const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   position: relative;
   padding: 16px;
   width: 328px;
@@ -22,13 +23,19 @@ const BaseCard = styled(Box)`
   background-color: ${({ theme }) => theme.colors.card};
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+
+  ${({ $isExpanded }) =>
+    $isExpanded &&
+    `
+    height: 453px;
+  `}
 `
 
 const Content = styled(Flex)`
   position: relative;
   width: 148px;
   height: 110px;
-  display: flex;
+
   flex-direction: column;
   justify-content: space-between;
 
@@ -60,7 +67,7 @@ const CloseButtonContainer = styled(Box)<{ $isMobile?: boolean }>`
   z-index: 3;
 
   right: ${({ $isMobile }) => ($isMobile ? '8px' : '0')};
-  top: ${({ $isMobile }) => ($isMobile ? '30px' : '-4px')};
+  top: ${({ $isMobile }) => ($isMobile ? '8px' : '-28px')};
 
   ${({ theme, $isMobile }) => $isMobile && `background-color: ${theme.colors.card};`}
 `
@@ -83,41 +90,46 @@ interface AdCardProps {
   imageUrl?: string
   alt?: string
 
-  floatingImage?: {
-    url: string
-    width?: number
-    height?: number
-  }
+  isExpanded?: boolean
 }
 
-export const AdCard = ({ children, imageUrl, floatingImage, alt }: AdCardProps) => {
+export const AdCard = ({ children, imageUrl, alt, isExpanded }: AdCardProps) => {
+  const imageRef = useRef<HTMLImageElement>(null)
+
   // Drag handle, Slider and other slots will come here
   const { isDesktop } = useMatchBreakpoints()
   const [, setShowAdPanel] = useShowAdPanel()
 
-  return (
-    <BaseCard>
-      <Content>{children}</Content>
-      <GraphicsContainer>
-        <CloseButtonContainer
-          $isMobile={!isDesktop}
-          onClick={() => setShowAdPanel(false)}
-          role="button"
-          aria-label="Close Ad Panel"
-        >
-          <StyledIconButton aria-label="Close the Ad banner">
-            <CloseIcon color="inherit" />
-          </StyledIconButton>
-        </CloseButtonContainer>
+  useEffect(() => {
+    if (imageRef.current) {
+      if (isExpanded)
+        imageRef.current.animate([{ opacity: 0 }], {
+          duration: 250,
+          fill: 'forwards',
+        })
+      else
+        imageRef.current.animate([{ opacity: 1 }], {
+          duration: 250,
+          fill: 'forwards',
+        })
+    }
+  }, [imageRef, isExpanded])
 
-        {imageUrl && <Image src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />}
-        {floatingImage && (
-          <FloatingGraphic
-            src={floatingImage.url}
-            width={floatingImage.width || 40}
-            height={floatingImage.height || 40}
-          />
-        )}
+  return (
+    <BaseCard $isExpanded={isExpanded}>
+      <Content>{children}</Content>
+      <CloseButtonContainer
+        $isMobile={!isDesktop}
+        onClick={() => setShowAdPanel(false)}
+        role="button"
+        aria-label="Close Ad Panel"
+      >
+        <StyledIconButton aria-label="Close the Ad banner">
+          <CloseIcon color="inherit" />
+        </StyledIconButton>
+      </CloseButtonContainer>
+      <GraphicsContainer>
+        {imageUrl && <img ref={imageRef} src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />}
       </GraphicsContainer>
     </BaseCard>
   )

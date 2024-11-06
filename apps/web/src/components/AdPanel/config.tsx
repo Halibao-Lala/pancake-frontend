@@ -1,5 +1,6 @@
 import { ContentAd } from './Variations/ContentAd'
 import { ContentCountdown } from './Variations/ContentCountdown'
+import { ExpandableAd } from './Variations/ExpandableAd'
 import { TitleContentAd } from './Variations/TitleContentAd'
 
 /**
@@ -17,6 +18,7 @@ export const useAdConfig = () => {
     id: string
     component: JSX.Element
     shouldRender?: boolean
+    priority?: Array<number> // summed up when calculating the list order
   }> = [
     {
       id: 'title-content-ad',
@@ -31,6 +33,10 @@ export const useAdConfig = () => {
       id: 'content-countdown-ad',
       component: <ContentCountdown />,
       shouldRender: shouldRenderByTime(0, 1730974493),
+    },
+    {
+      id: 'expandable-ad',
+      component: <ExpandableAd />,
     },
   ]
 

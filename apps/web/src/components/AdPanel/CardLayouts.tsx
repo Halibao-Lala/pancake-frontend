@@ -45,16 +45,18 @@ const AdSlides: React.FC = memo(() => {
   return (
     <StyledSwiper
       modules={[Autoplay, Pagination, EffectFade]}
-      spaceBetween={50}
-      observer
-      slidesPerView={1}
       effect="fade"
-      fadeEffect={{ crossFade: true }}
+      spaceBetween={50}
+      slidesPerView={1}
       speed={500}
+      fadeEffect={{ crossFade: true }}
       autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
-      loop
       pagination={{ clickable: true }}
       ref={swiperRef}
+      // style={{ border: '1px solid red' }}
+      loop
+      observer
+      autoHeight
     >
       {adList.map((ad) => (
         <SwiperSlide
