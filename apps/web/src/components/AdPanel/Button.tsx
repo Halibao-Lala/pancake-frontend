@@ -1,10 +1,6 @@
-import { Button, ButtonProps, OpenNewIcon } from '@pancakeswap/uikit'
+import { Button, ButtonProps, ChevronsCollapseIcon, ChevronsExpandIcon, OpenNewIcon } from '@pancakeswap/uikit'
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
-
-interface AdButtonProps extends ButtonProps, PropsWithChildren {
-  isExternal?: boolean
-}
 
 const StyledButton = styled(Button)<{ $variant?: string }>`
   ${({ theme, $variant }) =>
@@ -16,7 +12,11 @@ const StyledButton = styled(Button)<{ $variant?: string }>`
     `};
 `
 
-export const AdButton = ({ children, isExternal, endIcon, ...props }: AdButtonProps) => {
+interface AdButtonProps extends ButtonProps, PropsWithChildren {
+  isExternal?: boolean
+}
+
+export const AdButton = ({ children, endIcon, isExternal, ...props }: AdButtonProps) => {
   return (
     <StyledButton
       scale="sm"
@@ -24,14 +24,34 @@ export const AdButton = ({ children, isExternal, endIcon, ...props }: AdButtonPr
       width="fit-content"
       padding="7px 8px 9px 8px"
       endIcon={
-        endIcon || isExternal ? (
-          <OpenNewIcon color={props.variant === 'text' ? 'primary60' : 'invertedContrast'} />
-        ) : null
+        endIcon ||
+        (isExternal ? <OpenNewIcon color={props.variant === 'text' ? 'primary60' : 'invertedContrast'} /> : null)
       }
       $variant={props.variant}
       {...props}
     >
       {children}
     </StyledButton>
+  )
+}
+
+interface ExpandButtonProps extends AdButtonProps {
+  isExpanded?: boolean
+}
+export const ExpandButton = ({ isExpanded, ...props }: ExpandButtonProps) => {
+  return (
+    <AdButton
+      variant={isExpanded ? 'text' : 'subtle'}
+      endIcon={
+        isExpanded ? (
+          <ChevronsCollapseIcon color="primary60" />
+        ) : isExpanded === false ? (
+          <ChevronsExpandIcon color="white" />
+        ) : null
+      }
+      {...props}
+    >
+      {isExpanded ? 'Hide' : 'Details'}
+    </AdButton>
   )
 }
