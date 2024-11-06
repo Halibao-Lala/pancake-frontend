@@ -1,4 +1,4 @@
-import { Box, getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Box, BoxProps, getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { memo, RefObject, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
@@ -91,15 +91,18 @@ export const DesktopCard = () => {
     : null
 }
 
+interface MobileCardProps extends BoxProps {
+  shouldRender?: boolean
+}
 /**
  * Renders Ad banners on mobile and tablet
  */
-export const MobileCard = () => {
+export const MobileCard = ({ shouldRender = true, ...props }: MobileCardProps) => {
   const { isDesktop } = useMatchBreakpoints()
   const [show] = useShowAdPanel()
 
-  return !isDesktop && show ? (
-    <MobileContainer>
+  return shouldRender && !isDesktop && show ? (
+    <MobileContainer {...props}>
       <AdSlides />
     </MobileContainer>
   ) : null

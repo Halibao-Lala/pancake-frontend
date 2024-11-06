@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 const StyledButton = styled(Button)<{ $variant?: string }>`
+  transition: all 0.25s ease-in-out;
   ${({ theme, $variant }) =>
     $variant === 'text' &&
     `
