@@ -106,7 +106,9 @@ const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => 
 
 /**
  * For abstraction and use in pages where we need to
- * directly render the Ads Card purely without any conditions
+ * directly render the Ads Card purely without any conditions.
+ * > Note that dismissing Ads elsewhere in the application via useShowAdPanel
+ * does not affect this component's visibility.
  */
 export const AdPlayer = ({ forceMobile = true, isDismissible = false, ...props }: AdPlayerProps) => {
   return <AdSlides forceMobile={forceMobile} isDismissible={isDismissible} {...props} />
@@ -118,7 +120,12 @@ interface DesktopCardProps extends AdPlayerProps {
 /**
  * Renders floating Ad banners on desktop
  */
-export const DesktopCard = ({ shouldRender = true, ...props }: DesktopCardProps) => {
+export const DesktopCard = ({
+  shouldRender = true,
+  isDismissible = true,
+  forceMobile = false,
+  ...props
+}: DesktopCardProps) => {
   const portalRoot = getPortalRoot()
   const { isDesktop } = useMatchBreakpoints()
   const [show] = useShowAdPanel()
@@ -126,7 +133,7 @@ export const DesktopCard = ({ shouldRender = true, ...props }: DesktopCardProps)
   return portalRoot && shouldRender && isDesktop && show
     ? createPortal(
         <FloatingContainer>
-          <AdPlayer {...props} />
+          <AdPlayer isDismissible={isDismissible} forceMobile={forceMobile} {...props} />
         </FloatingContainer>,
         portalRoot,
       )
@@ -139,7 +146,12 @@ interface MobileCardProps extends BoxProps, AdPlayerProps {
 /**
  * Renders Ad banners on mobile and tablet
  */
-export const MobileCard = ({ shouldRender = true, isDismissible, forceMobile, ...props }: MobileCardProps) => {
+export const MobileCard = ({
+  shouldRender = true,
+  isDismissible = true,
+  forceMobile = false,
+  ...props
+}: MobileCardProps) => {
   const { isDesktop } = useMatchBreakpoints()
   const [show] = useShowAdPanel()
 
