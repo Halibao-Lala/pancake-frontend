@@ -17,7 +17,8 @@ const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   ${({ $isExpanded }) =>
     $isExpanded &&
     `  
-    height: 453px;
+    min-height: 400px;
+    height:auto;
   `}
 `
 

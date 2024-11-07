@@ -58,7 +58,7 @@ export const ExpandableAd = () => {
             <BodyText>Quick start now on How to Swap!</BodyText>
           </>
         )}
-        {isExpanded && <Divider mb="8px" />}
+        {isExpanded && <Divider mt="16px" mb="16px" />}
         <ExpandButton
           mb={isExpanded ? '0' : '16px'}
           onClick={isExpanded ? handleDismiss : handleExpand}
