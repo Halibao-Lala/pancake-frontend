@@ -2,6 +2,7 @@ import { Box, Flex, Modal, ModalV2, Text, useMatchBreakpoints, useModalV2 } from
 import { BodyText } from '../BodyText'
 import { ExpandButton } from '../Button'
 import { AdCard } from '../Card'
+import { FAQ } from '../FAQ'
 import { Title } from '../Title'
 import { useIsSlideExpanded } from '../useIsSlideExpanded'
 
@@ -12,7 +13,7 @@ const adId = 'expandable-ad'
 const title = 'Quick Start on How to Swap'
 
 const ExpandedContent = () => {
-  return <>Expanded Content</>
+  return <FAQ />
 }
 
 export const ExpandableAd = () => {
