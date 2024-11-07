@@ -84,21 +84,15 @@ const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => 
       fadeEffect={{ crossFade: true }}
       autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
       pagination={{ clickable: true, enabled: !isAnySlideExpanded }}
-      modules={[Autoplay, Pagination, EffectFade]}
       $showPagination={!forceMobile && isAnySlideExpanded}
+      modules={[Autoplay, Pagination, EffectFade]}
+      onAutoplayPause={handlePause}
+      onAutoplayResume={handleResume}
       loop
       observer
     >
       {adList.map((ad) => (
-        <SwiperSlide
-          key={ad.id}
-          onMouseOver={handlePause}
-          onMouseOut={handleResume}
-          onTouchStart={handlePause}
-          onTouchEnd={handleResume}
-        >
-          {cloneElement(ad.component, { isDismissible, forceMobile })}
-        </SwiperSlide>
+        <SwiperSlide key={ad.id}>{cloneElement(ad.component, { isDismissible, forceMobile })}</SwiperSlide>
       ))}
     </StyledSwiper>
   )
