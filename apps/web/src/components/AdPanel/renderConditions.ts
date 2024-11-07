@@ -17,16 +17,17 @@ export const shouldRenderOnPages = (pages: string[]) => {
 }
 
 /**
- *  On these pages, the mobile ad will be placed directly instead of in the app layout.
- *  This is for custom ad placement in the specific pages
+ *  On the pages mentioned, the Mobile ads will be placed directly in page instead of in the app layout.
  */
-export const shouldRenderGlobalMobileAd = () =>
-  typeof window !== 'undefined' && !['/', '/home'].includes(window.location.pathname)
+export const shouldRenderGlobalMobileAd = () => {
+  const blacklistedPaths = ['/', '/home', '/cake-staking']
+  return typeof window !== 'undefined' && !blacklistedPaths.includes(window.location.pathname)
+}
 
 /**
- * On these pages, the desktop ad will be placed directly instead of in the app layout.
- * This is for custom ad placement in the specific pages
- * */
+ *  On the pages mentioned, the Desktop ads will be placed directly in page instead of in the app layout.
+ */
 export const shouldRenderGlobalDesktopAd = () => {
-  return typeof window !== 'undefined' && !['/home'].includes(window.location.pathname)
+  const blacklistedPaths = ['/home', '/cake-staking']
+  return typeof window !== 'undefined' && !blacklistedPaths.includes(window.location.pathname)
 }
