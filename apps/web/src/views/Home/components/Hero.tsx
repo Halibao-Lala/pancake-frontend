@@ -259,7 +259,7 @@ const Hero = () => {
             </NextLinkFromReactRouter>
           </Flex>
           <Flex mt="32px" alignItems="center" justifyContent="center" width="fit-content">
-            <AdPanel.AdPlayer isDismissible={false} forceMobile />
+            <AdPanel.AdPlayer />
           </Flex>
         </Flex>
         <Flex

@@ -108,8 +108,8 @@ const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => 
  * For abstraction and use in pages where we need to
  * directly render the Ads Card purely without any conditions
  */
-export const AdPlayer = (props: AdPlayerProps) => {
-  return <AdSlides {...props} />
+export const AdPlayer = ({ forceMobile = true, isDismissible = false, ...props }: AdPlayerProps) => {
+  return <AdSlides forceMobile={forceMobile} isDismissible={isDismissible} {...props} />
 }
 
 interface DesktopCardProps extends AdPlayerProps {

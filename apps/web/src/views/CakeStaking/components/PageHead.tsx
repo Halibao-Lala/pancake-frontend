@@ -26,7 +26,7 @@ export const PageHead = () => {
     <>
       {isMobile && (
         <Box mb="16px">
-          <AdPanel.AdPlayer isDismissible={false} />
+          <AdPanel.AdPlayer />
         </Box>
       )}
       <Flex justifyContent="space-between" flexDirection="row">
@@ -47,7 +47,7 @@ export const PageHead = () => {
           </NextLinkFromReactRouter>
         </Flex>
 
-        <Box>{!isMobile && <AdPanel.AdPlayer isDismissible={false} forceMobile />}</Box>
+        <Box>{!isMobile && <AdPanel.AdPlayer />}</Box>
       </Flex>
     </>
   )
