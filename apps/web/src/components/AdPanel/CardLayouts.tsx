@@ -1,11 +1,12 @@
 import { Box, BoxProps, getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { memo, RefObject, useCallback, useEffect, useRef } from 'react'
+import { cloneElement, memo, RefObject, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { SwiperRef, SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
 import { useAdConfig } from './config'
+import { AdPlayerProps } from './types'
 import { useIsSlideExpanded } from './useIsSlideExpanded'
 import { useShowAdPanel } from './useShowAdPanel'
 
@@ -15,7 +16,7 @@ const FloatingContainer = styled(Box)`
   bottom: 30px;
 `
 
-const MobileContainer = styled(Box)`
+const StaticContainer = styled(Box)`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -36,7 +37,7 @@ function getTargetAndToggleAnimation(swiperRef: RefObject<SwiperRef>, pause: boo
   target.classList.toggle('pause', pause)
 }
 
-const AdSlides: React.FC = memo(() => {
+const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => {
   const swiperRef = useRef<SwiperRef>(null)
   const pauseAni = useCallback(() => getTargetAndToggleAnimation(swiperRef), [swiperRef])
   const resumeAni = useCallback(() => getTargetAndToggleAnimation(swiperRef, false), [swiperRef])
@@ -62,8 +63,6 @@ const AdSlides: React.FC = memo(() => {
         swiperRef.current.swiper.allowTouchMove = false
 
         pauseAni()
-
-        console.log('Paused slides')
       } else {
         swiperRef.current.swiper.autoplay.start()
 
@@ -71,8 +70,6 @@ const AdSlides: React.FC = memo(() => {
         swiperRef.current.swiper.allowTouchMove = true
 
         resumeAni()
-
-        console.log('Resumed slides')
       }
     }
   }, [isAnySlideExpanded, pauseAni, resumeAni])
@@ -88,7 +85,7 @@ const AdSlides: React.FC = memo(() => {
       autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
       pagination={{ clickable: true, enabled: !isAnySlideExpanded }}
       modules={[Autoplay, Pagination, EffectFade]}
-      $isExpanded={isAnySlideExpanded}
+      $showPagination={!forceMobile && isAnySlideExpanded}
       loop
       observer
     >
@@ -100,7 +97,7 @@ const AdSlides: React.FC = memo(() => {
           onTouchStart={handlePause}
           onTouchEnd={handleResume}
         >
-          {ad.component}
+          {cloneElement(ad.component, { isDismissible, forceMobile })}
         </SwiperSlide>
       ))}
     </StyledSwiper>
@@ -108,36 +105,56 @@ const AdSlides: React.FC = memo(() => {
 })
 
 /**
+ * For abstraction and use in pages where we need to
+ * directly render the Ads Card purely without any conditions
+ */
+export const AdPlayer = (props: AdPlayerProps) => {
+  return <AdSlides {...props} />
+}
+
+interface DesktopCardProps {
+  shouldRender?: boolean
+
+  isFloating?: boolean
+  isDismissible?: boolean
+}
+/**
  * Renders floating Ad banners on desktop
  */
-export const DesktopCard = () => {
+export const DesktopCard = ({ shouldRender = true, isFloating = true, isDismissible = true }: DesktopCardProps) => {
   const portalRoot = getPortalRoot()
   const { isDesktop } = useMatchBreakpoints()
   const [show] = useShowAdPanel()
 
-  return portalRoot && isDesktop && show
-    ? createPortal(
+  return shouldRender && isDesktop && show ? (
+    isFloating && portalRoot ? (
+      createPortal(
         <FloatingContainer>
-          <AdSlides />
+          <AdPlayer />
         </FloatingContainer>,
         portalRoot,
       )
-    : null
+    ) : (
+      <AdPlayer isDismissible={isDismissible} />
+    )
+  ) : null
 }
 
 interface MobileCardProps extends BoxProps {
   shouldRender?: boolean
+
+  isDismissible?: boolean
 }
 /**
  * Renders Ad banners on mobile and tablet
  */
-export const MobileCard = ({ shouldRender = true, ...props }: MobileCardProps) => {
+export const MobileCard = ({ shouldRender = true, isDismissible = true, ...props }: MobileCardProps) => {
   const { isDesktop } = useMatchBreakpoints()
   const [show] = useShowAdPanel()
 
   return shouldRender && !isDesktop && show ? (
-    <MobileContainer {...props}>
-      <AdSlides />
-    </MobileContainer>
+    <StaticContainer {...props}>
+      <AdPlayer isDismissible={isDismissible} />
+    </StaticContainer>
   ) : null
 }

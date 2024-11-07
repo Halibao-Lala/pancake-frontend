@@ -1,6 +1,5 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { Box, Flex, PageSection, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { AdPanel } from 'components/AdPanel'
 import useTheme from 'hooks/useTheme'
 import { styled } from 'styled-components'
 import CakeDataRow from './components/CakeDataRow'
@@ -79,7 +78,6 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        <AdPanel.MobileCard />
         <Hero />
       </StyledHeroSection>
       <PageSection

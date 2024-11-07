@@ -2,10 +2,11 @@ import { BodyText } from '../BodyText'
 import { AdButton } from '../Button'
 import { AdCard } from '../Card'
 import { Countdown } from '../Countdown'
+import { AdPlayerProps } from '../types'
 
-export const ContentCountdown = () => {
+export const ContentCountdown = (props: AdPlayerProps) => {
   return (
-    <AdCard imageUrl="/images/adpanel-test/bannerImg3.png">
+    <AdCard imageUrl="/images/adpanel-test/bannerImg3.png" {...props}>
       <BodyText mb="8px">PancakeSwap Meetup in Turkey starts in:</BodyText>
 
       <Countdown

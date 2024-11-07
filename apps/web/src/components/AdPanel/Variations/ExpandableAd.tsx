@@ -5,6 +5,7 @@ import { ExpandButton } from '../Button'
 import { AdCard } from '../Card'
 import { FAQ } from '../FAQ'
 import { Title } from '../Title'
+import { AdPlayerProps } from '../types'
 import { useIsSlideExpanded } from '../useIsSlideExpanded'
 
 export const Divider = styled(Box)`
@@ -14,8 +15,6 @@ export const Divider = styled(Box)`
   margin-left: -16px;
 `
 
-const accordianItems = []
-
 // Unique id for this slide
 const adId = 'expandable-ad'
 const title = 'Quick Start on How to Swap'
@@ -24,16 +23,18 @@ const ExpandedContent = () => {
   return <FAQ />
 }
 
-export const ExpandableAd = () => {
+export const ExpandableAd = (props: AdPlayerProps) => {
   const { isOpen, onDismiss, setIsOpen } = useModalV2()
   const { isDesktop } = useMatchBreakpoints()
   const { slideExpanded, toggleSlideExpanded } = useIsSlideExpanded()
 
-  const isExpanded = isDesktop ? slideExpanded[adId] || false : false
+  const isMobile = props.forceMobile || !isDesktop
+
+  const isExpanded = !isMobile ? slideExpanded[adId] || false : false
 
   const handleExpand = () => {
     toggleSlideExpanded(adId, true)
-    if (!isDesktop) setIsOpen(true)
+    if (isMobile) setIsOpen(true)
   }
 
   const handleDismiss = () => {
@@ -42,7 +43,7 @@ export const ExpandableAd = () => {
   }
 
   return (
-    <AdCard imageUrl="/images/adpanel-test/bannerImg1.png" isExpanded={isExpanded}>
+    <AdCard imageUrl="/images/adpanel-test/bannerImg1.png" isExpanded={isExpanded} {...props}>
       <Flex flexDirection="column" justifyContent="space-between" height="100%">
         {isExpanded ? (
           <Box>
@@ -68,7 +69,7 @@ export const ExpandableAd = () => {
 
       {/* On Non-Desktop devices, show expanded content in modal */}
       <ModalV2 isOpen={isOpen} onDismiss={handleDismiss} closeOnOverlayClick>
-        <Modal title={title} onDismiss={handleDismiss}>
+        <Modal title={title} onDismiss={handleDismiss} maxWidth={isDesktop ? '438px' : 'unset'}>
           <ExpandedContent />
         </Modal>
       </ModalV2>

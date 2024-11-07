@@ -82,14 +82,31 @@ interface AdCardProps extends BoxProps {
   alt?: string
 
   isExpanded?: boolean
+
+  isDismissible?: boolean
+
+  /**
+   * Force mobile view to show Modal on expanding FAQ
+   */
+  forceMobile?: boolean
 }
 
-export const AdCard = ({ children, imageUrl, alt, isExpanded, ...props }: AdCardProps) => {
+export const AdCard = ({
+  children,
+  imageUrl,
+  alt,
+  isExpanded,
+  forceMobile,
+  isDismissible = true,
+  ...props
+}: AdCardProps) => {
   const imageRef = useRef<HTMLImageElement>(null)
 
   // Drag handle, Slider and other slots will come here
   const { isDesktop } = useMatchBreakpoints()
   const [, setShowAdPanel] = useShowAdPanel()
+
+  const isMobile = forceMobile || !isDesktop
 
   useEffect(() => {
     if (imageRef.current) {
@@ -112,16 +129,18 @@ export const AdCard = ({ children, imageUrl, alt, isExpanded, ...props }: AdCard
   return (
     <BaseCard $isExpanded={isExpanded} {...props}>
       <Content $isExpanded={isExpanded}>{children}</Content>
-      <CloseButtonContainer
-        $isMobile={!isDesktop}
-        onClick={() => setShowAdPanel(false)}
-        role="button"
-        aria-label="Close Ad Panel"
-      >
-        <StyledIconButton aria-label="Close the Ad banner">
-          <CloseIcon color="inherit" />
-        </StyledIconButton>
-      </CloseButtonContainer>
+      {isDismissible && (
+        <CloseButtonContainer
+          $isMobile={isMobile}
+          onClick={() => setShowAdPanel(false)}
+          role="button"
+          aria-label="Close Ad Panel"
+        >
+          <StyledIconButton aria-label="Close the Ad banner">
+            <CloseIcon color="inherit" />
+          </StyledIconButton>
+        </CloseButtonContainer>
+      )}
       <GraphicsContainer>
         {imageUrl && <img ref={imageRef} src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />}
       </GraphicsContainer>

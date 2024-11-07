@@ -22,3 +22,11 @@ export const shouldRenderOnPages = (pages: string[]) => {
  */
 export const shouldRenderGlobalMobileAd = () =>
   typeof window !== 'undefined' && !['/', '/home'].includes(window.location.pathname)
+
+/**
+ * On these pages, the desktop ad will be placed directly instead of in the app layout.
+ * This is for custom ad placement in the specific pages
+ * */
+export const shouldRenderGlobalDesktopAd = () => {
+  return typeof window !== 'undefined' && !['/home'].includes(window.location.pathname)
+}
