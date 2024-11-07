@@ -1,10 +1,18 @@
 import { Box, Flex, Modal, ModalV2, Text, useMatchBreakpoints, useModalV2 } from '@pancakeswap/uikit'
+import { styled } from 'styled-components'
 import { BodyText } from '../BodyText'
 import { ExpandButton } from '../Button'
 import { AdCard } from '../Card'
 import { FAQ } from '../FAQ'
 import { Title } from '../Title'
 import { useIsSlideExpanded } from '../useIsSlideExpanded'
+
+export const Divider = styled(Box)`
+  width: calc(100% + 32px);
+  background-color: ${({ theme }) => theme.colors.cardBorder};
+  height: 1px;
+  margin-left: -16px;
+`
 
 const accordianItems = []
 
@@ -38,8 +46,10 @@ export const ExpandableAd = () => {
       <Flex flexDirection="column" justifyContent="space-between" height="100%">
         {isExpanded ? (
           <Box>
-            <Text as="h1">{title}</Text>
-
+            <Text bold as="h1" textAlign="center">
+              {title}
+            </Text>
+            <Divider mt="16px" mb="16px" />
             <ExpandedContent />
           </Box>
         ) : (
@@ -48,7 +58,7 @@ export const ExpandableAd = () => {
             <BodyText>Quick start now on How to Swap!</BodyText>
           </>
         )}
-
+        {isExpanded && <Divider mb="8px" />}
         <ExpandButton
           mb={isExpanded ? '0' : '16px'}
           onClick={isExpanded ? handleDismiss : handleExpand}
