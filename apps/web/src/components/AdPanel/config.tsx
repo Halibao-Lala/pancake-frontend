@@ -34,3 +34,15 @@ export const useAdConfig = () => {
     .map((ad) => ({ ...ad, shouldRender: ad.shouldRender === undefined ? true : ad.shouldRender }))
     .filter((ad) => ad.shouldRender)
 }
+
+/**
+ *  On the pages mentioned, the Mobile ads will be placed directly in page instead of in the app layout.
+ *  So don't render in the app layout.
+ */
+export const layoutMobileAdBlacklistedPages = ['/', '/home', '/cake-staking']
+
+/**
+ *  On the pages mentioned, the Desktop ads will be placed directly in page instead of in the app layout.
+ *  So don't render in the app layout.
+ */
+export const layoutDesktopAdBlacklistedPages = ['/home', '/cake-staking']
