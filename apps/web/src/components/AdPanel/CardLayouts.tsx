@@ -112,49 +112,40 @@ export const AdPlayer = (props: AdPlayerProps) => {
   return <AdSlides {...props} />
 }
 
-interface DesktopCardProps {
+interface DesktopCardProps extends AdPlayerProps {
   shouldRender?: boolean
-
-  isFloating?: boolean
-  isDismissible?: boolean
 }
 /**
  * Renders floating Ad banners on desktop
  */
-export const DesktopCard = ({ shouldRender = true, isFloating = true, isDismissible = true }: DesktopCardProps) => {
+export const DesktopCard = ({ shouldRender = true, ...props }: DesktopCardProps) => {
   const portalRoot = getPortalRoot()
   const { isDesktop } = useMatchBreakpoints()
   const [show] = useShowAdPanel()
 
-  return shouldRender && isDesktop && show ? (
-    isFloating && portalRoot ? (
-      createPortal(
+  return portalRoot && shouldRender && isDesktop && show
+    ? createPortal(
         <FloatingContainer>
-          <AdPlayer />
+          <AdPlayer {...props} />
         </FloatingContainer>,
         portalRoot,
       )
-    ) : (
-      <AdPlayer isDismissible={isDismissible} />
-    )
-  ) : null
+    : null
 }
 
-interface MobileCardProps extends BoxProps {
+interface MobileCardProps extends BoxProps, AdPlayerProps {
   shouldRender?: boolean
-
-  isDismissible?: boolean
 }
 /**
  * Renders Ad banners on mobile and tablet
  */
-export const MobileCard = ({ shouldRender = true, isDismissible = true, ...props }: MobileCardProps) => {
+export const MobileCard = ({ shouldRender = true, isDismissible, forceMobile, ...props }: MobileCardProps) => {
   const { isDesktop } = useMatchBreakpoints()
   const [show] = useShowAdPanel()
 
   return shouldRender && !isDesktop && show ? (
     <StaticContainer {...props}>
-      <AdPlayer isDismissible={isDismissible} />
+      <AdPlayer isDismissible={isDismissible} forceMobile={forceMobile} />
     </StaticContainer>
   ) : null
 }
