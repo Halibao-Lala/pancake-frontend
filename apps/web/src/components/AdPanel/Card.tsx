@@ -12,12 +12,12 @@ const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
 
-  transition: height 0.2s ease-in-out;
+  transition: min-height 0.2s ease-in-out;
 
   ${({ $isExpanded }) =>
     $isExpanded &&
     `  
-    min-height: 400px;
+    min-height: 453px;
     height:auto;
   `}
 `

@@ -26,4 +26,9 @@ export const swapFAQConfig: FAQConfig = [
     content:
       'Always double-check the token contract addresses before swapping to avoid scams. Also, ensure your wallet is secure and use trusted sources to verify token information.',
   },
+  {
+    title: 'Using Limit Orders for Swaps',
+    content:
+      'Limit orders let you set a specific price for a swap on PancakeSwap. When the market reaches that price, your trade will automatically execute, allowing more control over the price you get for your tokens.',
+  },
 ]
