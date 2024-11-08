@@ -32,7 +32,7 @@ export const FAQ: React.FC = memo(() => {
             onToggle={() => {
               setActiveIndex(activeIndex === index ? -1 : index)
             }}
-            title={<Text>{faq.title}</Text>}
+            title={<Text bold>{faq.title}</Text>}
             content={<Text>{faq.content}</Text>}
           />
           {index !== swapFAQConfig.length - 1 && <Divider />}

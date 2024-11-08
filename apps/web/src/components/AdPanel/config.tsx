@@ -35,7 +35,14 @@ export const useAdConfig = () => {
     .filter((ad) => ad.shouldRender)
 }
 
-const commonLayoutAdBlacklistedPages = ['/home', '/cake-staking', '/liquidity/pools']
+const commonLayoutAdBlacklistedPages = [
+  '/home',
+  '/cake-staking',
+  '/liquidity/pools',
+  // Route matching: /liquidity/pool/<chainName>/<poolAddress>
+  /\/liquidity\/pool\/\w+\/\w+/,
+]
+
 /**
  *  On the pages mentioned, the Mobile ads will be placed directly in page instead of in the app layout.
  *  So don't render in the app layout.

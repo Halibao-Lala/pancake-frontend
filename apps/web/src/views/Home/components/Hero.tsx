@@ -258,7 +258,13 @@ const Hero = () => {
               </Button>
             </NextLinkFromReactRouter>
           </Flex>
-          <Flex mt="32px" alignItems="center" justifyContent="center" width="fit-content">
+          <Flex
+            mt="32px"
+            alignItems="center"
+            justifyContent="center"
+            width="fit-content"
+            mx={['auto', 'auto', 'auto', '0']}
+          >
             <AdPanel.AdPlayer />
           </Flex>
         </Flex>
