@@ -1,5 +1,5 @@
 import { Box, BoxProps, CloseIcon, IconButton, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { useShowAdPanel } from './useShowAdPanel'
 
@@ -12,13 +12,11 @@ const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
 
-  transition: min-height 0.2s ease-in-out;
+  transition: height 0.2s ease-in-out 0.05s;
 
   ${({ $isExpanded }) =>
     $isExpanded &&
     `  
-    min-height: 453px;
-    height:auto;
   `}
 `
 
@@ -82,56 +80,39 @@ interface AdCardProps extends BoxProps {
   alt?: string
 
   isExpanded?: boolean
-
-  isDismissible?: boolean
-
-  /**
-   * Force mobile view to show Modal on expanding FAQ
-   */
-  forceMobile?: boolean
 }
 
-export const AdCard = ({
-  children,
-  imageUrl,
-  alt,
-  isExpanded,
-  forceMobile,
-  isDismissible = true,
-  ...props
-}: AdCardProps) => {
-  const imageRef = useRef<HTMLImageElement>(null)
+export const AdCard = forwardRef<HTMLDivElement, AdCardProps>(
+  ({ children, imageUrl, alt, isExpanded, ...props }, ref) => {
+    const imageRef = useRef<HTMLImageElement>(null)
 
-  // Drag handle, Slider and other slots will come here
-  const { isDesktop } = useMatchBreakpoints()
-  const [, setShowAdPanel] = useShowAdPanel()
+    // Drag handle, Slider and other slots will come here
+    const { isDesktop } = useMatchBreakpoints()
+    const [, setShowAdPanel] = useShowAdPanel()
 
-  const isMobile = forceMobile || !isDesktop
-
-  useEffect(() => {
-    if (imageRef.current) {
-      if (isExpanded) {
-        imageRef.current.animate([{ opacity: 0, zIndex: -1, transform: 'scale(0.96)' }], {
-          duration: 200,
-          fill: 'forwards',
-          easing: 'ease-in-out',
-        })
-      } else {
-        imageRef.current.animate([{ opacity: 1, zIndex: 1, transform: 'scale(1)' }], {
-          duration: 200,
-          fill: 'forwards',
-          easing: 'ease-in-out',
-        })
+    useEffect(() => {
+      if (imageRef.current) {
+        if (isExpanded) {
+          imageRef.current.animate([{ opacity: 0, zIndex: -1, transform: 'scale(0.96)' }], {
+            duration: 50,
+            fill: 'forwards',
+            easing: 'ease-in-out',
+          })
+        } else {
+          imageRef.current.animate([{ opacity: 1, zIndex: 1, transform: 'scale(1)' }], {
+            duration: 200,
+            fill: 'forwards',
+            easing: 'ease-in-out',
+          })
+        }
       }
-    }
-  }, [imageRef, isExpanded])
+    }, [imageRef, isExpanded])
 
-  return (
-    <BaseCard $isExpanded={isExpanded} {...props}>
-      <Content $isExpanded={isExpanded}>{children}</Content>
-      {isDismissible && (
+    return (
+      <BaseCard $isExpanded={isExpanded} {...props} ref={ref}>
+        <Content $isExpanded={isExpanded}>{children}</Content>
         <CloseButtonContainer
-          $isMobile={isMobile}
+          $isMobile={!isDesktop}
           onClick={() => setShowAdPanel(false)}
           role="button"
           aria-label="Close Ad Panel"
@@ -140,10 +121,10 @@ export const AdCard = ({
             <CloseIcon color="inherit" />
           </StyledIconButton>
         </CloseButtonContainer>
-      )}
-      <GraphicsContainer>
-        {imageUrl && <img ref={imageRef} src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />}
-      </GraphicsContainer>
-    </BaseCard>
-  )
-}
+        <GraphicsContainer>
+          {imageUrl && <img ref={imageRef} src={imageUrl} alt={alt || 'Ad Image'} width={207} height={188} />}
+        </GraphicsContainer>
+      </BaseCard>
+    )
+  },
+)

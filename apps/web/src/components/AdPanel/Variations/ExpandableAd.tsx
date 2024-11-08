@@ -1,4 +1,5 @@
 import { Box, Flex, Modal, ModalV2, Text, useMatchBreakpoints, useModalV2 } from '@pancakeswap/uikit'
+import { useLayoutEffect, useMemo, useRef } from 'react'
 import { styled } from 'styled-components'
 import { BodyText } from '../BodyText'
 import { ExpandButton } from '../Button'
@@ -27,10 +28,14 @@ export const ExpandableAd = (props: AdPlayerProps) => {
   const { isOpen, onDismiss, setIsOpen } = useModalV2()
   const { isDesktop } = useMatchBreakpoints()
   const { slideExpanded, toggleSlideExpanded } = useIsSlideExpanded()
+  const extendedRef = useRef<HTMLDivElement>(null)
+  const adCardRef = useRef<HTMLDivElement>(null)
 
-  const isMobile = props.forceMobile || !isDesktop
+  const isMobile = useMemo(() => props.forceMobile || !isDesktop, [props.forceMobile, isDesktop])
 
-  const isExpanded = !isMobile ? slideExpanded[adId] || false : false
+  const isExpanded = useMemo(() => {
+    return !isMobile ? slideExpanded[adId] || false : false
+  }, [isMobile, slideExpanded])
 
   const handleExpand = () => {
     toggleSlideExpanded(adId, true)
@@ -42,11 +47,27 @@ export const ExpandableAd = (props: AdPlayerProps) => {
     onDismiss()
   }
 
+  useLayoutEffect(() => {
+    if (isExpanded && extendedRef.current && adCardRef.current) {
+      const targetCard = adCardRef.current
+      targetCard.style.overflow = `hidden`
+      const { scrollHeight } = extendedRef.current
+      targetCard.style.height = `${scrollHeight + 100}px`
+      setTimeout(() => {
+        targetCard.style.height = `auto`
+      }, 300)
+    } else if (!isExpanded && adCardRef.current) {
+      const targetCard = adCardRef.current
+      targetCard.style.height = `164px`
+      targetCard.style.overflow = ``
+    }
+  }, [isExpanded])
+
   return (
-    <AdCard imageUrl="/images/adpanel-test/bannerImg1.png" isExpanded={isExpanded} {...props}>
+    <AdCard imageUrl="/images/adpanel-test/bannerImg1.png" isExpanded={isExpanded} {...props} ref={adCardRef}>
       <Flex flexDirection="column" justifyContent="space-between" height="100%">
         {isExpanded ? (
-          <Box>
+          <Box ref={extendedRef}>
             <Text bold as="h1" textAlign="center">
               {title}
             </Text>
