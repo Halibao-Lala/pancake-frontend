@@ -9,15 +9,9 @@ export const shouldRenderByTime = (start: number, end: number) => {
 }
 
 /**
- * @param pages Array of page path strings or regex patterns (Example: ['/cake-staking'])
+ * @param pages Array of page path strings or regex patterns (Example: ['/cake-staking', /\/swap\/\w+/])
  * @returns boolean
  */
-export const shouldRenderOnPages = (pages: (string | RegExp)[]) => {
-  return (
-    typeof window !== 'undefined' &&
-    pages.some((page) => {
-      const regex = typeof page === 'string' ? new RegExp(page) : page
-      return regex.test(window.location.pathname)
-    })
-  )
+export const shouldRenderOnPages = (pages: Array<string>) => {
+  return typeof window !== 'undefined' && pages.some((page) => new RegExp(page).test(window.location.pathname))
 }
