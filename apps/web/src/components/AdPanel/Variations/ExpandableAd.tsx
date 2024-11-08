@@ -1,5 +1,5 @@
 import { Box, Flex, Modal, ModalV2, Text, useMatchBreakpoints, useModalV2 } from '@pancakeswap/uikit'
-import { useLayoutEffect, useMemo, useRef } from 'react'
+import { useCallback, useLayoutEffect, useMemo, useRef } from 'react'
 import { styled } from 'styled-components'
 import { BodyText } from '../BodyText'
 import { ExpandButton } from '../Button'
@@ -30,6 +30,7 @@ export const ExpandableAd = (props: AdPlayerProps) => {
   const { slideExpanded, toggleSlideExpanded } = useIsSlideExpanded()
   const extendedRef = useRef<HTMLDivElement>(null)
   const adCardRef = useRef<HTMLDivElement>(null)
+  const isInTransition = useRef(false)
 
   const isMobile = useMemo(() => props.forceMobile || !isDesktop, [props.forceMobile, isDesktop])
 
@@ -52,9 +53,11 @@ export const ExpandableAd = (props: AdPlayerProps) => {
       const targetCard = adCardRef.current
       targetCard.style.overflow = `hidden`
       const { scrollHeight } = extendedRef.current
+      isInTransition.current = true
       targetCard.style.height = `${scrollHeight + 100}px`
       setTimeout(() => {
         targetCard.style.height = `auto`
+        isInTransition.current = false
       }, 300)
     } else if (!isExpanded && adCardRef.current) {
       const targetCard = adCardRef.current
@@ -62,6 +65,12 @@ export const ExpandableAd = (props: AdPlayerProps) => {
       targetCard.style.overflow = ``
     }
   }, [isExpanded])
+
+  const toggleHeight = useCallback((isAuto: boolean, isExpend: boolean) => {
+    const targetCard = adCardRef.current
+    if (!targetCard || !isExpend || isInTransition.current === true) return
+    targetCard.style.height = isAuto ? 'auto' : `${targetCard.offsetHeight}px`
+  }, [])
 
   return (
     <AdCard imageUrl="/images/adpanel-test/bannerImg1.png" isExpanded={isExpanded} {...props} ref={adCardRef}>
@@ -85,6 +94,8 @@ export const ExpandableAd = (props: AdPlayerProps) => {
           mb={isExpanded ? '0' : '16px'}
           onClick={isExpanded ? handleDismiss : handleExpand}
           isExpanded={isExpanded}
+          onMouseOver={() => toggleHeight(false, isExpanded)}
+          onMouseOut={() => toggleHeight(true, isExpanded)}
         />
       </Flex>
 
