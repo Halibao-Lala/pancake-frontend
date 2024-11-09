@@ -36,10 +36,8 @@ export const useRevenueSharingProxy = (
       if (!account) return undefined
       try {
         const now = Math.floor(blockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
-        const lastTokenDistributionTimestamp = Math.floor(currentBlockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
-        const nextDistributionTimestamp = new BigNumber(lastTokenDistributionTimestamp)
-          .plus(ONE_WEEK_DEFAULT)
-          .toNumber()
+        const lastDistributionTimestamp = Math.floor(currentBlockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
+        const nextDistributionTimestamp = new BigNumber(lastDistributionTimestamp).plus(ONE_WEEK_DEFAULT).toNumber()
 
         const revenueCalls = [
           {
@@ -67,7 +65,7 @@ export const useRevenueSharingProxy = (
           balanceOfAt: (revenueResult[0] as any).toString(),
           totalSupplyAt: (revenueResult[1] as any).toString(),
           nextDistributionTimestamp,
-          lastTokenTimestamp: lastTokenDistributionTimestamp,
+          lastTokenTimestamp: lastDistributionTimestamp,
           availableClaim: claimResult.result.toString(),
         }
       } catch (error) {
