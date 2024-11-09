@@ -331,7 +331,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                         prefix="(~ $"
                         unit=")"
                         value={availableCakePoolCakeUsdValue}
-                        decimals={5}
+                        decimals={2}
                       />
                     </Box>
                   </Flex>
@@ -360,7 +360,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                         prefix="(~ $"
                         unit=")"
                         value={availableRevenueSharingCakeUsdValue}
-                        decimals={5}
+                        decimals={2}
                       />
                     </Box>
                   </Flex>
@@ -389,7 +389,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                         prefix="(~ $"
                         unit=")"
                         value={totalAvailableClaimUsdValue}
-                        decimals={5}
+                        decimals={2}
                       />
                     </Box>
                   </Flex>
