@@ -227,7 +227,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                             color="success"
                             fontWeight={800}
                             value={yourShare}
-                            decimals={2}
+                            decimals={5}
                           />
                         )}
                         {showYourSharePercentage && (
@@ -241,7 +241,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                                 unit="%)"
                                 ml="4px"
                                 value={yourSharePercentage}
-                                decimals={2}
+                                decimals={5}
                               />
                             )}
                           </>
@@ -320,7 +320,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                       {availableCakePoolCake > 0 && availableCakePoolCake <= 0.01 ? (
                         <Text bold textAlign="right">{`< 0.01 CAKE`}</Text>
                       ) : (
-                        <Balance unit=" CAKE" textAlign="right" bold value={availableCakePoolCake} decimals={2} />
+                        <Balance unit=" CAKE" textAlign="right" bold value={availableCakePoolCake} decimals={5} />
                       )}
                       <Balance
                         ml="4px"
@@ -331,7 +331,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                         prefix="(~ $"
                         unit=")"
                         value={availableCakePoolCakeUsdValue}
-                        decimals={2}
+                        decimals={5}
                       />
                     </Box>
                   </Flex>
@@ -349,7 +349,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                       {availableRevenueSharingCake > 0 && availableRevenueSharingCake <= 0.01 ? (
                         <Text bold textAlign="right">{`< 0.01 CAKE`}</Text>
                       ) : (
-                        <Balance unit=" CAKE" textAlign="right" bold value={availableRevenueSharingCake} decimals={2} />
+                        <Balance unit=" CAKE" textAlign="right" bold value={availableRevenueSharingCake} decimals={5} />
                       )}
                       <Balance
                         ml="4px"
@@ -360,7 +360,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                         prefix="(~ $"
                         unit=")"
                         value={availableRevenueSharingCakeUsdValue}
-                        decimals={2}
+                        decimals={5}
                       />
                     </Box>
                   </Flex>
@@ -378,7 +378,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                       {totalAvailableClaim > 0 && totalAvailableClaim <= 0.01 ? (
                         <Text bold textAlign="right">{`< 0.01 CAKE`}</Text>
                       ) : (
-                        <Balance unit=" CAKE" textAlign="right" bold value={totalAvailableClaim} decimals={2} />
+                        <Balance unit=" CAKE" textAlign="right" bold value={totalAvailableClaim} decimals={5} />
                       )}
                       <Balance
                         ml="4px"
@@ -389,7 +389,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                         prefix="(~ $"
                         unit=")"
                         value={totalAvailableClaimUsdValue}
-                        decimals={2}
+                        decimals={5}
                       />
                     </Box>
                   </Flex>

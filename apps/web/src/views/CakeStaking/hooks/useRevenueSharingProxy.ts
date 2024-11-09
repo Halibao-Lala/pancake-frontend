@@ -28,16 +28,18 @@ export const useRevenueSharingProxy = (
 ) => {
   const { account, chainId } = useAccountActiveChain()
   const blockTimestamp = useInitialBlockTimestamp()
-  const currencyBlockTimestamp = useCurrentBlockTimestamp()
+  const currentBlockTimestamp = useCurrentBlockTimestamp()
 
   const { data } = useQuery({
     queryKey: ['/revenue-sharing-pool-for-cake', contract.address, contract.chain?.id, account],
-
     queryFn: async () => {
       if (!account) return undefined
       try {
         const now = Math.floor(blockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
-        const lastTokenTimestamp = Math.floor(currencyBlockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
+        const lastTokenDistributionTimestamp = Math.floor(currentBlockTimestamp / ONE_WEEK_DEFAULT) * ONE_WEEK_DEFAULT
+        const nextDistributionTimestamp = new BigNumber(lastTokenDistributionTimestamp)
+          .plus(ONE_WEEK_DEFAULT)
+          .toNumber()
 
         const revenueCalls = [
           {
@@ -56,25 +58,24 @@ export const useRevenueSharingProxy = (
         const [revenueResult, claimResult] = await Promise.all([
           client.multicall({
             contracts: revenueCalls,
-            allowFailure: true,
+            allowFailure: false,
           }),
           contract.simulate.claim([account]),
         ])
 
-        const nextDistributionTimestamp = new BigNumber(lastTokenTimestamp).plus(ONE_WEEK_DEFAULT).toNumber()
-
         return {
-          balanceOfAt: (revenueResult[0].result as any).toString(),
-          totalSupplyAt: (revenueResult[1].result as any).toString(),
+          balanceOfAt: (revenueResult[0] as any).toString(),
+          totalSupplyAt: (revenueResult[1] as any).toString(),
           nextDistributionTimestamp,
-          lastTokenTimestamp,
+          lastTokenTimestamp: lastTokenDistributionTimestamp,
           availableClaim: claimResult.result.toString(),
         }
       } catch (error) {
         console.error('[ERROR] Fetching Revenue Sharing Pool', error)
-        return initialData
+        throw error
       }
     },
+    enabled: Boolean(blockTimestamp && account),
   })
 
   return data ?? initialData
