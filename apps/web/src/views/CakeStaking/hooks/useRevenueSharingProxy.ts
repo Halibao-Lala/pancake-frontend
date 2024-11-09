@@ -11,7 +11,7 @@ interface RevenueSharingPool {
   balanceOfAt: string
   totalSupplyAt: string
   nextDistributionTimestamp: number
-  lastTokenTimestamp: number
+  lastDistributionTimestamp: number
   availableClaim: string
 }
 
@@ -19,7 +19,7 @@ const initialData: RevenueSharingPool = {
   balanceOfAt: '0',
   totalSupplyAt: '0',
   nextDistributionTimestamp: 0,
-  lastTokenTimestamp: 0,
+  lastDistributionTimestamp: 0,
   availableClaim: '0',
 }
 
@@ -65,7 +65,7 @@ export const useRevenueSharingProxy = (
           balanceOfAt: (revenueResult[0] as any).toString(),
           totalSupplyAt: (revenueResult[1] as any).toString(),
           nextDistributionTimestamp,
-          lastTokenTimestamp: lastDistributionTimestamp,
+          lastDistributionTimestamp,
           availableClaim: claimResult.result.toString(),
         }
       } catch (error) {
