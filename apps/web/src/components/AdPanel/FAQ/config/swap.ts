@@ -1,4 +1,4 @@
-import { FAQConfig } from './types'
+import { FAQConfig } from '../types'
 
 export const swapFAQConfig: FAQConfig = [
   {
