@@ -1,9 +1,18 @@
-import { Button, ButtonProps, ChevronsCollapseIcon, ChevronsExpandIcon, OpenNewIcon } from '@pancakeswap/uikit'
+import {
+  Button,
+  ButtonProps,
+  ChevronRightIcon,
+  ChevronsCollapseIcon,
+  ChevronsExpandIcon,
+  Link,
+  OpenNewIcon,
+} from '@pancakeswap/uikit'
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 const StyledButton = styled(Button)<{ $variant?: string }>`
   transition: all 0.2s ease-in-out;
+  border-radius: ${({ theme }) => theme.radii['12px']};
   ${({ theme, $variant }) =>
     $variant === 'text' &&
     `
@@ -15,24 +24,40 @@ const StyledButton = styled(Button)<{ $variant?: string }>`
 
 interface AdButtonProps extends ButtonProps, PropsWithChildren {
   isExternal?: boolean
+  externalIcon?: boolean
+  chevronRightIcon?: boolean
+  href?: string
 }
 
-export const AdButton = ({ children, endIcon, isExternal, ...props }: AdButtonProps) => {
+export const AdButton = ({
+  children,
+  endIcon,
+  isExternal,
+  externalIcon,
+  chevronRightIcon,
+  href,
+  ...props
+}: AdButtonProps) => {
   return (
-    <StyledButton
-      scale="sm"
-      variant="subtle"
-      width="fit-content"
-      padding="7px 8px 9px 8px"
-      endIcon={
-        endIcon ||
-        (isExternal ? <OpenNewIcon color={props.variant === 'text' ? 'primary60' : 'invertedContrast'} /> : null)
-      }
-      $variant={props.variant}
-      {...props}
-    >
-      {children}
-    </StyledButton>
+    <Link href={href} fontSize="inherit" color="inherit" external={isExternal} style={{ textDecoration: 'none' }}>
+      <StyledButton
+        scale="sm"
+        variant="subtle"
+        width="max-content"
+        padding="7px 8px 9px 8px"
+        endIcon={
+          endIcon ||
+          (chevronRightIcon ? (
+            <ChevronRightIcon color="invertedContrast" width="24px" style={{ margin: '1px 0 0 0' }} />
+          ) : null) ||
+          (externalIcon ? <OpenNewIcon color={props.variant === 'text' ? 'primary60' : 'invertedContrast'} /> : null)
+        }
+        $variant={props.variant}
+        {...props}
+      >
+        {children}
+      </StyledButton>
+    </Link>
   )
 }
 

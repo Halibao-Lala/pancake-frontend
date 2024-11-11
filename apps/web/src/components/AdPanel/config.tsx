@@ -1,8 +1,7 @@
-import { ContentAd } from './Variations/ContentAd'
-import { ContentCountdown } from './Variations/ContentCountdown'
+import { AdCakeStaking } from './Ads/AdCakeStaking'
+import { AdOptionsTrading } from './Ads/AdOptionsTrading'
+import { AdV4 } from './Ads/AdV4'
 import { ExpandableAd } from './Variations/ExpandableAd'
-import { TitleContentAd } from './Variations/TitleContentAd'
-import { shouldRenderByTime } from './renderConditions'
 
 enum Priority {
   FIRST_AD = 6,
@@ -21,22 +20,21 @@ export const useAdConfig = () => {
     priority?: number
   }> = [
     {
-      id: 'title-content-ad',
-      component: <TitleContentAd />,
-    },
-    {
       id: 'expandable-ad',
       component: <ExpandableAd />,
       priority: Priority.FIRST_AD,
     },
     {
-      id: 'content-ad',
-      component: <ContentAd />,
+      id: 'pcs-v4',
+      component: <AdV4 />,
     },
     {
-      id: 'content-countdown-ad',
-      component: <ContentCountdown />,
-      shouldRender: [shouldRenderByTime(0, 1731997322)],
+      id: 'cake-staking',
+      component: <AdCakeStaking />,
+    },
+    {
+      id: 'clamm-options-trading',
+      component: <AdOptionsTrading />,
     },
   ]
 
