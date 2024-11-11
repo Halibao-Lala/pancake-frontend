@@ -49,7 +49,7 @@ const commonLayoutAdBlacklistedPages = [
  *  So don't render in the app layout.
  *  Contains strings or regex patterns.
  */
-export const layoutMobileAdBlacklistedPages = [...commonLayoutAdBlacklistedPages, '/']
+export const layoutMobileAdBlacklistedPages = [...commonLayoutAdBlacklistedPages, '/', '/prediction']
 
 /**
  *  On the pages mentioned, the Desktop ads will be placed directly in page instead of in the app layout.
