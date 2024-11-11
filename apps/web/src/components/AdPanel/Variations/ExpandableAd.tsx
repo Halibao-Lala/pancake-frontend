@@ -10,10 +10,9 @@ import { AdPlayerProps } from '../types'
 import { useIsSlideExpanded } from '../useIsSlideExpanded'
 
 export const Divider = styled(Box)`
-  width: calc(100% + 32px);
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.cardBorder};
   height: 1px;
-  margin-left: -16px;
 `
 
 // Unique id for this slide
@@ -30,6 +29,7 @@ export const ExpandableAd = (props: AdPlayerProps) => {
   const { slideExpanded, setSlideExpanded } = useIsSlideExpanded()
   const extendedRef = useRef<HTMLDivElement>(null)
   const adCardRef = useRef<HTMLDivElement>(null)
+  const actionPanelRef = useRef<HTMLDivElement>(null)
   const isInTransition = useRef(false)
 
   const isMobile = useMemo(() => props.forceMobile || !isDesktop, [props.forceMobile, isDesktop])
@@ -52,13 +52,10 @@ export const ExpandableAd = (props: AdPlayerProps) => {
     if (isExpanded && extendedRef.current && adCardRef.current) {
       const targetCard = adCardRef.current
 
-      const { scrollHeight } = extendedRef.current
-      isInTransition.current = true
-      targetCard.style.height = `${scrollHeight + 100}px`
-      setTimeout(() => {
-        targetCard.style.height = `auto`
-        isInTransition.current = false
-      }, 300)
+      const contentPanelHeight = extendedRef.current.scrollHeight
+      const actionPanelHeight = actionPanelRef.current?.scrollHeight || 64
+
+      targetCard.style.height = `${contentPanelHeight + actionPanelHeight}px`
     } else if (!isExpanded && adCardRef.current) {
       const targetCard = adCardRef.current
       targetCard.style.height = `164px`
@@ -68,7 +65,7 @@ export const ExpandableAd = (props: AdPlayerProps) => {
 
   const toggleHeight = useCallback((isAuto: boolean, isExpend: boolean) => {
     const targetCard = adCardRef.current
-    if (!targetCard || !isExpend || isInTransition.current === true) return
+    if (!targetCard || !isExpend) return
     targetCard.style.height = isAuto ? 'auto' : `${targetCard.offsetHeight}px`
   }, [])
 
@@ -77,11 +74,13 @@ export const ExpandableAd = (props: AdPlayerProps) => {
       <Flex flexDirection="column" justifyContent="space-between" height="100%">
         {isExpanded ? (
           <Box ref={extendedRef} overflow="hidden">
-            <Text bold as="h1" textAlign="center">
+            <Text bold as="h1" textAlign="center" p="16px">
               {title}
             </Text>
-            <Divider mt="16px" mb="16px" />
-            <ExpandedContent />
+            <Divider />
+            <Box p="16px">
+              <ExpandedContent />
+            </Box>
           </Box>
         ) : (
           <>
@@ -89,14 +88,16 @@ export const ExpandableAd = (props: AdPlayerProps) => {
             <BodyText>Quick start now on How to Swap!</BodyText>
           </>
         )}
-        {isExpanded && <Divider mt="16px" mb="16px" />}
-        <ExpandButton
-          mb={isExpanded ? '0' : '16px'}
-          onClick={isExpanded ? handleDismiss : handleExpand}
-          isExpanded={isExpanded}
-          onMouseOver={() => toggleHeight(false, isExpanded)}
-          onMouseOut={() => toggleHeight(true, isExpanded)}
-        />
+        {isExpanded && <Divider />}
+        <Flex ref={actionPanelRef} p={isExpanded ? '16px' : '0'}>
+          <ExpandButton
+            mb={isExpanded ? '0' : '16px'}
+            onClick={isExpanded ? handleDismiss : handleExpand}
+            isExpanded={isExpanded}
+            onMouseOver={() => toggleHeight(false, isExpanded)}
+            onMouseOut={() => toggleHeight(true, isExpanded)}
+          />
+        </Flex>
       </Flex>
 
       {/* On Non-Desktop devices, show expanded content in modal */}

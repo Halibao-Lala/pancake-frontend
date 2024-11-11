@@ -5,9 +5,11 @@ import { useShowAdPanel } from './useShowAdPanel'
 
 const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   position: relative;
-  padding: 16px;
+
   width: 328px;
   height: 164px;
+  padding: 16px;
+
   background-color: ${({ theme }) => theme.colors.card};
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
@@ -17,6 +19,7 @@ const BaseCard = styled(Box)<{ $isExpanded?: boolean }>`
   ${({ $isExpanded }) =>
     $isExpanded &&
     `  
+    padding: 0;
   `}
 `
 
