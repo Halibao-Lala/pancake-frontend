@@ -4,20 +4,30 @@ import { ExpandableAd } from './Variations/ExpandableAd'
 import { TitleContentAd } from './Variations/TitleContentAd'
 import { shouldRenderByTime } from './renderConditions'
 
+enum Priority {
+  FIRST_AD = 6,
+  VERY_HIGH = 5,
+  HIGH = 4,
+  MEDIUM = 3,
+  LOW = 2,
+  VERY_LOW = 1,
+}
+
 export const useAdConfig = () => {
   const adList: Array<{
     id: string
     component: JSX.Element
-    shouldRender?: boolean
-    priority?: Array<number> // summed up when calculating the list order
+    shouldRender?: Array<boolean>
+    priority?: number
   }> = [
-    {
-      id: 'expandable-ad',
-      component: <ExpandableAd />,
-    },
     {
       id: 'title-content-ad',
       component: <TitleContentAd />,
+    },
+    {
+      id: 'expandable-ad',
+      component: <ExpandableAd />,
+      priority: Priority.FIRST_AD,
     },
     {
       id: 'content-ad',
@@ -26,13 +36,14 @@ export const useAdConfig = () => {
     {
       id: 'content-countdown-ad',
       component: <ContentCountdown />,
-      shouldRender: shouldRenderByTime(0, 1731047835),
+      shouldRender: [shouldRenderByTime(0, 1731997322)],
     },
   ]
 
   return adList
-    .map((ad) => ({ ...ad, shouldRender: ad.shouldRender === undefined ? true : ad.shouldRender }))
-    .filter((ad) => ad.shouldRender)
+    .map((ad) => ({ ...ad, shouldRender: ad.shouldRender === undefined ? [true] : ad.shouldRender }))
+    .filter((ad) => ad.shouldRender.every(Boolean))
+    .sort((a, b) => (b.priority || Priority.VERY_LOW) - (a.priority || Priority.VERY_LOW))
 }
 
 // Array of strings or regex patterns

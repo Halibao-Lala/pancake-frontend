@@ -7,7 +7,7 @@ const Container = styled.div`
     height: calc(100vh - 40px);
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    height: calc(100vh - 125px);
+    height: calc(100vh - 115px);
   }
   overflow: hidden;
 `
