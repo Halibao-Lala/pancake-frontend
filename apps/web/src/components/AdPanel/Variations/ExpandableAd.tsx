@@ -51,7 +51,7 @@ export const ExpandableAd = (props: AdPlayerProps) => {
   useLayoutEffect(() => {
     if (isExpanded && extendedRef.current && adCardRef.current) {
       const targetCard = adCardRef.current
-      targetCard.style.overflow = `hidden`
+
       const { scrollHeight } = extendedRef.current
       isInTransition.current = true
       targetCard.style.height = `${scrollHeight + 100}px`
@@ -76,7 +76,7 @@ export const ExpandableAd = (props: AdPlayerProps) => {
     <AdCard imageUrl="/images/adpanel-test/bannerImg1.png" isExpanded={isExpanded} {...props} ref={adCardRef}>
       <Flex flexDirection="column" justifyContent="space-between" height="100%">
         {isExpanded ? (
-          <Box ref={extendedRef}>
+          <Box ref={extendedRef} overflow="hidden">
             <Text bold as="h1" textAlign="center">
               {title}
             </Text>
