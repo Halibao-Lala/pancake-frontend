@@ -28,7 +28,7 @@ import 'utils/abortcontroller-polyfill'
 import { V4CakeIcon } from 'views/Home/components/V4CakeIcon'
 
 import { AdPanel } from 'components/AdPanel'
-import { layoutDesktopAdBlacklistedPages, layoutMobileAdBlacklistedPages } from 'components/AdPanel/config'
+import { layoutDesktopAdIgnoredPages, layoutMobileAdIgnoredPages } from 'components/AdPanel/config'
 import { shouldRenderOnPages } from 'components/AdPanel/renderConditions'
 import { ZKSyncAirdropModalWithAutoPopup } from 'components/ClaimZksyncAirdropModal'
 import { useDataDogRUM } from 'hooks/useDataDogRUM'
@@ -182,8 +182,8 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       <ShowMenu>
         <Layout>
           <Component {...pageProps} />
-          <AdPanel.MobileCard shouldRender={!shouldRenderOnPages(layoutMobileAdBlacklistedPages)} mt="4px" mb="12px" />
-          <AdPanel.DesktopCard shouldRender={!shouldRenderOnPages(layoutDesktopAdBlacklistedPages)} />
+          <AdPanel.MobileCard shouldRender={!shouldRenderOnPages(layoutMobileAdIgnoredPages)} mt="4px" mb="12px" />
+          <AdPanel.DesktopCard shouldRender={!shouldRenderOnPages(layoutDesktopAdIgnoredPages)} />
         </Layout>
       </ShowMenu>
       <EasterEgg iterations={2} />

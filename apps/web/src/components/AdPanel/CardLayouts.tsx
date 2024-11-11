@@ -1,4 +1,5 @@
 import { Box, BoxProps, getPortalRoot, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { useRouter } from 'next/router'
 import { cloneElement, memo, RefObject, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
@@ -44,7 +45,13 @@ const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => 
 
   const adList = useAdConfig()
 
-  const { isAnySlideExpanded } = useIsSlideExpanded()
+  const { isAnySlideExpanded, resetAllExpanded } = useIsSlideExpanded()
+
+  const { route } = useRouter()
+
+  useEffect(() => {
+    resetAllExpanded()
+  }, [route, resetAllExpanded])
 
   const handlePause = () => {
     pauseAni()

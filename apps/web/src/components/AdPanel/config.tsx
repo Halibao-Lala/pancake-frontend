@@ -46,7 +46,7 @@ export const useAdConfig = () => {
 }
 
 // Array of strings or regex patterns
-const commonLayoutAdBlacklistedPages = [
+const commonLayoutAdIgnoredPages = [
   '/home',
   '/cake-staking',
   // Route matching: /liquidity/pool/<chainName>/<poolAddress>
@@ -58,16 +58,11 @@ const commonLayoutAdBlacklistedPages = [
  *  So don't render in the app layout.
  *  Contains strings or regex patterns.
  */
-export const layoutMobileAdBlacklistedPages = [
-  ...commonLayoutAdBlacklistedPages,
-  '/',
-  '/prediction',
-  '/liquidity/pools',
-]
+export const layoutMobileAdIgnoredPages = [...commonLayoutAdIgnoredPages, '/', '/prediction', '/liquidity/pools']
 
 /**
  *  On the pages mentioned, the Desktop ads will be placed directly in page instead of in the app layout.
  *  So don't render in the app layout.
  *  Contains strings or regex patterns.
  */
-export const layoutDesktopAdBlacklistedPages = [...commonLayoutAdBlacklistedPages]
+export const layoutDesktopAdIgnoredPages = [...commonLayoutAdIgnoredPages]
