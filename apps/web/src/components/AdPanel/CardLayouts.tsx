@@ -84,7 +84,7 @@ const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => 
       fadeEffect={{ crossFade: true }}
       autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
       pagination={{ clickable: true, enabled: !isAnySlideExpanded }}
-      $showPagination={!forceMobile && !isAnySlideExpanded}
+      $showPagination={!isAnySlideExpanded}
       modules={[Autoplay, Pagination, EffectFade]}
       onAutoplayPause={handlePause}
       onAutoplayResume={handleResume}
