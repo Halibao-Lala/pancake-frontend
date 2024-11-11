@@ -41,8 +41,7 @@ export const useAdConfig = () => {
   ]
 
   return adList
-    .map((ad) => ({ ...ad, shouldRender: ad.shouldRender === undefined ? [true] : ad.shouldRender }))
-    .filter((ad) => ad.shouldRender.every(Boolean))
+    .filter((ad) => ad.shouldRender === undefined || ad.shouldRender.every(Boolean))
     .sort((a, b) => (b.priority || Priority.VERY_LOW) - (a.priority || Priority.VERY_LOW))
 }
 

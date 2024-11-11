@@ -12,17 +12,17 @@ export const useIsSlideExpanded = () => {
     [slideExpanded],
   )
 
-  const toggleSlideExpanded = useCallback(
-    (id: string, overrideValue?: boolean) => {
+  const setSlideExpanded = useCallback(
+    (id: string, value: boolean) => {
       setSlideExpandedValue((prev) => {
         return {
           ...prev,
-          [id]: overrideValue || !prev[id],
+          [id]: value,
         }
       })
     },
     [setSlideExpandedValue],
   )
 
-  return { isAnySlideExpanded, slideExpanded, toggleSlideExpanded }
+  return { isAnySlideExpanded, slideExpanded, setSlideExpanded }
 }

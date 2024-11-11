@@ -27,7 +27,7 @@ const ExpandedContent = () => {
 export const ExpandableAd = (props: AdPlayerProps) => {
   const { isOpen, onDismiss, setIsOpen } = useModalV2()
   const { isDesktop } = useMatchBreakpoints()
-  const { slideExpanded, toggleSlideExpanded } = useIsSlideExpanded()
+  const { slideExpanded, setSlideExpanded } = useIsSlideExpanded()
   const extendedRef = useRef<HTMLDivElement>(null)
   const adCardRef = useRef<HTMLDivElement>(null)
   const isInTransition = useRef(false)
@@ -39,12 +39,12 @@ export const ExpandableAd = (props: AdPlayerProps) => {
   }, [isMobile, slideExpanded])
 
   const handleExpand = () => {
-    toggleSlideExpanded(adId, true)
+    setSlideExpanded(adId, true)
     if (isMobile) setIsOpen(true)
   }
 
   const handleDismiss = () => {
-    toggleSlideExpanded(adId, false)
+    setSlideExpanded(adId, false)
     onDismiss()
   }
 
