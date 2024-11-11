@@ -1,5 +1,7 @@
 import { AdCakeStaking } from './Ads/AdCakeStaking'
 import { AdOptionsTrading } from './Ads/AdOptionsTrading'
+import { AdQuests } from './Ads/AdQuests'
+import { AdRocker } from './Ads/AdRocker'
 import { AdV4 } from './Ads/AdV4'
 import { ExpandableAd } from './Variations/ExpandableAd'
 
@@ -35,6 +37,14 @@ export const useAdConfig = () => {
     {
       id: 'clamm-options-trading',
       component: <AdOptionsTrading />,
+    },
+    {
+      id: 'rocker-meme-career',
+      component: <AdRocker />,
+    },
+    {
+      id: 'ad-quest',
+      component: <AdQuests />,
     },
   ]
 
