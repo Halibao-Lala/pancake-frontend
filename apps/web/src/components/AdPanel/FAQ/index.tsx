@@ -17,6 +17,7 @@ export const FAQWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   padding: 16px;
+  padding-bottom: 0;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
