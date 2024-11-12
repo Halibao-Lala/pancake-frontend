@@ -4,6 +4,7 @@ import { AdQuests } from './Ads/AdQuests'
 import { AdRocker } from './Ads/AdRocker'
 import { AdV4 } from './Ads/AdV4'
 import { ExpandableAd } from './Variations/ExpandableAd'
+import { shouldRenderOnPages } from './renderConditions'
 
 enum Priority {
   FIRST_AD = 6,
@@ -25,6 +26,7 @@ export const useAdConfig = () => {
       id: 'expandable-ad',
       component: <ExpandableAd />,
       priority: Priority.FIRST_AD,
+      shouldRender: [shouldRenderOnPages(['/buy-crypto', '/', '/prediction'])],
     },
     {
       id: 'pcs-v4',

@@ -12,6 +12,7 @@ const Page: React.FC<
     helpUrl?: string
     showExternalLink?: boolean
     showHelpLink?: boolean
+    style?: React.CSSProperties
   }>
 > = ({
   children,

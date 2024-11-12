@@ -12,5 +12,5 @@ export const shouldRenderByTime = (start: number, end: number) => {
  * @returns boolean[]
  */
 export const shouldRenderOnPages = (pages: Array<string | RegExp>) => {
-  return typeof window !== 'undefined' && pages.some((page) => new RegExp(page).test(window.location.pathname))
+  return typeof window !== 'undefined' && pages.some((page) => new RegExp(`^${page}$`).test(window.location.pathname))
 }

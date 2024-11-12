@@ -97,6 +97,7 @@ const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => 
       onAutoplayResume={handleResume}
       loop
       observer
+      id="test-swiper"
     >
       {adList.map((ad) => (
         <SwiperSlide key={ad.id}>{cloneElement(ad.component, { isDismissible, forceMobile })}</SwiperSlide>

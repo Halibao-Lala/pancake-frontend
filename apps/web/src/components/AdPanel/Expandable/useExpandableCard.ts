@@ -42,10 +42,8 @@ export const useExpandableCard = ({ adId, forceMobile }: UseExpandableCardProps)
   useEffect(() => {
     if (isExpanded && extendedContentRef.current && adCardRef.current && actionPanelRef.current) {
       const targetCard = adCardRef.current
-
       const contentPanelHeight = extendedContentRef.current.scrollHeight - 13
       const actionPanelHeight = actionPanelRef.current.scrollHeight || 64
-
       targetCard.style.height = `${contentPanelHeight + actionPanelHeight}px`
     } else if (!isExpanded && adCardRef.current) {
       const targetCard = adCardRef.current
