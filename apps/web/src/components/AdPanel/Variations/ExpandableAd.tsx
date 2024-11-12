@@ -24,12 +24,12 @@ const ActionContainer = styled(Flex)<{ $isExpanded?: boolean }>`
   `}
 `
 
-// Unique id for this slide
+// Unique id for this expandable slide
 const adId = 'expandable-ad'
 const title = 'Quick Start on How to Swap'
 
 const ExpandedContent = () => {
-  return <FAQ />
+  return <FAQ type="prediction" />
 }
 
 export const ExpandableAd = (props: AdPlayerProps) => {
@@ -60,7 +60,7 @@ export const ExpandableAd = (props: AdPlayerProps) => {
     if (isExpanded && extendedRef.current && adCardRef.current && actionPanelRef.current) {
       const targetCard = adCardRef.current
 
-      const contentPanelHeight = extendedRef.current.scrollHeight
+      const contentPanelHeight = extendedRef.current.scrollHeight - 13
       const actionPanelHeight = actionPanelRef.current.scrollHeight || 64
 
       targetCard.style.height = `${contentPanelHeight + actionPanelHeight}px`

@@ -32,6 +32,8 @@ const Content = styled(Box)<{ $isExpanded?: boolean }>`
   flex-direction: column;
   justify-content: space-between;
 
+  user-select: none;
+
   z-index: 2;
 
   ${({ $isExpanded }) =>
@@ -49,6 +51,8 @@ const GraphicsContainer = styled(Box)`
 
   width: 207px;
   height: 188px;
+
+  user-select: none;
 
   z-index: 1;
 `

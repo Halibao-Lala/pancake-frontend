@@ -1,8 +1,9 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { Box, Collapse, Text } from '@pancakeswap/uikit'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { styled } from 'styled-components'
-import { swapFAQConfig } from './config/swap'
+import { faqConfig } from './config'
+import { ConfigType } from './types'
 
 export const Divider = styled.div`
   width: calc(100% + 32px);
@@ -21,24 +22,32 @@ export const FAQWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
-export const FAQ: React.FC = memo(() => {
+interface FAQProps {
+  type: ConfigType
+}
+
+export const FAQ = memo(({ type }: FAQProps) => {
   const [activeIndex, setActiveIndex] = useState(-1)
   const { t } = useTranslation()
+
+  const config = useMemo(() => faqConfig[type], [type])
+
   return (
     <FAQWrapper>
-      {swapFAQConfig.map((faq, index) => (
-        <Box key={faq.title}>
-          <Collapse
-            isOpen={activeIndex === index}
-            onToggle={() => {
-              setActiveIndex(activeIndex === index ? -1 : index)
-            }}
-            title={<Text bold>{t(faq.title)}</Text>}
-            content={<Text>{t(faq.content)}</Text>}
-          />
-          {index !== swapFAQConfig.length - 1 && <Divider />}
-        </Box>
-      ))}
+      {config &&
+        config.map((faq, index) => (
+          <Box key={faq.title}>
+            <Collapse
+              isOpen={activeIndex === index}
+              onToggle={() => {
+                setActiveIndex(activeIndex === index ? -1 : index)
+              }}
+              title={<Text bold>{t(faq.title)}</Text>}
+              content={<Text>{t(faq.content)}</Text>}
+            />
+            {index !== config.length - 1 && <Divider />}
+          </Box>
+        ))}
     </FAQWrapper>
   )
 })
