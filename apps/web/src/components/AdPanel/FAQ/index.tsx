@@ -31,7 +31,7 @@ export const FAQ = memo(({ type }: FAQProps) => {
   const [activeIndex, setActiveIndex] = useState(-1)
   const { t } = useTranslation()
 
-  const config = useMemo(() => faqConfig[type], [type])
+  const config = useMemo(() => faqConfig[type](t), [type, t])
 
   return (
     <FAQWrapper>
@@ -43,8 +43,8 @@ export const FAQ = memo(({ type }: FAQProps) => {
               onToggle={() => {
                 setActiveIndex(activeIndex === index ? -1 : index)
               }}
-              title={<Text bold>{t(faq.title)}</Text>}
-              content={<Text>{t(faq.content)}</Text>}
+              title={<Text bold>{faq.title}</Text>}
+              content={<Text>{faq.content}</Text>}
               mb="16px"
             />
             {index !== config.length - 1 && <Divider />}
