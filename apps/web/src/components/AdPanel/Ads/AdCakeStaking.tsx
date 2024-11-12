@@ -5,7 +5,7 @@ import { AdCard } from '../Card'
 
 import { BodyText } from '../BodyText'
 import { AdPlayerProps } from '../types'
-import { getAssetUrl } from '../utils'
+import { getImageUrl } from '../utils'
 
 const actionLink = 'https://docs.pancakeswap.finance/products/vecake'
 
@@ -14,7 +14,7 @@ export const AdCakeStaking = (props: AdPlayerProps) => {
   const { totalApr } = useFourYearTotalVeCakeApr()
 
   return (
-    <AdCard imageUrl={getAssetUrl('ad_cake_staking.png')} {...props}>
+    <AdCard imageUrl={getImageUrl('ad_cake_staking.png')} {...props}>
       <BodyText mb="0">
         {t('Stake CAKE and Earn up to %apr%% APR !', {
           apr: totalApr.toFixed(2),

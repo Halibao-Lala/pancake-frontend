@@ -7,7 +7,7 @@ export const Divider = styled(Box)`
   height: 1px;
 `
 
-export const ActionContainer = styled(Flex)<{ $isExpanded?: boolean }>`
+export const ActionContainer = styled(Flex).attrs({ justifyContent: 'space-between' })<{ $isExpanded?: boolean }>`
   ${({ theme, $isExpanded }) =>
     $isExpanded &&
     `

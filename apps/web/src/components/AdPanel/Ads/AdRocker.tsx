@@ -4,7 +4,7 @@ import { AdButton } from '../Button'
 import { AdCard } from '../Card'
 
 import { AdPlayerProps } from '../types'
-import { getAssetUrl } from '../utils'
+import { getImageUrl } from '../utils'
 
 const actionLink = 'https://four.meme/'
 
@@ -12,7 +12,7 @@ export const AdRocker = (props: AdPlayerProps) => {
   const { t } = useTranslation()
 
   return (
-    <AdCard imageUrl={getAssetUrl('ad_rocker_meme_career.png')} {...props}>
+    <AdCard imageUrl={getImageUrl('ad_rocker_meme_career.png')} {...props}>
       <BodyText>{t('Rocker launching your meme career')}</BodyText>
 
       <AdButton mt="20px" href={actionLink} externalIcon isExternal>
