@@ -29,7 +29,7 @@ const adId = 'expandable-ad'
 const title = 'Quick Start on How to Swap'
 
 const ExpandedContent = () => {
-  return <FAQ type="prediction" />
+  return <FAQ type="swap" />
 }
 
 export const ExpandableAd = (props: AdPlayerProps) => {
