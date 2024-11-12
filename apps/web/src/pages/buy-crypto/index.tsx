@@ -6,7 +6,7 @@ import Page from 'views/Page'
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <Page showExternalLink={false} showHelpLink={false} noMinHeight style={{ height: 'auto' }}>
+    <Page showExternalLink={false} showHelpLink={false}>
       {children}
     </Page>
   )
