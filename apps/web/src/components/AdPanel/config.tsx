@@ -1,7 +1,10 @@
+import { useMatchBreakpoints } from '@pancakeswap/uikit'
 import { AdCakeStaking } from './Ads/AdCakeStaking'
 import { AdOptionsTrading } from './Ads/AdOptionsTrading'
+import { AdPCSX } from './Ads/AdPCSX'
 import { AdQuests } from './Ads/AdQuests'
 import { AdRocker } from './Ads/AdRocker'
+import { AdTelegramBot } from './Ads/AdTelegramBot'
 import { AdV4 } from './Ads/AdV4'
 import { ExpandableAd } from './Variations/ExpandableAd'
 import { shouldRenderOnPages } from './renderConditions'
@@ -16,6 +19,9 @@ enum Priority {
 }
 
 export const useAdConfig = () => {
+  const { isDesktop } = useMatchBreakpoints()
+  const MAX_ADS = isDesktop ? 6 : 4
+
   const adList: Array<{
     id: string
     component: JSX.Element
@@ -31,6 +37,14 @@ export const useAdConfig = () => {
     {
       id: 'pcs-v4',
       component: <AdV4 />,
+    },
+    {
+      id: 'pcsx',
+      component: <AdPCSX />,
+    },
+    {
+      id: 'prediction-telegram-bot',
+      component: <AdTelegramBot />,
     },
     {
       id: 'cake-staking',
@@ -53,6 +67,7 @@ export const useAdConfig = () => {
   return adList
     .filter((ad) => ad.shouldRender === undefined || ad.shouldRender.every(Boolean))
     .sort((a, b) => (b.priority || Priority.VERY_LOW) - (a.priority || Priority.VERY_LOW))
+    .slice(0, MAX_ADS)
 }
 
 // Array of strings or regex patterns
