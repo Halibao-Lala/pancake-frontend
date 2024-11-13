@@ -3,12 +3,14 @@ import { styled } from "styled-components";
 import { Box, BoxProps } from "../Box";
 import { ChevronDownIcon } from "../Svg";
 
-const TitleWrapper = styled.div`
+const TitleWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 `;
+const ContentWrapper = styled(Box)``;
+
 const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -36,6 +38,8 @@ interface CollapseProps extends Omit<BoxProps, "title" | "content"> {
   isOpen?: boolean;
   onToggle?: () => void;
   recalculateDep?: boolean;
+  titleBoxProps?: BoxProps;
+  contentBoxProps?: BoxProps;
 }
 
 export const Collapse: React.FC<CollapseProps> = ({
@@ -44,6 +48,8 @@ export const Collapse: React.FC<CollapseProps> = ({
   isOpen,
   onToggle,
   recalculateDep = false,
+  titleBoxProps,
+  contentBoxProps,
   ...props
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -64,13 +70,15 @@ export const Collapse: React.FC<CollapseProps> = ({
 
   return (
     <Container ref={wrapperRef} {...props}>
-      <TitleWrapper ref={titleRef} onClick={handleToggle}>
+      <TitleWrapper ref={titleRef} onClick={handleToggle} {...titleBoxProps}>
         {title}
         <IconWrapper className={isOpen ? "open" : undefined}>
           <ChevronDownIcon color="textSubtle" width="24px" />
         </IconWrapper>
       </TitleWrapper>
-      <div ref={contentRef}>{content}</div>
+      <ContentWrapper ref={contentRef} {...contentBoxProps}>
+        {content}
+      </ContentWrapper>
     </Container>
   );
 };

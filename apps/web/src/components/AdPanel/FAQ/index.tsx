@@ -6,17 +6,14 @@ import { faqConfig } from './config'
 import { ConfigType } from './types'
 
 export const Divider = styled.div`
-  width: calc(100% + 32px);
+  width: 100%;
   height: 1px;
   background-color: ${({ theme }) => theme.colors.cardBorder};
-  margin-left: -16px;
 `
 
 export const FAQWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px;
   padding-bottom: 0;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 16px;
@@ -45,7 +42,8 @@ export const FAQ = memo(({ type }: FAQProps) => {
               }}
               title={<Text bold>{faq.title}</Text>}
               content={<Text>{faq.content}</Text>}
-              mb="16px"
+              titleBoxProps={{ p: '16px' }}
+              contentBoxProps={{ p: '0px 16px 16px' }}
             />
             {index !== config.length - 1 && <Divider />}
           </FlexGap>
