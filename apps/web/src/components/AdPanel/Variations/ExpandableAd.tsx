@@ -35,10 +35,10 @@ export const ExpandableAd = (props: AdPlayerProps) => {
     forceMobile: props.forceMobile,
   })
 
-  const { title, subtitle, imageUrl } = useFaqConfig()(t)
+  const { title, subtitle, imageUrl, docsUrl } = useFaqConfig()(t)
 
   const actionButton = (
-    <AdButton externalIcon isExternalLink>
+    <AdButton href={docsUrl} externalIcon isExternalLink>
       {t('View Details in Docs')}
     </AdButton>
   )
