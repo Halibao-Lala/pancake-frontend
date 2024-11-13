@@ -1,4 +1,5 @@
 import { Box, LinkExternal, Text, useTooltip } from '@pancakeswap/uikit'
+import { getImageUrl } from 'components/AdPanel/utils'
 import { ONRAMP_PROVIDERS } from 'views/BuyCrypto/constants'
 
 import { FAQConfig } from '../types'
@@ -37,48 +38,53 @@ const PartnersDocumentation = ({ t }) => {
   )
 }
 
-export const buyCryptoFAQConfig: FAQConfig = (t) => [
-  {
-    title: t("Why can't I see my bitcoin purchase"),
-    content: t(
-      'Transfers through the Bitcoin network may take longer due to network congestion. Please check your BTC address again after a few hours.',
-    ),
-  },
-  {
-    title: t('Why can’t I see quotes from providers?'),
-    content: t('Some providers might not operate in your region or support the currency/token exchange requested.'),
-  },
-  {
-    title: t('What fiat currencies are supported?'),
-    content: (
-      <>
-        {t(
-          'Different providers will support different currencies and payment methods in your region. Please refer to our',
-        )}{' '}
-        <LinkExternal
-          style={{ display: 'inline-flex' }}
-          href="https://docs.pancakeswap.finance/products/buy-crypto"
-          showExternalIcon={false}
-        >
-          {t('documentation')}
-        </LinkExternal>{' '}
-        {t('or')} <PartnersDocumentation t={t} /> {t('for more info.')}
-      </>
-    ),
-  },
-  {
-    title: t('Where can find more information on the Buy Crypto feature?'),
-    content: (
-      <>
-        {t('Please refer to our documentation')}{' '}
-        <LinkExternal
-          style={{ display: 'inline-flex' }}
-          href="https://docs.pancakeswap.finance/products/buy-crypto"
-          showExternalIcon={false}
-        >
-          {t('here.')}
-        </LinkExternal>
-      </>
-    ),
-  },
-]
+export const buyCryptoFAQConfig: FAQConfig = (t) => ({
+  title: t('Quick start to Buy Crypto'),
+  subtitle: t('Need Help?'),
+  imageUrl: getImageUrl('faq_buy_crypto.png'),
+  data: [
+    {
+      title: t("Why can't I see my bitcoin purchase"),
+      content: t(
+        'Transfers through the Bitcoin network may take longer due to network congestion. Please check your BTC address again after a few hours.',
+      ),
+    },
+    {
+      title: t('Why can’t I see quotes from providers?'),
+      content: t('Some providers might not operate in your region or support the currency/token exchange requested.'),
+    },
+    {
+      title: t('What fiat currencies are supported?'),
+      content: (
+        <>
+          {t(
+            'Different providers will support different currencies and payment methods in your region. Please refer to our',
+          )}{' '}
+          <LinkExternal
+            style={{ display: 'inline-flex' }}
+            href="https://docs.pancakeswap.finance/products/buy-crypto"
+            showExternalIcon={false}
+          >
+            {t('documentation')}
+          </LinkExternal>{' '}
+          {t('or')} <PartnersDocumentation t={t} /> {t('for more info.')}
+        </>
+      ),
+    },
+    {
+      title: t('Where can find more information on the Buy Crypto feature?'),
+      content: (
+        <>
+          {t('Please refer to our documentation')}{' '}
+          <LinkExternal
+            style={{ display: 'inline-flex' }}
+            href="https://docs.pancakeswap.finance/products/buy-crypto"
+            showExternalIcon={false}
+          >
+            {t('here.')}
+          </LinkExternal>
+        </>
+      ),
+    },
+  ],
+})

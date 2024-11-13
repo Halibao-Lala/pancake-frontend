@@ -33,7 +33,7 @@ export const FAQ = memo(({ type }: FAQProps) => {
   return (
     <FAQWrapper>
       {config &&
-        config.map((faq, index) => (
+        config.data.map((faq, index) => (
           <FlexGap flexDirection="column" key={faq.title}>
             <Collapse
               isOpen={activeIndex === index}
@@ -45,7 +45,7 @@ export const FAQ = memo(({ type }: FAQProps) => {
               titleBoxProps={{ p: '16px' }}
               contentBoxProps={{ p: '0px 16px 16px' }}
             />
-            {index !== config.length - 1 && <Divider />}
+            {index !== config.data.length - 1 && <Divider />}
           </FlexGap>
         ))}
     </FAQWrapper>
