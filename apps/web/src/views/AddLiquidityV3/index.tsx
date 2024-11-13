@@ -34,10 +34,10 @@ import useStableConfig, { StableConfigContext } from 'views/Swap/hooks/useStable
 
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import noop from 'lodash/noop'
+import { usePoolInfo } from 'state/farmsV4/state/extendPools/hooks'
 import { resetMintState } from 'state/mint/actions'
 import { useAddLiquidityV2FormDispatch } from 'state/mint/reducer'
 import { safeGetAddress } from 'utils'
-import { usePoolInfo } from 'state/farmsV4/state/extendPools/hooks'
 import FeeSelector from './formViews/V3FormView/components/FeeSelector'
 
 import { AprCalculatorV2 } from './components/AprCalculatorV2'
@@ -418,7 +418,7 @@ export function AddLiquidityV3Layout({
   )
 
   return (
-    <Page>
+    <Page showExternalLink={false} showHelpLink={false}>
       <BodyWrapper>
         <AppHeader
           title={title}
