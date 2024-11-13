@@ -3,10 +3,11 @@ import { AdButton } from '../Button'
 import { AdCard } from '../Card'
 import { Countdown } from '../Countdown'
 import { AdPlayerProps } from '../types'
+import { getImageUrl } from '../utils'
 
 export const ContentCountdown = (props: AdPlayerProps) => {
   return (
-    <AdCard imageUrl="/images/adpanel-test/bannerImg3.png" {...props}>
+    <AdCard imageUrl={getImageUrl('bannerImg3.png')} {...props}>
       <BodyText mb="8px">PancakeSwap Meetup in Turkey starts in:</BodyText>
 
       <Countdown
@@ -17,7 +18,7 @@ export const ContentCountdown = (props: AdPlayerProps) => {
         mb="8px"
       />
 
-      <AdButton variant="text" isExternal>
+      <AdButton variant="text" isExternalLink>
         Learn More
       </AdButton>
     </AdCard>

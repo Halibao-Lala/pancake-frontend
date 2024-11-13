@@ -18,11 +18,11 @@ export const AdOptionsTrading = (props: AdPlayerProps) => {
     <AdCard imageUrl={getImageUrl('ad_clamm_options_trading.png')} {...props}>
       <BodyText mb="0">{t('Introducing CLAMM Options Trading.')}</BodyText>
 
-      <AdButton variant="text" href={learnMoreLink} isExternal>
+      <AdButton variant="text" href={learnMoreLink} isExternalLink>
         {t('Learn More')}
       </AdButton>
 
-      <AdButton mt="4px" href={actionLink} chevronRightIcon isExternal>
+      <AdButton mt="4px" href={actionLink} chevronRightIcon isExternalLink>
         {t('Try it now')}
       </AdButton>
     </AdCard>

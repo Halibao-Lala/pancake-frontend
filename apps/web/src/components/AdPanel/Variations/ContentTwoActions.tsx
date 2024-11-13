@@ -10,7 +10,7 @@ const actionLink = 'https://quest.pancakeswap.finance/quests/a2eeefe4f49b4947a1a
 const learnMoreLink =
   'https://blog.pancakeswap.finance/articles/introducing-pancake-swap-quest-beta-your-ultimate-de-fi-quest-platform'
 
-export const AdQuests = (props: AdPlayerProps) => {
+export const ContentTwoActions = (props: AdPlayerProps) => {
   const { t } = useTranslation()
 
   return (

@@ -23,7 +23,7 @@ const StyledButton = styled(Button)<{ $variant?: string }>`
 `
 
 interface AdButtonProps extends ButtonProps, PropsWithChildren {
-  isExternal?: boolean
+  isExternalLink?: boolean
   externalIcon?: boolean
   chevronRightIcon?: boolean
   href?: string
@@ -32,14 +32,14 @@ interface AdButtonProps extends ButtonProps, PropsWithChildren {
 export const AdButton = ({
   children,
   endIcon,
-  isExternal,
+  isExternalLink,
   externalIcon,
   chevronRightIcon,
   href,
   ...props
 }: AdButtonProps) => {
   return (
-    <Link href={href} fontSize="inherit" color="inherit" external={isExternal} style={{ textDecoration: 'none' }}>
+    <Link href={href} fontSize="inherit" color="inherit" external={isExternalLink} style={{ textDecoration: 'none' }}>
       <StyledButton
         scale="sm"
         variant="subtle"
@@ -49,8 +49,9 @@ export const AdButton = ({
           endIcon ||
           (chevronRightIcon ? (
             <ChevronRightIcon color="invertedContrast" width="24px" style={{ margin: '1px 0 0 0' }} />
-          ) : null) ||
-          (externalIcon ? <OpenNewIcon color={props.variant === 'text' ? 'primary60' : 'invertedContrast'} /> : null)
+          ) : externalIcon ? (
+            <OpenNewIcon color={props.variant === 'text' ? 'primary60' : 'invertedContrast'} />
+          ) : null)
         }
         $variant={props.variant}
         {...props}

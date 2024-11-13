@@ -49,7 +49,7 @@ export const ExpandableAd = (props: AdPlayerProps) => {
   })
 
   const actionButton = (
-    <AdButton externalIcon isExternal>
+    <AdButton externalIcon isExternalLink>
       {t('View Details in Docs')}
     </AdButton>
   )

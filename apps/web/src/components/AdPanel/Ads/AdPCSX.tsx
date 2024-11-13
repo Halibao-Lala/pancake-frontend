@@ -23,7 +23,7 @@ export const AdPCSX = (props: AdPlayerProps) => {
         {t('Fee Swaps on Ethereum & Arbitrum')}
       </BodyText>
 
-      <AdButton variant="text" href={learnMoreLink} isExternal>
+      <AdButton variant="text" href={learnMoreLink} isExternalLink>
         {t('Learn More')}
       </AdButton>
 

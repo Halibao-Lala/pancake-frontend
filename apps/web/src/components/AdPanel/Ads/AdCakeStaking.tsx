@@ -21,7 +21,7 @@ export const AdCakeStaking = (props: AdPlayerProps) => {
         })}
       </BodyText>
 
-      <AdButton variant="text" href={actionLink} isExternal>
+      <AdButton variant="text" href={actionLink} isExternalLink>
         {t('Learn More')}
       </AdButton>
 

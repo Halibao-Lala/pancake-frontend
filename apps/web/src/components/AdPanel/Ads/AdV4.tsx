@@ -18,11 +18,11 @@ export const AdV4 = (props: AdPlayerProps) => {
     <AdCard imageUrl={getImageUrl('ad_pcs_v4.png')} {...props}>
       <BodyText mb="0">{t('Introducing PancakeSwap v4')}</BodyText>
 
-      <AdButton variant="text" href={whitepaperLink} isExternal>
+      <AdButton variant="text" href={whitepaperLink} isExternalLink>
         {t('Read Whitepaper')}
       </AdButton>
 
-      <AdButton mt="4px" href={learnMoreLink} isExternal externalIcon>
+      <AdButton mt="4px" href={learnMoreLink} isExternalLink externalIcon>
         {t('Start Building')}
       </AdButton>
     </AdCard>

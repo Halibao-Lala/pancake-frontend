@@ -15,7 +15,7 @@ export const AdRocker = (props: AdPlayerProps) => {
     <AdCard imageUrl={getImageUrl('ad_rocker_meme_career.png')} {...props}>
       <BodyText>{t('Rocker launching your meme career')}</BodyText>
 
-      <AdButton mt="20px" href={actionLink} externalIcon isExternal>
+      <AdButton mt="20px" href={actionLink} externalIcon isExternalLink>
         {t('Learn More')}
       </AdButton>
     </AdCard>
