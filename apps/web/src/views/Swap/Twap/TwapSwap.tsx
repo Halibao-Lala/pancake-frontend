@@ -66,7 +66,7 @@ export default function TwapAndLimitSwap({ limit }: { limit?: boolean }) {
       justifyContent="center"
       position="relative"
       alignItems="flex-start"
-      mb={isMobile ? '16px' : '0'}
+      mb={isMobile ? '40px' : '0'}
     >
       {isDesktop && (
         <Flex width={isChartExpanded ? '100%' : '50%'} maxWidth="928px" flexDirection="column" style={{ gap: 20 }}>
