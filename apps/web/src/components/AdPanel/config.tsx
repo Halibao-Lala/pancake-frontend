@@ -83,7 +83,13 @@ const commonLayoutAdIgnoredPages = [
  *  So don't render in the app layout.
  *  Contains strings or regex patterns.
  */
-export const layoutMobileAdIgnoredPages = [...commonLayoutAdIgnoredPages, '/', '/prediction', '/liquidity/pools']
+export const layoutMobileAdIgnoredPages = [
+  ...commonLayoutAdIgnoredPages,
+  '/',
+  '/prediction',
+  '/liquidity/pools',
+  '/migration/bcake',
+]
 
 /**
  *  On the pages mentioned, the Desktop ads will be placed directly in page instead of in the app layout.
