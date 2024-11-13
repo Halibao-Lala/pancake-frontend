@@ -61,7 +61,12 @@ export default function TwapAndLimitSwap({ limit }: { limit?: boolean }) {
   useDefaultsFromURLSearch()
 
   return (
-    <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+    <Page
+      removePadding={isChartExpanded}
+      hideFooterOnDesktop={isChartExpanded}
+      showHelpLink={false}
+      showExternalLink={false}
+    >
       <Flex width={['328px', '100%']} height="100%" justifyContent="center" position="relative" alignItems="flex-start">
         {isDesktop && (
           <Flex width={isChartExpanded ? '100%' : '50%'} maxWidth="928px" flexDirection="column" style={{ gap: 20 }}>
