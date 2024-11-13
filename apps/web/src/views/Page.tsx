@@ -46,3 +46,6 @@ const Page: React.FC<
 }
 
 export default Page
+
+export const PageWithoutFAQ = Page
+PageWithoutFAQ.defaultProps = { showHelpLink: false, showExternalLink: false }

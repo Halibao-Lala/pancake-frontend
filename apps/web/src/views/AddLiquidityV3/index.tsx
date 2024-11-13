@@ -12,6 +12,7 @@ import {
   IconButton,
   PreTitle,
   RefreshIcon,
+  useMatchBreakpoints,
 } from '@pancakeswap/uikit'
 
 import { FeeAmount, Pool } from '@pancakeswap/v3-sdk'
@@ -24,7 +25,6 @@ import currencyId from 'utils/currencyId'
 import { AppHeader } from 'components/App'
 import { atom, useAtom } from 'jotai'
 import { styled } from 'styled-components'
-import Page from 'views/Page'
 
 import { usePreviousValue } from '@pancakeswap/hooks'
 import { useCurrency } from 'hooks/Tokens'
@@ -391,7 +391,7 @@ export function AddLiquidityV3Layout({
 
   const [selectType] = useAtom(selectTypeAtom)
   const { currencyIdA, currencyIdB, feeAmount } = useCurrencyParams()
-
+  const { isMobile } = useMatchBreakpoints()
   const baseCurrency = useCurrency(currencyIdA)
   const quoteCurrency = useCurrency(currencyIdB)
   const poolAddress = useMemo(
@@ -418,24 +418,22 @@ export function AddLiquidityV3Layout({
   )
 
   return (
-    <Page showExternalLink={false} showHelpLink={false}>
-      <BodyWrapper>
-        <AppHeader
-          title={title}
-          backTo="/liquidity/positions"
-          IconSlot={
-            <>
-              {selectType === SELECTOR_TYPE.V3 && <AprCalculatorV2 derived pool={pool} inverted={inverted} />}
-              {showRefreshButton && (
-                <IconButton variant="text" scale="sm">
-                  <RefreshIcon onClick={handleRefresh || noop} color="textSubtle" height={24} width={24} />
-                </IconButton>
-              )}
-            </>
-          }
-        />
-        {children}
-      </BodyWrapper>
-    </Page>
+    <BodyWrapper mb={isMobile ? '40px' : '0px'}>
+      <AppHeader
+        title={title}
+        backTo="/liquidity/positions"
+        IconSlot={
+          <>
+            {selectType === SELECTOR_TYPE.V3 && <AprCalculatorV2 derived pool={pool} inverted={inverted} />}
+            {showRefreshButton && (
+              <IconButton variant="text" scale="sm">
+                <RefreshIcon onClick={handleRefresh || noop} color="textSubtle" height={24} width={24} />
+              </IconButton>
+            )}
+          </>
+        }
+      />
+      {children}
+    </BodyWrapper>
   )
 }
