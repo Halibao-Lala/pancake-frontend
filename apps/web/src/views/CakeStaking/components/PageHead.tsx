@@ -16,7 +16,7 @@ import { useMemo } from 'react'
 import styled, { css } from 'styled-components'
 import { useCakeLockStatus } from '../hooks/useVeCakeUserInfo'
 import { CakeLockStatus } from '../types'
-import { MobileHeadBunny } from './HeadImage'
+import { HeadBunny, MobileHeadBunny } from './HeadImage'
 
 export const PageHead = () => {
   const { t } = useTranslation()
@@ -47,7 +47,10 @@ export const PageHead = () => {
           </NextLinkFromReactRouter>
         </Flex>
 
-        <Box>{!isMobile && <AdPanel.AdPlayer />}</Box>
+        {/* <Box>{!isMobile && <AdPanel.AdPlayer />}</Box> */}
+        <Box>
+          <HeadBunny />
+        </Box>
       </Flex>
     </>
   )

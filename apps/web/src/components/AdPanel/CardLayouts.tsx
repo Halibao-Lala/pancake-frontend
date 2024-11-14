@@ -6,7 +6,8 @@ import styled from 'styled-components'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { SwiperRef, SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './CarrouselWithSlider'
-import { useAdConfig } from './config'
+import { commonLayoutWhitelistedPages, useAdConfig } from './config'
+import { shouldRenderOnPages } from './renderConditions'
 import { AdPlayerProps } from './types'
 import { useIsSlideExpanded } from './useIsSlideExpanded'
 import { useShowAdPanel } from './useShowAdPanel'
@@ -113,6 +114,7 @@ const AdSlides = memo(({ forceMobile, isDismissible = true }: AdPlayerProps) => 
  * does not affect this component's visibility.
  */
 export const AdPlayer = ({ forceMobile = true, isDismissible = false, ...props }: AdPlayerProps) => {
+  if (!shouldRenderOnPages(commonLayoutWhitelistedPages)) return null // Remove in future releases when we're displaying on all pages
   return <AdSlides forceMobile={forceMobile} isDismissible={isDismissible} {...props} />
 }
 

@@ -5,7 +5,6 @@ import { AdPCSX } from './Ads/AdPCSX'
 import { AdQuests } from './Ads/AdQuests'
 import { AdRocker } from './Ads/AdRocker'
 import { AdTelegramBot } from './Ads/AdTelegramBot'
-import { AdV4 } from './Ads/AdV4'
 import { ExpandableAd } from './Variations/ExpandableAd'
 import { shouldRenderOnPages } from './renderConditions'
 
@@ -35,16 +34,12 @@ export const useAdConfig = () => {
       shouldRender: [shouldRenderOnPages(['/buy-crypto', '/', '/prediction'])],
     },
     {
-      id: 'pcs-v4',
-      component: <AdV4 />,
+      id: 'prediction-telegram-bot',
+      component: <AdTelegramBot />,
     },
     {
       id: 'pcsx',
       component: <AdPCSX />,
-    },
-    {
-      id: 'prediction-telegram-bot',
-      component: <AdTelegramBot />,
     },
     {
       id: 'cake-staking',
@@ -55,12 +50,12 @@ export const useAdConfig = () => {
       component: <AdOptionsTrading />,
     },
     {
-      id: 'rocker-meme-career',
-      component: <AdRocker />,
-    },
-    {
       id: 'ad-quest',
       component: <AdQuests />,
+    },
+    {
+      id: 'rocker-meme-career',
+      component: <AdRocker />,
     },
   ]
 
@@ -97,3 +92,6 @@ export const layoutMobileAdIgnoredPages = [
  *  Contains strings or regex patterns.
  */
 export const layoutDesktopAdIgnoredPages = [...commonLayoutAdIgnoredPages]
+
+// NOTE: In current phase, we're adding pages to whitelist as well for AdPlayer.
+export const commonLayoutWhitelistedPages = ['/', '/buy-crypto', '/prediction']
