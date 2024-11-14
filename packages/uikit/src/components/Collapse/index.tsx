@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { styled } from "styled-components";
 import { Box, BoxProps } from "../Box";
 import { ChevronDownIcon } from "../Svg";
@@ -60,7 +60,7 @@ export const Collapse: React.FC<CollapseProps> = ({
     onToggle?.();
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!contentRef.current || !titleRef.current || !wrapperRef.current) return;
     const contentHeight = contentRef.current.scrollHeight;
     const titleHeight = titleRef.current.scrollHeight;
