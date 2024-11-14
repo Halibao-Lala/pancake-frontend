@@ -31,7 +31,10 @@ const PartnersDocumentation = ({ t }) => {
   return (
     <>
       {tooltipVisible && tooltip}
-      <Text ref={targetRef} style={{ display: 'inline-flex', textDecoration: 'underline dotted' }}>
+      <Text
+        ref={targetRef}
+        style={{ display: 'inline-flex', textDecoration: 'underline', textDecorationStyle: 'dotted' }}
+      >
         {t('partners documentation')}
       </Text>
     </>
