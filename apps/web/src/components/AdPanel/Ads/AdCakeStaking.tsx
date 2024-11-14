@@ -26,7 +26,7 @@ export const AdCakeStaking = (props: AdPlayerProps) => {
       </AdButton>
 
       <AdButton mt="4px" href="/cake-staking" chevronRightIcon>
-        {t('Stake Cake')}
+        {t('Stake CAKE')}
       </AdButton>
     </AdCard>
   )
