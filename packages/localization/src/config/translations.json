@@ -3615,5 +3615,6 @@
   "Each swap on PancakeSwap incurs a small transaction fee, a portion of which goes to liquidity providers. This fee helps support the liquidity pool, ensuring there is always enough for token exchanges.": "Each swap on PancakeSwap incurs a small transaction fee, a portion of which goes to liquidity providers. This fee helps support the liquidity pool, ensuring there is always enough for token exchanges.",
   "Always double-check the token contract addresses before swapping to avoid scams. Also, ensure your wallet is secure and use trusted sources to verify token information.": "Always double-check the token contract addresses before swapping to avoid scams. Also, ensure your wallet is secure and use trusted sources to verify token information.",
   "Limit orders allow you to set a specific price at which you want to swap tokens. This can help you avoid slippage and ensure you get the desired rate for your trade.": "Limit orders allow you to set a specific price at which you want to swap tokens. This can help you avoid slippage and ensure you get the desired rate for your trade.",
-  "View Details in Docs": "View Details in Docs"
+  "View Details in Docs": "View Details in Docs",
+  "PancakeSwap Meetup in Turkey starts in:": "PancakeSwap Meetup in Turkey starts in:"
 }

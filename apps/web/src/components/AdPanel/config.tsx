@@ -5,7 +5,7 @@ import { AdPCSX } from './Ads/AdPCSX'
 import { AdQuests } from './Ads/AdQuests'
 import { AdRocker } from './Ads/AdRocker'
 import { AdTelegramBot } from './Ads/AdTelegramBot'
-import { ExpandableAd } from './Variations/ExpandableAd'
+import { ExpandableAd } from './Expandable/ExpandableAd'
 import { shouldRenderOnPages } from './renderConditions'
 
 enum Priority {
