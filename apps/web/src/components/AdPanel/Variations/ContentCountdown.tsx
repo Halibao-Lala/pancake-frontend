@@ -7,7 +7,7 @@ import { getImageUrl } from '../utils'
 
 export const ContentCountdown = (props: AdPlayerProps) => {
   return (
-    <AdCard imageUrl={getImageUrl('bannerImg3.png')} {...props}>
+    <AdCard imageUrl={getImageUrl('ad_clamm_options_trading.png')} {...props}>
       <BodyText mb="8px">PancakeSwap Meetup in Turkey starts in:</BodyText>
 
       <Countdown

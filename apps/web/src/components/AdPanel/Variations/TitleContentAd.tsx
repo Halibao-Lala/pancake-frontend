@@ -7,7 +7,7 @@ import { getImageUrl } from '../utils'
 
 export const TitleContentAd = (props: AdPlayerProps) => {
   return (
-    <AdCard imageUrl={getImageUrl('bannerImg1.png')} {...props}>
+    <AdCard imageUrl={getImageUrl('ad_clamm_options_trading.png')} {...props}>
       <Title>Need Help?</Title>
       <BodyText>Quick start now on How to Swap!</BodyText>
 

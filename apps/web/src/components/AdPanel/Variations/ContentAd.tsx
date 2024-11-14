@@ -6,7 +6,7 @@ import { getImageUrl } from '../utils'
 
 export const ContentAd = (props: AdPlayerProps) => {
   return (
-    <AdCard imageUrl={getImageUrl('bannerImg2.png')} {...props}>
+    <AdCard imageUrl={getImageUrl('ad_clamm_options_trading.png')} {...props}>
       <BodyText fontSize="15px">Web3 Notifications Now Live!!</BodyText>
 
       <AdButton mt="20px" variant="text" isExternalLink>
