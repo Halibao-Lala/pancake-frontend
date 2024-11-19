@@ -2,16 +2,16 @@ import { rgba } from 'polished'
 
 export const light = {
   input: {
-    background: '#FFFFFF',
+    background: '#EEEAF4',
     title: '#8C8F9B',
     border: {
-      default: '#E1E2E5',
+      default: '#D7CAEC',
       hover: '#E1E2E5',
       active: '#EBD600',
     },
   },
   text: {
-    primary: '#181A1E',
+    primary: '#280D5F',
     secondary: '#5C5F6A',
     tertiary: '#5C5F6A',
     placeholder: '#8C8F9B',
@@ -19,8 +19,11 @@ export const light = {
     disabled: rgba('#181A1E', 0.3),
     brand: '#181A1E',
     warning: '#BC4E00',
-    danger: '#EF2A37',
+    danger: '#ED4B9E',
     route: { title: '#5C5F6A' },
+    network: {
+      title: '#7A6EAA',
+    },
     on: {
       color: {
         primary: '#FFFFFF',
@@ -30,14 +33,14 @@ export const light = {
   },
   button: {
     wallet: {
-      text: '#181A1E',
+      text: '#FFFFFF',
       background: { default: '#FFE900', hover: '#E1E2E5' },
     },
     refresh: {
       text: '#FFFAC2',
     },
     select: {
-      text: '#FFFFFF',
+      text: '#280D5F',
       arrow: '#C4C5CB',
       border: '#373943',
       background: { default: '#F1F2F3', hover: '#E1E2E5' },
@@ -46,7 +49,7 @@ export const light = {
       default: '#181A1E',
       subtle: '#E1E2E5',
       hover: '#1E2026',
-      active: '#373943',
+      active: '#280D5F',
     },
     brand: {
       default: '#C2B100',
@@ -61,7 +64,7 @@ export const light = {
       active: '#115F39',
     },
     danger: {
-      default: '#D31724',
+      default: '#ED4B9E',
       subtle: '#FDE2E4',
       hover: '#A91E27',
       active: '#821119',
@@ -96,7 +99,7 @@ export const light = {
     body: '#F1F2F3',
   },
   receive: {
-    background: '#373943',
+    background: '#FAF9FA',
   },
   border: {
     inverse: '#181A1E',
