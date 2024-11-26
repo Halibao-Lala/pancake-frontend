@@ -818,36 +818,36 @@ export const chains: IChainConfig[] = [
       url: 'https://explorer.harmony.one',
     },
   },
-  {
-    id: 728126428,
-    name: 'Tron',
-    nativeCurrency: {
-      name: 'TRX',
-      symbol: 'TRX',
-      decimals: 6,
-    },
-    rpcUrl: 'https://api.trongrid.io',
-    explorer: {
-      name: 'Tron Scan',
-      url: 'https://tronscan.io/',
-      tokenUrlPattern: 'https://tronscan.io/#/token20/{0}',
-    },
-    chainType: 'tron',
-  },
-  {
-    id: 7565164,
-    name: 'Solana',
-    nativeCurrency: {
-      name: 'SOL',
-      symbol: 'SOL',
-      decimals: 9,
-    },
-    rpcUrl: 'https://solana-rpc.debridge.finance',
-    explorer: {
-      name: 'Solana explorer',
-      url: 'https://explorer.solana.com',
-      tokenUrlPattern: 'https://explorer.solana.com/address/{0}',
-    },
-    chainType: 'solana',
-  },
+  // {
+  //   id: 728126428,
+  //   name: 'Tron',
+  //   nativeCurrency: {
+  //     name: 'TRX',
+  //     symbol: 'TRX',
+  //     decimals: 6,
+  //   },
+  //   rpcUrl: 'https://api.trongrid.io',
+  //   explorer: {
+  //     name: 'Tron Scan',
+  //     url: 'https://tronscan.io/',
+  //     tokenUrlPattern: 'https://tronscan.io/#/token20/{0}',
+  //   },
+  //   chainType: 'tron',
+  // },
+  // {
+  //   id: 7565164,
+  //   name: 'Solana',
+  //   nativeCurrency: {
+  //     name: 'SOL',
+  //     symbol: 'SOL',
+  //     decimals: 9,
+  //   },
+  //   rpcUrl: 'https://solana-rpc.debridge.finance',
+  //   explorer: {
+  //     name: 'Solana explorer',
+  //     url: 'https://explorer.solana.com',
+  //     tokenUrlPattern: 'https://explorer.solana.com/address/{0}',
+  //   },
+  //   chainType: 'solana',
+  // },
 ]
