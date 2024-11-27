@@ -12,8 +12,10 @@ import { chains, env } from '../configs'
 import { useTransferConfig } from '../hooks/useTransferConfig'
 import { locales } from '../modules/i18n/locales'
 import { BridgeWalletProvider } from '../modules/wallet/BridgeWalletProvider'
+import { breakpoints } from '../theme/breakpoints'
 import { dark } from '../theme/dark'
 import { light } from '../theme/light'
+import GlobalStyle from './GlobalStyle'
 
 export interface PCSBridgeProps {
   connectWalletButton: CanonicalBridgeProviderProps['connectWalletButton']
@@ -36,6 +38,7 @@ export const PCSBridge = (props: PCSBridgeProps) => {
         theme: {
           dark,
           light,
+          breakpoints,
         },
         locale: currentLanguage.code,
         messages: locales[currentLanguage.code] ?? locales.en,
@@ -56,6 +59,7 @@ export const PCSBridge = (props: PCSBridgeProps) => {
 
   return (
     <BridgeWalletProvider>
+      <GlobalStyle isDark={false} />
       <CanonicalBridgeProvider
         config={config}
         transferConfig={transferConfig}
