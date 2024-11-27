@@ -79,7 +79,7 @@
     "@pancakeswap/v3-sdk": "workspace:*",
     "@pancakeswap/wagmi": "workspace:*",
     "@pancakeswap/widgets-internal": "workspace:*",
-    "@pancakeswap/pcs-bridge": "workspace:*",
+    "@pancakeswap/canonical-bridge": "workspace:*",
     "@pythnetwork/pyth-evm-js": "^1.29.2",
     "@reduxjs/toolkit": "^1.9.1",
     "@sentry/nextjs": "^8.16.0",

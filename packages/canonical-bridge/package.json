@@ -1,5 +1,5 @@
 {
-  "name": "@pancakeswap/pcs-bridge",
+  "name": "@pancakeswap/canonical-bridge",
   "version": "0.0.1",
   "sideEffects": false,
   "private": true,

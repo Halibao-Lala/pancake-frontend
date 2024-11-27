@@ -17,12 +17,12 @@ import { dark } from '../theme/dark'
 import { light } from '../theme/light'
 import GlobalStyle from './GlobalStyle'
 
-export interface PCSBridgeProps {
+export interface CanonicalBridgeProps {
   connectWalletButton: CanonicalBridgeProviderProps['connectWalletButton']
   supportedChainIds: number[]
 }
 
-export const PCSBridge = (props: PCSBridgeProps) => {
+export const CanonicalBridge = (props: CanonicalBridgeProps) => {
   const { connectWalletButton, supportedChainIds } = props
 
   const theme = useTheme()
@@ -30,7 +30,7 @@ export const PCSBridge = (props: PCSBridgeProps) => {
 
   const config = useMemo<ICanonicalBridgeConfig>(
     () => ({
-      appName: 'pcs-bridge',
+      appName: 'canonical-bridge',
       assetPrefix: env.ASSET_PREFIX,
       appearance: {
         bridgeTitle: 'Bridge',

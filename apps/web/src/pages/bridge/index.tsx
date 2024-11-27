@@ -1,4 +1,4 @@
-import { PCSBridge } from '@pancakeswap/pcs-bridge'
+import { CanonicalBridge } from '@pancakeswap/canonical-bridge'
 import { Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { CHAIN_IDS } from 'utils/wagmi'
@@ -19,7 +19,7 @@ const BridgePage = () => {
         pt={isMobile ? '0' : '64px'}
         alignItems="flex-start"
       >
-        <PCSBridge connectWalletButton={<ConnectWalletButton width="100%" />} supportedChainIds={CHAIN_IDS} />
+        <CanonicalBridge connectWalletButton={<ConnectWalletButton width="100%" />} supportedChainIds={CHAIN_IDS} />
       </Flex>
     </Page>
   )
