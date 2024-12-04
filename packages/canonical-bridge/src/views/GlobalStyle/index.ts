@@ -93,6 +93,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           color: ${(props: any) => (props.isDark ? '#48D0DB' : '#02919D')}; 
           font-size: 14px;
           font-weight: 600;
+          text-decoration: none;
           line-height: 150%; /* 21px */
           &:hover {
             opacity: 0.65;
@@ -332,7 +333,6 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
           img {
             border: 2px solid ${(props: any) => (props.isDark ? '#372F47' : '#EEEAF4')};
-            background: linear-gradient(180deg, #9132D2 0%, #803DE1 100%);
           }
         }
       }
@@ -408,10 +408,6 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
                 line-height: 150%; /* 18px */
                 letter-spacing: 0.12px;
               }
-            }
-
-            .bccb-widget-token-list-token-balance {
-              display: none;
             }
           }
         }
@@ -664,24 +660,13 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         }
       }
       .bccb-widget-modal-footer {
-        padding: 0 24px 24px;
+        padding: 24px;
         gap: 8px;
-        .bccb-widget-modal-main-button {
-          margin-top: 16px;
-          border-radius: 16px;
-          border-bottom: 2px solid rgba(0, 0, 0, 0.20);
-          background: #1FC7D4;
-          font-size: 16px;
-          font-weight: 600;
-          line-height: 150%; /* 24px */
-          color: ${(props: any) => (props.isDark ? '#000000' : '#FFFFFF')};
-        }
         
         .bccb-widget-modal-main-button {
-          margin-top: 16px;
           border-radius: 16px;
           border-bottom: 2px solid rgba(0, 0, 0, 0.20);
-          background: #1FC7D4;
+          background: ${(props: any) => (props.isDark ? '#000000' : '#FFFFFF')};
           font-size: 16px;
           font-weight: 600;
           line-height: 150%; /* 24px */
@@ -779,6 +764,13 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       .chakra-tooltip__arrow {
         background: #FFFFFF !important;
       }
+    }
+
+    .chakra-portal .chakra-popover__popper {
+        z-index: 1;
+        .bccb-widget-route-token-tooltip-body {
+          background: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+        }
     }
   } /* body */
 `
