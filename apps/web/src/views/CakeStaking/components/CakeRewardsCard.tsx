@@ -36,6 +36,8 @@ import { getRevenueSharingCakePoolAddress, getRevenueSharingVeCakeAddress } from
 import { stringify } from 'viem'
 import BenefitsTooltipsText from 'views/Pools/components/RevenueSharing/BenefitsModal/BenefitsTooltipsText'
 import { timeFormat } from 'views/TradingReward/utils/timeFormat'
+import { poolStartWeekCursors } from 'views/CakeStaking/config'
+import { WEEK } from 'config/constants/veCake'
 import {
   useCakePoolEmission,
   useRevShareEmission,
@@ -96,7 +98,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
   const { isDesktop } = useMatchBreakpoints()
   const cakePrice = useCakePrice()
   const { cakeUnlockTime, cakeLockedAmount } = useCakeLockStatus()
-  const { balanceOfAt, totalSupplyAt, nextDistributionTimestamp, lastTokenTimestamp, availableClaim } =
+  const { balanceOfAt, totalSupplyAt, nextDistributionTimestamp, lastDistributionTimestamp, availableClaim } =
     useRevenueSharingVeCake()
   const yourShare = useMemo(() => getBalanceAmount(new BigNumber(balanceOfAt)).toNumber(), [balanceOfAt])
   const yourSharePercentage = useMemo(
@@ -227,7 +229,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                             color="success"
                             fontWeight={800}
                             value={yourShare}
-                            decimals={2}
+                            decimals={5}
                           />
                         )}
                         {showYourSharePercentage && (
@@ -241,7 +243,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                                 unit="%)"
                                 ml="4px"
                                 value={yourSharePercentage}
-                                decimals={2}
+                                decimals={5}
                               />
                             )}
                           </>
@@ -268,7 +270,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                     title={t('Last distribution')}
                     tooltipComponent={<Text>{t('The time of the last revenue distribution and shares update.')}</Text>}
                   />
-                  <Text bold>{timeFormat(locale, lastTokenTimestamp)}</Text>
+                  <Text bold>{timeFormat(locale, lastDistributionTimestamp)}</Text>
                 </Flex>
                 <Flex mt="8px" flexDirection="row" alignItems="center">
                   <BenefitsTooltipsText
@@ -320,7 +322,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                       {availableCakePoolCake > 0 && availableCakePoolCake <= 0.01 ? (
                         <Text bold textAlign="right">{`< 0.01 CAKE`}</Text>
                       ) : (
-                        <Balance unit=" CAKE" textAlign="right" bold value={availableCakePoolCake} decimals={2} />
+                        <Balance unit=" CAKE" textAlign="right" bold value={availableCakePoolCake} decimals={5} />
                       )}
                       <Balance
                         ml="4px"
@@ -349,7 +351,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                       {availableRevenueSharingCake > 0 && availableRevenueSharingCake <= 0.01 ? (
                         <Text bold textAlign="right">{`< 0.01 CAKE`}</Text>
                       ) : (
-                        <Balance unit=" CAKE" textAlign="right" bold value={availableRevenueSharingCake} decimals={2} />
+                        <Balance unit=" CAKE" textAlign="right" bold value={availableRevenueSharingCake} decimals={5} />
                       )}
                       <Balance
                         ml="4px"
@@ -378,7 +380,7 @@ export const CakeRewardsCard = ({ onDismiss }) => {
                       {totalAvailableClaim > 0 && totalAvailableClaim <= 0.01 ? (
                         <Text bold textAlign="right">{`< 0.01 CAKE`}</Text>
                       ) : (
-                        <Balance unit=" CAKE" textAlign="right" bold value={totalAvailableClaim} decimals={2} />
+                        <Balance unit=" CAKE" textAlign="right" bold value={totalAvailableClaim} decimals={5} />
                       )}
                       <Balance
                         ml="4px"
@@ -427,14 +429,23 @@ const ClaimButton: React.FC<{
   const { account, chainId } = useAccountActiveChain()
   const contract = useRevenueSharingPoolGatewayContract()
   const { fetchWithCatchTxError, loading: isPending } = useCatchTxError()
+  const currentBlockTimestamp = useCurrentBlockTimestamp()
 
   const isReady = useMemo(() => new BigNumber(availableClaim).gt(0) && !isPending, [availableClaim, isPending])
 
   const handleClaim = useCallback(async () => {
     try {
-      if (!account || !chainId) return
+      if (!account || !chainId || !currentBlockTimestamp) return
 
-      const revenueSharingPools = [getRevenueSharingCakePoolAddress(chainId), getRevenueSharingVeCakeAddress(chainId)]
+      const cakePoolAddress = getRevenueSharingCakePoolAddress(chainId)
+      const cakePoolLength = Math.ceil((currentBlockTimestamp - poolStartWeekCursors[cakePoolAddress]) / WEEK / 52)
+      const veCakeAddress = getRevenueSharingVeCakeAddress(chainId)
+      const veCakePoolLength = Math.ceil((currentBlockTimestamp - poolStartWeekCursors[veCakeAddress]) / WEEK / 52)
+
+      const revenueSharingPools = [
+        ...Array(cakePoolLength).fill(cakePoolAddress),
+        ...Array(veCakePoolLength).fill(veCakeAddress),
+      ]
       const receipt = await fetchWithCatchTxError(() =>
         contract.write.claimMultiple([revenueSharingPools, account], { account, chain: contract.chain }),
       )
@@ -452,7 +463,17 @@ const ClaimButton: React.FC<{
     } catch (error) {
       console.error('[ERROR] Submit Revenue Claim Button', error)
     }
-  }, [account, chainId, contract.chain, contract.write, fetchWithCatchTxError, onDismiss, t, toastSuccess])
+  }, [
+    account,
+    chainId,
+    contract.chain,
+    contract.write,
+    fetchWithCatchTxError,
+    onDismiss,
+    t,
+    toastSuccess,
+    currentBlockTimestamp,
+  ])
 
   return (
     <Button mt="24px" width="100%" variant="subtle" disabled={!isReady} onClick={handleClaim}>

@@ -126,12 +126,10 @@ const config: (
         },
         {
           label: t('Staking'),
-          supportChainIds: SUPPORT_CAKE_STAKING,
           items: [
             {
               label: t('CAKE Staking'),
               href: '/cake-staking',
-              supportChainIds: SUPPORT_CAKE_STAKING,
             },
             {
               label: t('Syrup Pools'),
@@ -192,6 +190,12 @@ const config: (
       ],
       items: [
         {
+          status: { text: t('New'), color: 'success' },
+          label: t('Springboard'),
+          href: 'https://springboard.pancakeswap.finance',
+          type: DropdownMenuItemType.EXTERNAL_LINK,
+        },
+        {
           label: t('Prediction (BETA)'),
           href: '/prediction',
           image: '/images/decorations/prediction.png',
@@ -205,7 +209,6 @@ const config: (
         {
           label: t('Quests'),
           href: 'https://quest.pancakeswap.finance/quests',
-          status: { text: t('New'), color: 'success' },
           type: DropdownMenuItemType.EXTERNAL_LINK,
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
