@@ -121,7 +121,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           input {
             font-size: 20px;
             font-style: normal;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 30px;
             letter-spacing: -0.2px;
             &::placeholder {
@@ -295,7 +295,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       }
     }
     .bccb-widget-from-network-modal-content, .bccb-widget-to-network-modal-content {
-      max-height: 526px;
+      max-height: 80vh;
       width: 360px;
       ${mobileMedia} {
         max-height: unset;
@@ -339,7 +339,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     }
     
     .bccb-widget-token-modal-content {
-      max-height: 526px;
+      max-height: 80vh;
       width: 360px;
       background: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
       ${mobileMedia} {
@@ -408,6 +408,10 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
                 line-height: 150%; /* 18px */
                 letter-spacing: 0.12px;
               }
+            }
+
+            .bccb-widget-token-list-token-balance > div {
+              font-weight: 400;
             }
           }
         }
@@ -769,7 +773,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     .chakra-portal .chakra-popover__popper {
         z-index: 1;
         .bccb-widget-route-token-tooltip-body {
-          background: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+          background: ${(props: any) => (props.isDark ? '#FFFFFF' : '#27262C')};
         }
     }
   } /* body */
