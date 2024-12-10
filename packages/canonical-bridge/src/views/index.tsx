@@ -6,6 +6,8 @@ import {
   ICanonicalBridgeConfig,
   TransferWidget,
 } from '@bnb-chain/canonical-bridge-widget'
+import { RefreshingIcon } from '../components/RefreshingIcon'
+import { V1BridgeLink } from '../components/V1BridgeLink'
 import { chains, env } from '../configs'
 import { useTransferConfig } from '../hooks/useTransferConfig'
 import { locales } from '../modules/i18n/locales'
@@ -62,7 +64,8 @@ export const CanonicalBridge = (props: CanonicalBridgeProps) => {
         transferConfig={transferConfig}
         chains={supportedChains}
         connectWalletButton={connectWalletButton}
-        // routeContentBottom={<Box>Hello world</Box>}
+        refreshingIcon={<RefreshingIcon />}
+        bridgeBottom={<V1BridgeLink />}
       >
         <TransferWidget />
       </CanonicalBridgeProvider>
