@@ -2577,7 +2577,7 @@ importers:
         version: 2.6.2
     devDependencies:
       '@babel/core':
-        specifier: ^7.23.3
+        specifier: ^7.23.9
         version: 7.23.9
       '@babel/preset-env':
         specifier: ^7.23.3
@@ -18062,7 +18062,7 @@ snapshots:
       '@babel/core': 7.23.9
       '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.23.9)
-      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-plugin-utils': 7.24.0
       '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.23.9)
 
   '@babel/plugin-transform-unicode-escapes@7.23.3(@babel/core@7.23.9)':
@@ -20012,7 +20012,7 @@ snapshots:
 
   '@manypkg/find-root@1.1.0':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       '@types/node': 12.20.55
       find-up: 4.1.0
       fs-extra: 8.1.0
@@ -21204,7 +21204,7 @@ snapshots:
 
   '@radix-ui/primitive@1.0.1':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
 
   '@radix-ui/react-arrow@1.0.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -21231,7 +21231,7 @@ snapshots:
 
   '@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.37)(react@18.2.0)':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       react: 18.2.0
     optionalDependencies:
       '@types/react': 18.2.37
@@ -21336,7 +21336,7 @@ snapshots:
 
   '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.37)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -21456,7 +21456,7 @@ snapshots:
 
   '@radix-ui/react-use-callback-ref@1.0.1(@types/react@18.2.37)(react@18.2.0)':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       react: 18.2.0
     optionalDependencies:
       '@types/react': 18.2.37
@@ -21471,7 +21471,7 @@ snapshots:
 
   '@radix-ui/react-use-escape-keydown@1.0.3(@types/react@18.2.37)(react@18.2.0)':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.37)(react@18.2.0)
       react: 18.2.0
     optionalDependencies:
@@ -24859,7 +24859,7 @@ snapshots:
       '@vue/compiler-dom': 3.3.8
       '@vue/shared': 3.3.8
       computeds: 0.0.1
-      minimatch: 9.0.5
+      minimatch: 9.0.3
       muggle-string: 0.3.1
       vue-template-compiler: 2.7.15
     optionalDependencies:
@@ -30310,7 +30310,7 @@ snapshots:
 
   history@4.10.1:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       loose-envify: 1.4.0
       resolve-pathname: 3.0.0
       tiny-invariant: 1.3.3
@@ -31115,46 +31115,46 @@ snapshots:
 
   jss-plugin-camel-case@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       hyphenate-style-name: 1.0.4
       jss: 10.10.0
 
   jss-plugin-default-unit@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       jss: 10.10.0
 
   jss-plugin-global@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       jss: 10.10.0
 
   jss-plugin-nested@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       jss: 10.10.0
       tiny-warning: 1.0.3
 
   jss-plugin-props-sort@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       jss: 10.10.0
 
   jss-plugin-rule-value-function@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       jss: 10.10.0
       tiny-warning: 1.0.3
 
   jss-plugin-vendor-prefixer@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       css-vendor: 2.0.8
       jss: 10.10.0
 
   jss@10.10.0:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       csstype: 3.1.3
       is-in-browser: 1.1.3
       tiny-warning: 1.0.3
@@ -33444,8 +33444,8 @@ snapshots:
   react-docgen@6.0.4:
     dependencies:
       '@babel/core': 7.23.9
-      '@babel/traverse': 7.23.3
-      '@babel/types': 7.23.3
+      '@babel/traverse': 7.23.9
+      '@babel/types': 7.24.0
       '@types/babel__core': 7.20.5
       '@types/babel__traverse': 7.20.4
       '@types/doctrine': 0.0.6
@@ -33697,7 +33697,7 @@ snapshots:
 
   react-router@5.3.4(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.23.9
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
@@ -34874,7 +34874,7 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
       shallowequal: 1.1.0
       stylis: 4.3.0
-      tslib: 2.7.0
+      tslib: 2.6.2
     optionalDependencies:
       babel-plugin-styled-components: 1.13.3(styled-components@6.0.7)
     transitivePeerDependencies:
