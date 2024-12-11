@@ -22,6 +22,7 @@ const BridgePage = () => {
         pb={isMobile ? '0' : '48px'}
         pt={isMobile ? '0' : '64px'}
         alignItems="flex-start"
+        max-width="unset"
       >
         <CanonicalBridge
           locale={currentLanguage.code}

@@ -1,11 +1,13 @@
 import { useMemo } from 'react'
 
 import {
+  BridgeRoutes,
+  BridgeTransfer,
   CanonicalBridgeProvider,
   CanonicalBridgeProviderProps,
   ICanonicalBridgeConfig,
-  TransferWidget,
 } from '@bnb-chain/canonical-bridge-widget'
+import { BridgeWrapper } from '../components/BridgeWrapper'
 import { RefreshingIcon } from '../components/RefreshingIcon'
 import { V1BridgeLink } from '../components/V1BridgeLink'
 import { chains, env } from '../configs'
@@ -65,9 +67,12 @@ export const CanonicalBridge = (props: CanonicalBridgeProps) => {
         chains={supportedChains}
         connectWalletButton={connectWalletButton}
         refreshingIcon={<RefreshingIcon />}
-        bridgeBottom={<V1BridgeLink />}
       >
-        <TransferWidget />
+        <BridgeWrapper>
+          <BridgeTransfer />
+          <V1BridgeLink />
+        </BridgeWrapper>
+        <BridgeRoutes />
       </CanonicalBridgeProvider>
     </BridgeWalletProvider>
   )
