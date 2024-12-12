@@ -8,19 +8,20 @@ import Page from 'views/Page'
 
 const BridgePage = () => {
   const { isMobile } = useMatchBreakpoints()
+
   const { currentLanguage } = useTranslation()
   const theme = useTheme()
 
   return (
-    <Page removePadding hideFooterOnDesktop={false} showExternalLink={false} showHelpLink={false}>
+    <Page removePadding hideFooterOnDesktop={false} showExternalLink={false} showHelpLink={false} noMinHeight>
       <Flex
         width="100%"
         height="100%"
         justifyContent="center"
         position="relative"
         px={isMobile ? '16px' : '24px'}
-        pb={isMobile ? '0' : '48px'}
-        pt={isMobile ? '0' : '64px'}
+        pb={isMobile ? '14px' : '48px'}
+        pt={isMobile ? '24px' : '64px'}
         alignItems="flex-start"
         max-width="unset"
       >

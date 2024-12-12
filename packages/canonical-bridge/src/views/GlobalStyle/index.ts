@@ -2,7 +2,7 @@ import { rgba } from 'polished'
 import { createGlobalStyle } from 'styled-components'
 import { MEDIAS } from '../../constants'
 
-const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
+const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Kanit', sans-serif;
   }
@@ -16,8 +16,8 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     .bccb-widget-transfer-widget-wrapper {
       border: 1px solid;
       border-bottom: 2px solid;
-      border-color: ${(props: any) => (props.isDark ? '#383241' : '#E7E3EB')};
-      background: ${(props: any) => (props.isDark ? '#27262C ' : '#FFFFFF')};
+      border-color: ${(props) => (props.theme.isDark ? '#383241' : '#E7E3EB')};
+      background: ${(props) => (props.theme.isDark ? '#27262C ' : '#FFFFFF')};
       padding: 16px;
       gap: 16px;
       max-width: 480px;
@@ -37,7 +37,6 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       }
       ${MEDIAS.MOBILE} {
         max-width: unset;
-        border-radius: 0 0 24px 24px;
         border-top: none;
       }
     }
@@ -48,16 +47,16 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         height: 40px;
       }
       &>svg path {
-        fill: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        fill: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
         fill-opacity: 1;
       }
     }
     .bccb-widget-network-title, .bccb-widget-input-title, .bccb-widget-received-info-title, .bccb-widget-to-account-title {
       padding: 0 8px;
       align-items: center;
-      color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+      color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
       & > p {
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
         text-overflow: ellipsis;
         display: block;
         font-size: 14px;
@@ -76,18 +75,18 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       outline: none;
       height: 40px;
       border-bottom-width: 2px;
-      border-color: ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
+      border-color: ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
       &:hover{
         opacity: 0.65;
       }
       &>svg {
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
       }
     }
     .bccb-widget-transfer-input-container {
       margin-top: 16px;
       .bccb-widget-transfer-max > div {
-        color: ${(props: any) => (props.isDark ? '#48D0DB' : '#02919D')}; 
+        color: ${(props) => (props.theme.isDark ? '#48D0DB' : '#02919D')}; 
         font-size: 14px;
         font-weight: 600;
         text-decoration: none;
@@ -103,12 +102,12 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         margin-top: 2px;
         border-radius: 16px;
         border: 1px solid;
-        border-color: ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
+        border-color: ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
         padding: 4px 4px 4px 16px;
         &:not(.input-error).input-focused {
             &, &:hover {
             box-shadow: 0px 0px 0px 1px #A881FC, 0px 0px 0px 4px rgba(168, 129, 252, 0.40);
-            border-color: ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
+            border-color: ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
           }
         }
         &:not(.input-error):hover {
@@ -122,7 +121,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           line-height: 30px;
           letter-spacing: -0.2px;
           &::placeholder {
-            color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+            color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
             font-size: 20px;
             font-style: normal;
             font-weight: 600;
@@ -135,14 +134,14 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           border-radius: 16px;
           border: 1px solid rgba(0, 0, 0, 0.20);
           border-bottom: 2px solid rgba(0, 0, 0, 0.20);
-          background: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+          background: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
           font-size: 16px;
           font-style: normal;
           font-weight: 600;
           line-height: 24px;
           height: 40px;
           &, & svg {
-            color: ${(props: any) => (props.isDark ? '#000000' : '#FFFFFF')};
+            color: ${(props) => (props.theme.isDark ? '#000000' : '#FFFFFF')};
           }
         }
       }
@@ -156,13 +155,13 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       .bccb-widget-received-info-route-content {
         border-radius: 16px;
         gap: 4px; 
-        border: 1px solid ${(props: any) => (props.isDark ? '#383241' : '#E7E3EB')};
+        border: 1px solid ${(props) => (props.theme.isDark ? '#383241' : '#E7E3EB')};
         padding: 12px;
         > div {
           gap: 2.5px; 
         }
         .bccb-widget-route-token {
-          color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+          color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
           .bccb-widget-route-title-amount {
             font-family: 'Kanit', sans-serif;
             font-size: 24px; 
@@ -183,7 +182,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
               font-size: 16px;
             }
             a {
-              color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+              color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
               &:hover {
                 opacity: 0.6;
               }
@@ -201,7 +200,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         &:not(.input-error).input-focused {
             &, &:hover {
             box-shadow: 0px 0px 0px 1px #A881FC, 0px 0px 0px 4px rgba(168, 129, 252, 0.40);
-            border-color: ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
+            border-color: ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
           }
         }
         &:not(.input-error):hover {
@@ -215,9 +214,9 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           letter-spacing: -0.2px;
           border-radius: 16px;
           border: 1px solid;
-          border-color: ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
+          border-color: ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
           &::placeholder {
-            color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+            color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
@@ -225,7 +224,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
             letter-spacing: -0.2px;
           }
           &:not(.input-error):focus, &:not(.input-error):hover {
-            border-color: ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
+            border-color: ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
             box-shadow: none;
             outline: none;
           }
@@ -236,7 +235,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         margin-top: 8px;
         margin-bottom: 0;
         & > div:nth-child(2) {
-          color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+          color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -248,8 +247,8 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       button {
         &.disabled,
         &.disabled:hover {
-          background: ${(props: any) => (props.isDark ? '#3C3742' : '#F5F5F5')};
-          color: ${(props: any) => (props.isDark ? '#666171' : '#BDC2C4')};
+          background: ${(props) => (props.theme.isDark ? '#3C3742' : '#F5F5F5')};
+          color: ${(props) => (props.theme.isDark ? '#666171' : '#BDC2C4')};
           border: none;
         }
         height: 48px;
@@ -276,7 +275,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     .bccb-widget-transaction-confirming-modal-overlay, .bccb-widget-transaction-approve-modal-overlay, 
     .bccb-widget-transaction-failed-modal-overlay, .bccb-widget-transaction-submitted-modal-overlay,
     .bccb-widget-modal-route-overlay {
-      opacity: ${(props: any) => (props.isDark ? '0.65' : '0.6')} !important;
+      opacity: ${(props) => (props.theme.isDark ? '0.65' : '0.6')} !important;
       background: ${(props: any) =>
         props.isDark
           ? 'linear-gradient(0deg, rgba(109, 101, 146, 0.40) 0%, rgba(109, 101, 146, 0.40) 100%), #534A65'
@@ -286,7 +285,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       margin: 24px auto;
       max-width: calc(100% - 32px);
       .title {
-        color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+        color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
         margin-top: 16px;
         margin-bottom: 4px;
         font-size: 20px;
@@ -299,7 +298,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         font-style: normal;
         font-weight: 400;
         line-height: 150%; /* 21px */
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
       }
     }
     .bccb-widget-from-network-modal-content, .bccb-widget-to-network-modal-content {
@@ -318,7 +317,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         }
       }
       .bccb-widget-from-network-list-item-active-wrapper, .bccb-widget-to-network-list-item-active-wrapper {
-        background: ${(props: any) => (props.isDark ? '#322B48' : '#EEEAF4')};
+        background: ${(props) => (props.theme.isDark ? '#322B48' : '#EEEAF4')};
       }
       .bccb-widget-from-network-list-item, .bccb-widget-from-network-list-item-active,
       .bccb-widget-to-network-list-item, .bccb-widget-to-network-list-item-active {
@@ -329,7 +328,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       .bccb-widget-to-network-list-item-wrapper, .bccb-widget-to-network-list-item-active-wrapper {
         padding: 0 24px;
         &:hover {
-          background: ${(props: any) => (props.isDark ? '#322B48' : '#EEEAF4')};
+          background: ${(props) => (props.theme.isDark ? '#322B48' : '#EEEAF4')};
         }
         .bccb-widget-from-network-list-item, .bccb-widget-from-network-list-item-active,
         .bccb-widget-to-network-list-item, .bccb-widget-to-network-list-item-active {
@@ -338,9 +337,9 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           font-style: normal;
           font-weight: 400;
           line-height: 24px;
-          color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+          color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
           img {
-            outline: 2px solid ${(props: any) => (props.isDark ? '#372F47' : '#EEEAF4')};
+            outline: 2px solid ${(props) => (props.theme.isDark ? '#372F47' : '#EEEAF4')};
           }
         }
       }
@@ -349,7 +348,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     .bccb-widget-token-modal-content {
       max-height: 80vh;
       width: 360px;
-      background: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+      background: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
       ${MEDIAS.MOBILE} {
         max-height: unset;
         width: 100vw;
@@ -371,14 +370,14 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           }
         }
         .bccb-widget-token-list-item-active-wrapper {
-          background: ${(props: any) => (props.isDark ? '#322B48' : '#EEEAF4')};
+          background: ${(props) => (props.theme.isDark ? '#322B48' : '#EEEAF4')};
         }
 
         .bccb-widget-token-list-item-wrapper, .bccb-widget-token-list-item-active-wrapper, .bccb-widget-token-list-item-disabled-wrapper {
           padding: 0;
           border-radius: 0;
           &:hover {
-            background: ${(props: any) => (props.isDark ? '#322B48' : '#EEEAF4')};
+            background: ${(props) => (props.theme.isDark ? '#322B48' : '#EEEAF4')};
           }
           .bccb-widget-token-list-item, .bccb-widget-token-list-item-active, .bccb-widget-token-list-item-disabled {
             padding: 12px 24px;
@@ -429,7 +428,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     .bccb-widget-modal-route-header {
       margin: 24px 24px 0;
       height: 30px;
-      color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+      color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
       font-size: 20px;
       font-weight: 600;
       line-height: 30px;
@@ -437,7 +436,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       border-bottom: none;
       padding: 0;
       svg {
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
       }
     }
     .bccb-widget-token-modal-list-header {
@@ -464,19 +463,19 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         font-weight: 400;
         line-height: 150%; /* 24px */
         border-radius: 16px;
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
-        background: ${(props: any) => (props.isDark ? '#372F47' : '#EEEAF4')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
+        background: ${(props) => (props.theme.isDark ? '#372F47' : '#EEEAF4')};
         outline: none;
         border: none;
-        border: 1px solid ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
+        border: 1px solid ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
         box-shadow: 0px 2px 0px -1px rgba(0, 0, 0, 0.16) inset;
         &:focus, &:hover {
           box-shadow: 0px 0px 0px 1px #A881FC, 0px 0px 0px 4px rgba(168, 129, 252, 0.40);
-          border-color: ${(props: any) => (props.isDark ? '#55496E' : '#D7CAEC')};
-          background: ${(props: any) => (props.isDark ? '#372F47' : '#EEEAF4')};
+          border-color: ${(props) => (props.theme.isDark ? '#55496E' : '#D7CAEC')};
+          background: ${(props) => (props.theme.isDark ? '#372F47' : '#EEEAF4')};
         }
         &::placeholder {
-          color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+          color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -498,7 +497,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       svg {
         width: 24px;
         height: 24px;
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
       }
     }
     .bccb-widget-route-fee-info {
@@ -509,13 +508,13 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       font-weight: 400;
       line-height: 150%;
       overflow: hidden;
-      color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+      color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
     }
     .bccb-widget-route-error,
     .bccb-widget-allowed-send-amount {
       display: flex;
       align-items: flex-start;
-      color: ${(props: any) => (props.isDark ? '#FF9D00' : '#D67E0A')};
+      color: ${(props) => (props.theme.isDark ? '#FF9D00' : '#D67E0A')};
       > div {
         font-size: 14px;
         font-style: normal;
@@ -531,7 +530,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
 
     /* Route */
     .bccb-widget-route-container {
-      background: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+      background: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
       max-width: 328px;
       padding: 0;
       box-shadow: none;
@@ -539,7 +538,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         border: 1px solid;
         border-radius: 24px;
         border-bottom: 2px solid;
-        border-color: ${(props: any) => (props.isDark ? '#383241' : '#E7E3EB')};
+        border-color: ${(props) => (props.theme.isDark ? '#383241' : '#E7E3EB')};
         gap: 8px;
         padding: 16px 0;
       }
@@ -554,7 +553,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       .bccb-widget-route-header {
         padding: 0 16px;
         font-size: 12px;
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
         font-weight: 600;
         line-height: 150%; /* 18px */
         letter-spacing: 0.12px;
@@ -569,7 +568,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
         border: 2px solid #1FC7D4;
       }
       .bccb-widget-route-wrapper {
-        border-color: ${(props: any) => (props.isDark ? '#383241' : '#E7E3EB')};
+        border-color: ${(props) => (props.theme.isDark ? '#383241' : '#E7E3EB')};
         &.route-error {
           .bccb-widget-route-estimated-time, .bccb-widget-route-fee-info, .bccb-widget-route-error, 
           .bccb-widget-route-token, .bccb-widget-route-name, .bccb-widget-allowed-send-amount {
@@ -582,9 +581,9 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       }
       .bccb-widget-route-wrapper,
       .bccb-widget-route-wrapper-selected {
-        color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+        color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
         border-radius: 16px;
-        background: ${(props: any) => (props.isDark ? '#08060B' : '#FAF9FA')};
+        background: ${(props) => (props.theme.isDark ? '#08060B' : '#FAF9FA')};
         .bccb-widget-route-name {
           svg, img {
             width: 24px;
@@ -620,13 +619,13 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     .bccb-widget-transaction-confirming-modal, .bccb-widget-transaction-approve-modal,
     .bccb-widget-transaction-failed-modal, .bccb-widget-transaction-submitted-modal
     {
-      background: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+      background: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
       box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.16), 0px 4px 8px 0px rgba(0, 0, 0, 0.32);
 
       .bccb-widget-modal-close-button {
-        color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+        color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
         &:hover {
-          color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+          color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
         }
       }
       .bccb-widget-modal-body {
@@ -643,19 +642,19 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
           font-weight: 600;
           line-height: 150%; /* 30px */
           letter-spacing: -0.2px;
-          color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+          color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
         }
         .bccb-widget-modal-body-description {
             margin-top: 4px;
             font-size: 16px;
             font-weight: 400;
             line-height: 150%; /* 24px */
-            color: ${(props: any) => (props.isDark ? '#B8ADD2' : '#7A6EAA')};
+            color: ${(props) => (props.theme.isDark ? '#B8ADD2' : '#7A6EAA')};
           & > p {
             font-size: 16px;
             font-weight: 600;
             line-height: 150%;
-            color: ${(props: any) => (props.isDark ? '#F4EEFF' : '#280D5F')};
+            color: ${(props) => (props.theme.isDark ? '#F4EEFF' : '#280D5F')};
           }
         }
       }
@@ -668,22 +667,22 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     .bccb-widget-route-skeleton,
     .bccb-widget-route-header {
       .chakra-skeleton {
-        --skeleton-start-color: ${(props: any) => (props.isDark ? rgba('#FFFFFF', 0.05) : rgba('#08060B', 0.05))};
-        --skeleton-end-color: ${(props: any) => (props.isDark ? rgba('#FFFFFF', 0.1) : rgba('#08060B', 0.1))};
+        --skeleton-start-color: ${(props) => (props.theme.isDark ? rgba('#FFFFFF', 0.05) : rgba('#08060B', 0.05))};
+        --skeleton-end-color: ${(props) => (props.theme.isDark ? rgba('#FFFFFF', 0.1) : rgba('#08060B', 0.1))};
       }
     }
     .bccb-widget-route-skeleton {
       border: none;
-      background: ${(props: any) => (props.isDark ? '#08060B' : '#FAF9FA')};
+      background: ${(props) => (props.theme.isDark ? '#08060B' : '#FAF9FA')};
     }
 
     .bccb-widget-received-info-route-open > div {
-      color: ${(props: any) => (props.isDark ? '#48D0DB' : '#02919D')}; 
+      color: ${(props) => (props.theme.isDark ? '#48D0DB' : '#02919D')}; 
       font-size: 14px;
       font-weight: 600;
       line-height: 150%; /* 21px */
       &:hover {
-        color: ${(props: any) => (props.isDark ? '#48D0DB' : '#02919D')}; 
+        color: ${(props) => (props.theme.isDark ? '#48D0DB' : '#02919D')}; 
         opacity: 0.6;
       }
     }
@@ -723,7 +722,7 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
 
     .bccb-widget-route-name-tag-bestTime,
     .bccb-widget-route-name-tag-bestReturn {
-      color: ${(props: any) => (props.isDark ? '#000000' : '#FFFFFF ')};
+      color: ${(props) => (props.theme.isDark ? '#000000' : '#FFFFFF ')};
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
@@ -733,13 +732,13 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       height: 25px;
     }
     .bccb-widget-route-name-tag-bestTime {
-      background: ${(props: any) => (props.isDark ? '#A881FC' : '#7645D9')};
+      background: ${(props) => (props.theme.isDark ? '#A881FC' : '#7645D9')};
     }
 
     .bccb-widget-modal-route-content {
       width: 360px;
       height: auto;
-      background: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+      background: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
       ${MEDIAS.MOBILE} {
         width: 100vw;
         height: 100vh;
@@ -794,20 +793,20 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
     }
 
     .bccb-widget-info-tooltip {
-      background: ${(props: any) => (props.isDark ? '#FFFFFF' : '#27262C')};
-      color: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+      background: ${(props) => (props.theme.isDark ? '#FFFFFF' : '#27262C')};
+      color: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
       border-radius: 16px;
       padding: 16px;
       font-size: 14px;
       line-height: 150%;
       max-width: 280px;
       .chakra-tooltip__arrow {
-        background: ${(props: any) => (props.isDark ? '#FFFFFF' : '#27262C')};
+        background: ${(props) => (props.theme.isDark ? '#FFFFFF' : '#27262C')};
       }
       .bccb-widget-route-info-tooltip-fee {
         line-height: 150%;
         font-size: 14px;
-        color: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+        color: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
       }
     }
 
@@ -815,8 +814,8 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       z-index: 1;
 
       .bccb-widget-route-token-tooltip-content {
-        --popper-arrow-bg: ${(props: any) => (props.isDark ? '#FFFFFF' : '#27262C')};;
-        background: ${(props: any) => (props.isDark ? '#FFFFFF' : '#27262C')};
+        --popper-arrow-bg: ${(props) => (props.theme.isDark ? '#FFFFFF' : '#27262C')};;
+        background: ${(props) => (props.theme.isDark ? '#FFFFFF' : '#27262C')};
         border-radius: 16px;
         padding: 16px;
       }
@@ -824,12 +823,12 @@ const GlobalStyle = createGlobalStyle<{ isDark?: boolean }>`
       .bccb-widget-route-token-tooltip-body {
         padding: 0;
         &>div {
-          color: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+          color: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
           font-size: 14px;
           line-height: 150%;
           font-weight: 400;
           &>a:hover {
-            color: ${(props: any) => (props.isDark ? '#27262C' : '#FFFFFF')};
+            color: ${(props) => (props.theme.isDark ? '#27262C' : '#FFFFFF')};
           }
         }
       }

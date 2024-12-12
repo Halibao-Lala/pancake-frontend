@@ -60,7 +60,7 @@ export const CanonicalBridge = (props: CanonicalBridgeProps) => {
 
   return (
     <BridgeWalletProvider>
-      <GlobalStyle isDark={colorMode === 'dark'} />
+      <GlobalStyle />
       <CanonicalBridgeProvider
         config={config}
         transferConfig={transferConfig}
