@@ -1,3 +1,5 @@
+import { useTranslation } from '@pancakeswap/localization'
+import { Flex, useToast } from '@pancakeswap/uikit'
 import { useMemo } from 'react'
 
 import {
@@ -7,7 +9,7 @@ import {
   CanonicalBridgeProviderProps,
   ICanonicalBridgeConfig,
 } from '@bnb-chain/canonical-bridge-widget'
-import { BridgeWrapper } from '../components/BridgeWrapper'
+import { useTheme } from 'styled-components'
 import { RefreshingIcon } from '../components/RefreshingIcon'
 import { V1BridgeLink } from '../components/V1BridgeLink'
 import { chains, env } from '../configs'
@@ -22,13 +24,15 @@ import GlobalStyle from './GlobalStyle'
 export interface CanonicalBridgeProps {
   connectWalletButton: CanonicalBridgeProviderProps['connectWalletButton']
   supportedChainIds: number[]
-  colorMode?: 'light' | 'dark'
-  locale?: string
-  onError?: CanonicalBridgeProviderProps['onError']
 }
 
 export const CanonicalBridge = (props: CanonicalBridgeProps) => {
-  const { colorMode = 'light', locale = 'en', connectWalletButton, supportedChainIds, onError } = props
+  const { connectWalletButton, supportedChainIds } = props
+
+  const transferConfig = useTransferConfig()
+  const { currentLanguage } = useTranslation()
+  const theme = useTheme()
+  const toast = useToast()
 
   const config = useMemo<ICanonicalBridgeConfig>(
     () => ({
@@ -36,28 +40,26 @@ export const CanonicalBridge = (props: CanonicalBridgeProps) => {
       assetPrefix: env.ASSET_PREFIX,
       appearance: {
         bridgeTitle: 'Bridge',
-        colorMode,
+        colorMode: theme.isDark ? 'dark' : 'light',
         theme: {
           dark,
           light,
           breakpoints,
         },
-        locale,
-        messages: locales[locale] ?? locales.en,
+        locale: currentLanguage.code,
+        messages: locales[currentLanguage.code] ?? locales.en,
       },
       http: {
         apiTimeOut: 30 * 1000,
         serverEndpoint: env.SERVER_ENDPOINT,
       },
     }),
-    [colorMode, locale],
+    [currentLanguage.code, theme.isDark],
   )
 
   const supportedChains = useMemo(() => {
     return chains.filter((e) => supportedChainIds.includes(e.id))
   }, [supportedChainIds])
-
-  const transferConfig = useTransferConfig()
 
   return (
     <BridgeWalletProvider>
@@ -68,12 +70,16 @@ export const CanonicalBridge = (props: CanonicalBridgeProps) => {
         chains={supportedChains}
         connectWalletButton={connectWalletButton}
         refreshingIcon={<RefreshingIcon />}
-        onError={onError}
+        onError={(params) => {
+          if (params.message) {
+            toast.toastError(params.message)
+          }
+        }}
       >
-        <BridgeWrapper>
+        <Flex flexDirection="column" justifyContent="center" maxWidth="480px" width="100%">
           <BridgeTransfer />
           <V1BridgeLink />
-        </BridgeWrapper>
+        </Flex>
         <BridgeRoutes />
       </CanonicalBridgeProvider>
     </BridgeWalletProvider>

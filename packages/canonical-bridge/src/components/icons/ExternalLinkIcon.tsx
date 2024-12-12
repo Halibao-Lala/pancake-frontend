@@ -1,6 +1,8 @@
-export function ExternalLinkIcon() {
+import { Svg, SvgProps } from '@pancakeswap/uikit'
+
+export function ExternalLinkIcon(props: SvgProps) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <Svg width="20" height="20" viewBox="0 0 20 20" {...props}>
       <g clip-path="url(#clip0_1044_1163)">
         <mask
           id="mask0_1044_1163"
@@ -27,6 +29,6 @@ export function ExternalLinkIcon() {
           <rect width="20" height="20" fill="white" />
         </clipPath>
       </defs>
-    </svg>
+    </Svg>
   )
 }

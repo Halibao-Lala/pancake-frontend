@@ -1,10 +1,11 @@
 import { useBridge } from '@bnb-chain/canonical-bridge-widget'
+import { Svg, SvgProps } from '@pancakeswap/uikit'
 import { keyframes, styled } from 'styled-components'
 
-export const RefreshingIcon = () => {
+export const RefreshingIcon = (props: SvgProps) => {
   const { isGlobalFeeLoading, isRefreshing } = useBridge()
   return (
-    <StyledSVG width="32px" height="32px" viewBox="0 0 20 20" fill="none">
+    <StyledSVG width="32px" height="32px" viewBox="0 0 20 20" fill="none" {...props}>
       <circle cx="10.12" cy="10.12" r="9.12" fill="#1FC7D4" fill-opacity="0.2" />
       <mask
         id="mask0_1009_72807"
@@ -61,7 +62,9 @@ const dash = keyframes`
   }
 `
 
-const StyledSVG = styled.svg`
+const StyledSVG = styled(Svg)`
+  fill: none;
+  color: inherit;
   .refreshBorder {
     animation: ${dash} 32s linear forwards infinite;
   }

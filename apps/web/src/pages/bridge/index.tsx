@@ -1,18 +1,11 @@
 import { CanonicalBridge } from '@pancakeswap/canonical-bridge'
-import { useTranslation } from '@pancakeswap/localization'
-import { Flex, useMatchBreakpoints, useToast } from '@pancakeswap/uikit'
+import { Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { useTheme } from 'styled-components'
 import { CHAIN_IDS } from 'utils/wagmi'
 import Page from 'views/Page'
 
 const BridgePage = () => {
   const { isMobile } = useMatchBreakpoints()
-
-  const { currentLanguage } = useTranslation()
-  const theme = useTheme()
-  const toast = useToast()
-
   return (
     <Page removePadding hideFooterOnDesktop={false} showExternalLink={false} showHelpLink={false} noMinHeight>
       <Flex
@@ -26,17 +19,7 @@ const BridgePage = () => {
         alignItems="flex-start"
         max-width="unset"
       >
-        <CanonicalBridge
-          locale={currentLanguage.code}
-          connectWalletButton={<ConnectWalletButton width="100%" />}
-          supportedChainIds={CHAIN_IDS}
-          colorMode={theme.isDark ? 'dark' : 'light'}
-          onError={(params) => {
-            if (params.message) {
-              toast.toastError(params.message)
-            }
-          }}
-        />
+        <CanonicalBridge connectWalletButton={<ConnectWalletButton width="100%" />} supportedChainIds={CHAIN_IDS} />
       </Flex>
     </Page>
   )

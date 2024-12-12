@@ -27,7 +27,9 @@
     "@solana/spl-token": "^0",
     "tronweb": "^6",
     "@solana/wallet-adapter-react": "^0",
-    "@tronweb3/tronwallet-adapter-react-hooks": "^1"
+    "@tronweb3/tronwallet-adapter-react-hooks": "^1",
+    "@pancakeswap/uikit": "workspace:*",
+    "@pancakeswap/localization": "workspace:*"
   },
   "dependencies": {
     "@bnb-chain/canonical-bridge-widget": "0.5.12-alpha.3",
@@ -46,7 +48,9 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-transition-group": "^4.4.1",
     "viem": "catalog:",
-    "wagmi": "catalog:"
+    "wagmi": "catalog:",
+    "@pancakeswap/uikit": "workspace:*",
+    "@pancakeswap/localization": "workspace:*"
   },
   "exports": {
     "./package.json": "./package.json",
