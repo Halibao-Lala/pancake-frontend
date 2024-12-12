@@ -260,6 +260,7 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 600;
         line-height: 24px;
         &:not(.disabled):hover {
+          background: #1FC7D4;
           opacity: 0.65;
         }
       }
@@ -575,7 +576,7 @@ const GlobalStyle = createGlobalStyle`
             opacity: 0.6;
           }
         }
-        &:hover {
+        &:not(.route-error):hover {
           border-color: #1FC7D4;
         }
       }
