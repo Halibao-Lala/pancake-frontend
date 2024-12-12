@@ -24,10 +24,11 @@ export interface CanonicalBridgeProps {
   supportedChainIds: number[]
   colorMode?: 'light' | 'dark'
   locale?: string
+  onError?: CanonicalBridgeProviderProps['onError']
 }
 
 export const CanonicalBridge = (props: CanonicalBridgeProps) => {
-  const { colorMode = 'light', locale = 'en', connectWalletButton, supportedChainIds } = props
+  const { colorMode = 'light', locale = 'en', connectWalletButton, supportedChainIds, onError } = props
 
   const config = useMemo<ICanonicalBridgeConfig>(
     () => ({
@@ -67,6 +68,7 @@ export const CanonicalBridge = (props: CanonicalBridgeProps) => {
         chains={supportedChains}
         connectWalletButton={connectWalletButton}
         refreshingIcon={<RefreshingIcon />}
+        onError={onError}
       >
         <BridgeWrapper>
           <BridgeTransfer />
