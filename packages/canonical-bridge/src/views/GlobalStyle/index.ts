@@ -300,7 +300,6 @@ const GlobalStyle = createGlobalStyle`
     }
     .bccb-widget-from-network-modal-content, .bccb-widget-to-network-modal-content {
       max-height: unset;
-      height: 100vh;
       ${({ theme }) => theme.mediaQueries.sm} {
         max-height: 80vh;
         width: 360px;
@@ -342,13 +341,13 @@ const GlobalStyle = createGlobalStyle`
     }
     
     .bccb-widget-token-modal-content {
-      max-height: unset;
       width: 100vw;
       height: 100vh;
       background: ${({ theme }) => (theme.isDark ? '#27262C' : '#FFFFFF')};
       ${({ theme }) => theme.mediaQueries.sm} {
         max-height: 80vh;
         width: 360px;
+        height: 665px;
       }
       .bccb-widget-token-modal-body {
         padding: 12px 0;
@@ -736,6 +735,7 @@ const GlobalStyle = createGlobalStyle`
       height: 100vh;
       background: ${({ theme }) => (theme.isDark ? '#27262C' : '#FFFFFF')};
       ${({ theme }) => theme.mediaQueries.sm} {
+        height: auto;
         max-height: 80vh;
         width: 360px;
       }
