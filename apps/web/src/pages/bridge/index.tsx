@@ -1,8 +1,12 @@
-import { CanonicalBridge } from '@pancakeswap/canonical-bridge'
 import { Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { lazy, Suspense } from 'react'
 import { CHAIN_IDS } from 'utils/wagmi'
 import Page from 'views/Page'
+
+const CanonicalBridge = lazy(() =>
+  import('@pancakeswap/canonical-bridge').then((module) => ({ default: module.CanonicalBridge })),
+)
 
 const BridgePage = () => {
   const { isMobile } = useMatchBreakpoints()
@@ -20,7 +24,9 @@ const BridgePage = () => {
         alignItems="flex-start"
         max-width="unset"
       >
-        <CanonicalBridge connectWalletButton={<ConnectWalletButton width="100%" />} supportedChainIds={CHAIN_IDS} />
+        <Suspense>
+          <CanonicalBridge connectWalletButton={<ConnectWalletButton width="100%" />} supportedChainIds={CHAIN_IDS} />
+        </Suspense>
       </Flex>
     </Page>
   )
