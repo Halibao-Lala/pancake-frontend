@@ -6,6 +6,7 @@ import Page from 'views/Page'
 
 const BridgePage = () => {
   const { isMobile } = useMatchBreakpoints()
+
   return (
     <Page removePadding hideFooterOnDesktop={false} showExternalLink={false} showHelpLink={false} noMinHeight>
       <Flex
