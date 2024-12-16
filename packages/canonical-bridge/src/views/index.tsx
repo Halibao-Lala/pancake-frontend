@@ -10,6 +10,7 @@ import {
   ICanonicalBridgeConfig,
 } from '@bnb-chain/canonical-bridge-widget'
 import { useTheme } from 'styled-components'
+import { useAccount } from 'wagmi'
 import { RefreshingIcon } from '../components/RefreshingIcon'
 import { V1BridgeLink } from '../components/V1BridgeLink'
 import { chains, env } from '../configs'
@@ -57,9 +58,12 @@ export const CanonicalBridge = (props: CanonicalBridgeProps) => {
     [currentLanguage.code, theme.isDark],
   )
 
+  const { connector } = useAccount()
   const supportedChains = useMemo(() => {
-    return chains.filter((e) => supportedChainIds.includes(e.id))
-  }, [supportedChainIds])
+    return chains
+      .filter((e) => supportedChainIds.includes(e.id))
+      .filter((e) => !(connector?.id === 'BinanceW3WSDK' && e.id === 1101))
+  }, [connector?.id, supportedChainIds])
 
   return (
     <BridgeWalletProvider>
