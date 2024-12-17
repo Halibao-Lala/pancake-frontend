@@ -1555,8 +1555,8 @@ importers:
   packages/canonical-bridge:
     dependencies:
       '@bnb-chain/canonical-bridge-widget':
-        specifier: 0.5.14-alpha.4
-        version: 0.5.14-alpha.4(2b2s7kabqcsjyxwja7i7qf3u64)
+        specifier: 0.5.14-alpha.5
+        version: 0.5.14-alpha.5(2b2s7kabqcsjyxwja7i7qf3u64)
       '@emotion/react':
         specifier: ^11
         version: 11.11.4(@types/react@18.2.37)(react@18.2.0)
@@ -4467,8 +4467,8 @@ packages:
       aptos:
         optional: true
 
-  '@bnb-chain/canonical-bridge-widget@0.5.14-alpha.4':
-    resolution: {integrity: sha512-DGUzi2Y1loT4TNNcP3xY3ZeVqSOz5dMe/hGbGbudEAUAmAOOWa7PQYIah6epe3WlLX1Dg+JbKbj8rpDdbfggdw==}
+  '@bnb-chain/canonical-bridge-widget@0.5.14-alpha.5':
+    resolution: {integrity: sha512-xo/DkBbC3wrn+NVSsAcIRV/Kl3/mbv749hCmYE9cBJsiisWtqD5QDWDMfM9KD6h/wKHSG1A+HotjTUkEH0gmVQ==}
     peerDependencies:
       '@emotion/react': ^11
       '@emotion/styled': ^11
@@ -19675,7 +19675,7 @@ snapshots:
       - debug
       - utf-8-validate
 
-  '@bnb-chain/canonical-bridge-widget@0.5.14-alpha.4(2b2s7kabqcsjyxwja7i7qf3u64)':
+  '@bnb-chain/canonical-bridge-widget@0.5.14-alpha.5(2b2s7kabqcsjyxwja7i7qf3u64)':
     dependencies:
       '@emotion/react': 11.11.4(@types/react@18.2.37)(react@18.2.0)
       '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.2.37)(react@18.2.0))(@types/react@18.2.37)(react@18.2.0)
