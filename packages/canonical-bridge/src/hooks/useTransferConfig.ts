@@ -93,6 +93,9 @@ export function useTransferConfig() {
             '0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4': 'USDC',
             '0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4': 'USDC.e',
           },
+          1101: {
+            '0x37eAA0eF3549a5Bb7D431be78a3D99BD360d19e5': 'USDC.e',
+          },
           42161: {
             '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8': 'USDC.e',
           },
@@ -123,6 +126,8 @@ export function useTransferConfig() {
                 '0x67d66e8ec1fd25d98b3ccd3b19b7dc4b4b7fc493',
                 '0x0000000000000000000000000000000000000000',
                 '0x9c7beba8f6ef6643abd725e45a4e8387ef260649',
+                '0xb04906e95ab5d797ada81508115611fee694c2b3',
+                '0x524bc91dc82d6b90ef29f76a3ecaabafffd490bc',
               ],
               137: ['cUSDCv3'],
               42161: ['cUSDCv3'],
